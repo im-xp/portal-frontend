@@ -15,7 +15,7 @@ import { ageOptions, shareableInfo } from "../constants/forms";
 import { useEffect, useState } from 'react';
 import { GENDER_OPTIONS } from "@/constants/util";
 
-const fieldsPersonalInformation = ["first_name", "last_name", "email", "gender", "age", "telegram", "residence", "eth_address", "referral", "local_resident", "info_not_shared"]
+const fieldsPersonalInformation = ["first_name", "last_name", "email", "phone_number", "gender", "age", "telegram", "residence", "eth_address", "referral", "local_resident", "info_not_shared"]
 
 export function PersonalInformationForm({ formData, errors, handleChange, fields }: SectionProps) {
   const { getCity } = useCityProvider()
@@ -71,6 +71,17 @@ export function PersonalInformationForm({ formData, errors, handleChange, fields
             onChange={(value) => handleChange('email', value)}
             error={errors.email}
             isRequired={true}
+          />
+        )}
+        {fields.has("phone_number") && (
+          <InputForm
+            label="Phone number"
+            id="phone_number"
+            type="tel"
+            value={formData.phone_number ?? ''}
+            onChange={(value) => handleChange('phone_number', value)}
+            error={errors.phone_number}
+            placeholder="+1 (555) 123-4567"
           />
         )}
         {fields.has("telegram") && (

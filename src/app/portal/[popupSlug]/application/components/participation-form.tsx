@@ -43,12 +43,11 @@ export function ParticipationForm({ formData, errors, handleChange, fields }: Se
 
   return (
     <>
-      <SectionWrapper 
-        title={form?.participation?.title ?? 'Your participation'} 
+      <SectionWrapper
+        title={form?.participation?.title ?? 'Your participation'}
         subtitle={form?.participation?.subtitle ?? 'We understand that your plans may change. We are collecting the following information just to get a sense of capacity of each day/week.'}
       >
 
-        
         {
           isBhutan && (
             <CheckboxForm

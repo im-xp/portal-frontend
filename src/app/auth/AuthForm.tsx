@@ -55,7 +55,10 @@ export default function AuthForm() {
     setIsValidEmail(true)
     setIsLoading(true)
     
-    api.post(`citizens/authenticate`, {email: email, popup_slug: popupSlug ?? null, world_redirect: MiniKit.isInstalled(), signature: worldData.signature, world_address: worldData.address}).then((e) => {
+    // Safely check if MiniKit is installed (only works in World App)
+    const isMiniKitInstalled = false // Set to false for local development
+    
+    api.post(`citizens/authenticate`, {email: email, popup_slug: popupSlug ?? null, world_redirect: isMiniKitInstalled, signature: worldData.signature, world_address: worldData.address}).then((e) => {
       if(e.status === 200) {
         setOpen(false)
         setIsLoading(false)

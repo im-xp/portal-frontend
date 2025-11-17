@@ -34,9 +34,24 @@ const useProgress = (formData: FormData) => {
         required: formData.gender === 'Specify'
       },
       {
+        name: 'background',
+        fields: ['short_bio', 'key_skills_expertise', 'project_spotlight'].filter(f => fields.has(f)),
+        required: true
+      },
+      {
         name: 'professionalDetails',
         fields: ['organization'].filter(f => fields.has(f)),
         required: !isVideoValid
+      },
+      {
+        name: 'participationType',
+        fields: ['participation_type'].filter(f => fields.has(f)),
+        required: true
+      },
+      {
+        name: 'participationType',
+        fields: ['project_title', 'project_concept_description'].filter(f => fields.has(f)),
+        required: formData.participation_type === 'lead_project'
       },
       {
         name: 'participation',
@@ -57,6 +72,11 @@ const useProgress = (formData: FormData) => {
         name: 'kids',
         fields: ['kids_info'].filter(f => fields.has(f)),
         required: formData.brings_kids
+      },
+      {
+        name: 'additionalInfo',
+        fields: ['residency_motivation', 'age_verification', 'agreement_to_values'].filter(f => fields.has(f)),
+        required: true
       },
       {
         name: 'scholarship',

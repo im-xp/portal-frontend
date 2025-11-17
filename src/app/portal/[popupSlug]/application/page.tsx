@@ -24,6 +24,9 @@ import AccomodationForm from "./components/AccomodationForm"
 import { useApplication } from "@/providers/applicationProvider"
 import useGetFields from "./hooks/useGetFields"
 import PatagoniaResidenciesForm from "./components/PatagoniaResidenciesForm"
+import { BackgroundForm } from "./components/background-form"
+import { ParticipationTypeForm } from "./components/participation-type-form"
+import { AdditionalInfoForm } from "./components/additional-info-form"
 
 export default function FormPage() {
   const [statusBtn, setStatusBtn] = useState({loadingDraft: false, loadingSubmit: false})
@@ -100,8 +103,12 @@ export default function FormPage() {
         <SectionSeparator />
 
         <PersonalInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-        
+
+        <BackgroundForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+
         <ProfessionalDetailsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+
+        <ParticipationTypeForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
 
         <ParticipationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
 
@@ -112,7 +119,9 @@ export default function FormPage() {
         <ScholarshipForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
 
         <AccomodationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-        
+
+        <AdditionalInfoForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+
         <div className="flex flex-col w-full gap-6 md:flex-row justify-between items-center pt-6">
           <ButtonAnimated loading={statusBtn.loadingDraft} disabled={statusBtn.loadingSubmit} variant="outline" type="button" onClick={handleDraft} className="w-full md:w-auto">Save as draft</ButtonAnimated>
           <ButtonAnimated loading={statusBtn.loadingSubmit} disabled={statusBtn.loadingDraft} type="submit" className="w-full md:w-auto">Submit</ButtonAnimated>

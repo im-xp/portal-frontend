@@ -16,11 +16,14 @@ export const edgeEsmeralda: DynamicForm = {
     local_resident_title: 'Are you a Sonoma resident?'
   },
   scholarship: {
-    interest_text: 'We understand that some folks will need financial assistance to attend, and have other ways to contribute beyond financial support. We have limited numbers of discounted tickets to allocate. Please elaborate on why you’re applying, and what your contribution might be. We estimate roughly a 10 hour/week volunteer effort from folks who gets scholarships.',
+    interest_text: 'We understand that some folks will need financial assistance to attend, and have other ways to contribute beyond financial support. We have limited numbers of discounted tickets to allocate. Please elaborate on why you\'re applying, and what your contribution might be. We estimate roughly a 10 hour/week volunteer effort from folks who gets scholarships.',
   },
   fields: [
+    // Personal Information
     "first_name",
     "last_name",
+    "email",
+    "phone_number",
     "gender",
     "gender_specify",
     "age",
@@ -30,9 +33,27 @@ export const edgeEsmeralda: DynamicForm = {
     "referral",
     "local_resident",
     "info_not_shared",
+
+    // Professional Details
     "organization",
     "role",
     "social_media",
+
+    // Background & Experience
+    "short_bio",
+    "key_skills_expertise",
+    "project_spotlight",
+    "work_links",
+
+    // Project Proposal
+    "participation_type",
+    "project_title",
+    "project_concept_description",
+    "project_sketch_media",
+    "desired_collaborator_skills",
+    "relevant_experience_leadership",
+
+    // Participation Details
     "duration",
     "builder_boolean",
     "builder_description",
@@ -41,11 +62,24 @@ export const edgeEsmeralda: DynamicForm = {
     "video_url",
     "personal_goals",
     "host_session",
+
+    // Family Information
     "brings_spouse",
     "brings_kids",
     "spouse_info",
     "spouse_email",
     "kids_info",
+
+    // Additional Information
+    "residency_motivation",
+    "how_heard_about_us",
+    "track_interest",
+    "resources_needed",
+    "alternative_participation",
+    "age_verification",
+    "agreement_to_values",
+
+    // Scholarship Information
     "scholarship_interest",
     "scholarship_info",
     "scholarship_details",
