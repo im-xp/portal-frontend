@@ -5,7 +5,7 @@ export default function Quote() {
     <div 
       className="hidden md:flex md:w-1/2 relative p-8" 
       style={{ 
-        backgroundImage: 'url(https://simplefi.s3.us-east-2.amazonaws.com/edge-patagonia-background.jpeg)', 
+        backgroundImage: 'url(https://images.typeform.com/images/gAqmGWTiyfrT/background/large)', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

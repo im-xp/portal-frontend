@@ -2,20 +2,20 @@ import icon from '../../public/icon.png'
 
 export const config = {
   metadata: {
-    title: "Edge Portal",
-    description: "Welcome to the Edge Portal. Log in or sign up to access Edge City events.",
+    title: "The Portal",
+    description: "Welcome to the Portal at Iceland Eclipse. Log in or sign up to access Portal events.",
     icon: icon.src,
     openGraph: {
-      title: "Edge Portal",
-      description: "Welcome to the Edge Portal. Log in or sign up to access Edge City events.",
+      title: "The Portal at Iceland Eclipse",
+      description: "Welcome to the Portal at Iceland Eclipse. Log in or sign up to access Portal events.",
       images: [{
-        url: "https://simplefi.s3.us-east-2.amazonaws.com/edgecity.png",
-        alt: "Edge Portal",
+        url: "https://framerusercontent.com/images/PCt5i43Ld67IGEtFyrPGl5rFM.png",
+        alt: "The Portal at Iceland Eclipse",
         width: 1200,
         height: 630,
       }],
     },
   },
-  name: "Edge Portal",
+  name: "The Portal at Iceland Eclipse",
 }
 

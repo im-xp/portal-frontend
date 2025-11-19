@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body suppressHydrationWarning>
         <GoogleAnalytics />
         <MiniKitProvider>
-          <div className={`${GeistSans.className} antialiased w-[100%] bg-neutral-100`}>
+          <div className={`${GeistSans.className} antialiased w-[100%]`}>
             {children}
           </div>
         </MiniKitProvider>

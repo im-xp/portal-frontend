@@ -99,11 +99,11 @@ export default function AuthForm() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center max-w-md mx-auto mb-4">
-            <h2 className="mt-6 text-3xl font-bold text-gray-900" style={{ textWrap: 'balance' }}>
+            <h2 className="mt-6 text-3xl font-bold text-foreground" style={{ textWrap: 'balance' }}>
               Sign Up or Log In to {config.name}
             </h2>
-            <p className="mt-2 text-sm text-gray-600" style={{ textWrap: 'balance' }}>
-            Welcome! If it’s your first time, sign up below. If you attended a past event, use the same email to import your prior application.
+            <p className="mt-2 text-sm text-muted-foreground" style={{ textWrap: 'balance' }}>
+            Welcome! If it's your first time, sign up below. If you attended a past event, use the same email to import your prior application.
             </p>
           </div>
 
@@ -125,8 +125,8 @@ export default function AuthForm() {
                 }}
                 disabled={isLoading || !!message.message}
                 className={`appearance-none rounded-md relative block w-full px-3 py-5 border ${
-                  isValidEmail ? 'border-gray-300' : 'border-red-500'
-                } placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
+                  isValidEmail ? 'border-border' : 'border-destructive'
+                } placeholder-muted-foreground text-foreground bg-background focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm`}
               />
               {!isValidEmail && (
                 <p className="mt-2 text-sm text-red-600">Please enter a valid email address</p>
@@ -135,7 +135,7 @@ export default function AuthForm() {
             <ButtonAnimated
               type="submit"
               disabled={isLoading || message.status === 'success' || !email}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
             >
               {isLoading ? (
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -144,7 +144,7 @@ export default function AuthForm() {
                 </svg>
               ) : 'Continue'}
             </ButtonAnimated>
-            <p className="mt-2 text-sm text-gray-600" style={{ textAlign: 'center', textWrap: 'balance' }}>
+            <p className="mt-2 text-sm text-muted-foreground" style={{ textAlign: 'center', textWrap: 'balance' }}>
             You&apos;ll receive a magic link in your email inbox to log in.
             </p>
           </form>
