@@ -23,7 +23,6 @@ export const edgeEsmeralda: DynamicForm = {
     "first_name",
     "last_name",
     "email",
-    "phone_number",
     "gender",
     "gender_specify",
     "age",
@@ -38,20 +37,6 @@ export const edgeEsmeralda: DynamicForm = {
     "organization",
     "role",
     "social_media",
-
-    // Background & Experience
-    "short_bio",
-    "key_skills_expertise",
-    "project_spotlight",
-    "work_links",
-
-    // Project Proposal
-    "participation_type",
-    "project_title",
-    "project_concept_description",
-    "project_sketch_media",
-    "desired_collaborator_skills",
-    "relevant_experience_leadership",
 
     // Participation Details
     "duration",
@@ -69,15 +54,6 @@ export const edgeEsmeralda: DynamicForm = {
     "spouse_info",
     "spouse_email",
     "kids_info",
-
-    // Additional Information
-    "residency_motivation",
-    "how_heard_about_us",
-    "track_interest",
-    "resources_needed",
-    "alternative_participation",
-    "age_verification",
-    "agreement_to_values",
 
     // Scholarship Information
     "scholarship_interest",

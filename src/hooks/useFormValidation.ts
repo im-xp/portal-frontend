@@ -10,12 +10,9 @@ type FormData = Record<FieldName, FieldValue>
 
 const requiredFields = {
   personalInformation: ['first_name', 'last_name', 'telegram', 'gender', 'age', 'email', 'gender_specify', 'local_resident'],
-  background: ['short_bio', 'key_skills_expertise', 'project_spotlight'],
   professionalDetails: ['organization'],
-  participationType: ['participation_type'],
   participation: ['duration', 'builder_description'],
   childrenPlusOnes: ['spouse_info', 'spouse_email', 'kids_info'],
-  additionalInfo: ['residency_motivation', 'age_verification', 'agreement_to_values'],
   scholarship: ['scholarship_video_url', 'scholarship_details'],
   accommodation: ['booking_confirmation'],
 }
@@ -72,9 +69,6 @@ export const useFormValidation = (initialData: FormData) => {
       }
       if(name === 'scholarship_details') {
         if(!formData.scholarship_request || city?.slug !== 'edge-austin') return '';
-      }
-      if (name === 'project_title' || name === 'project_concept_description') {
-        if (formData.participation_type !== 'lead_project') return '';
       }
       if (name === 'builder_description') {
         if (!formData.builder_boolean || validateVideoUrl(formData.video_url)) return '';
