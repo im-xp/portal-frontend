@@ -1,5 +1,6 @@
 import { usePassesProvider } from "@/providers/passesProvider"
 import AttendeeTicket from "../components/common/AttendeeTicket"
+import LodgingTicket from "../components/common/LodgingTicket"
 import CompletePurchaseButton from "../components/common/Buttons/CompletePurchaseButton"
 import TitleTabs from "../components/common/TitleTabs"
 import TotalPurchase from "../components/common/TotalPurchase"
@@ -95,6 +96,13 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
           ))
         }
       </div>
+
+      {/* Lodging Section - Only show for main attendee */}
+      {mainAttendee && !isDayCheckout && (
+        <div className="flex flex-col gap-4 mt-6">
+          <LodgingTicket attendee={mainAttendee} toggleProduct={toggleProduct} />
+        </div>
+      )}
 
       {
         positionCoupon === 'bottom' && city && city?.allows_coupons && (
