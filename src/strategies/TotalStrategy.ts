@@ -35,33 +35,49 @@ class MonthlyPriceStrategy extends BasePriceStrategy {
     const hasPatreon = products.some(p => (p.category === 'patreon' || p.category === 'supporter') && p.selected);
     const monthProduct = products.find(p => (p.category === 'month' || p.category === 'local month') && p.selected && !p.purchased);
     const monthPrice = (monthProduct?.price ?? 0) * (monthProduct?.quantity ?? 1);
+    
+    // Calculate total of already purchased products (credit)
     const totalProductsPurchased = products
       .filter(p => p.category !== 'patreon' && p.category !== 'supporter')
       .reduce((sum, product) => sum + (product.purchased ? product.price * (product.quantity ?? 1) : 0), 0)
+    
+    // Calculate total of newly selected products (like lodging)
+    const totalNewlySelected = products
+      .filter(p => p.selected && !p.purchased && p.category !== 'month' && p.category !== 'local month' && p.category !== 'patreon' && p.category !== 'supporter')
+      .reduce((sum, product) => sum + (product.price * (product.quantity ?? 1)), 0)
 
     const originalTotal = this.calculateOriginalTotal(products)
     const discountAmount = discount.discount_value ? originalTotal * (discount.discount_value / 100): 0;
 
-    console.log('month',{monthPrice, originalTotal, discountAmount, totalProductsPurchased})
 
     return {
-      total: monthPrice - (hasPatreon && monthProduct?.attendee_category !== 'main' ? 0 : totalProductsPurchased),
+      total: monthPrice + totalNewlySelected - (hasPatreon && monthProduct?.attendee_category !== 'main' ? 0 : totalProductsPurchased),
       originalTotal: originalTotal,
       discountAmount: discountAmount
     };
   }
 
   protected calculateOriginalTotal(products: ProductsPass[]): number {
-    return products
-      .find(p => p.selected && (p.category === 'month' || p.category === 'local month'))?.original_price ?? 0
+    const monthPrice = products
+      .find(p => p.selected && (p.category === 'month' || p.category === 'local month'))?.original_price ?? 0;
+    
+    // Include lodging and other newly selected products in original total
+    const otherSelectedPrice = products
+      .filter(p => p.selected && !p.purchased && p.category !== 'month' && p.category !== 'local month' && p.category !== 'patreon' && p.category !== 'supporter')
+      .reduce((sum, product) => sum + ((product.original_price ?? product.price ?? 0) * (product.quantity ?? 1)), 0);
+    
+    return monthPrice + otherSelectedPrice;
   }
 }
 
 class WeeklyPriceStrategy extends BasePriceStrategy {
   calculate(products: ProductsPass[], discount: DiscountProps): TotalResult {
-    const weekSelectedProducts = products.filter(p => (p.category === 'week' || p.category === 'local week' || p.category.includes('day')) && p.selected);
+    // Include week, day, AND lodging products
+    const selectedProducts = products.filter(p => 
+      (p.category === 'week' || p.category === 'local week' || p.category.includes('day') || p.category === 'lodging') && p.selected
+    );
     
-    const totalSelected = weekSelectedProducts.reduce((sum, product) => {
+    const totalSelected = selectedProducts.reduce((sum, product) => {
       if (product.purchased && !product.category.includes('day')) {
         return sum - ((product.price ?? 0) * (product.quantity || 1));
       }

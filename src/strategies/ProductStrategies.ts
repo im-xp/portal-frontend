@@ -232,6 +232,22 @@ class DayProductStrategy implements ProductStrategy {
   }
 }
 
+class LodgingProductStrategy implements ProductStrategy {
+  handleSelection(attendees: AttendeeProps[], attendeeId: number, product: ProductsPass): AttendeeProps[] {
+    return attendees.map(attendee => {
+      if (attendee.id !== attendeeId) return attendee;
+
+      return {
+        ...attendee,
+        products: attendee.products.map(p => ({
+          ...p,
+          selected: p.id === product.id ? !p.selected : p.selected
+        }))
+      };
+    });
+  }
+}
+
 export const getProductStrategy = (product: ProductsPass, isEditing: boolean): ProductStrategy => {
 
   if (product.exclusive && product.category !== 'month') return new ExclusiveProductStrategy();
@@ -253,6 +269,8 @@ export const getProductStrategy = (product: ProductsPass, isEditing: boolean): P
       return new DayProductStrategy();
     case 'local day':
       return new DayProductStrategy();
+    case 'lodging':
+      return new LodgingProductStrategy();
     default:
       return new WeekProductStrategy();
   }

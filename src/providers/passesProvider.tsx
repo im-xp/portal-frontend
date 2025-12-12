@@ -68,6 +68,15 @@ const PassesProvider = ({ children }: { children: ReactNode }) => {
           )
           .map((product: ProductsPass) => {
             const originalQuantity = product.category.includes('day') ? attendees.find(a => a.id === attendee.id)?.products.find(p => p.id === product.id)?.quantity ?? 0 : 1
+            const calculatedPrice = priceStrategy.calculatePrice(product, hasPatreonPurchased, discountApplied.discount_value);
+            console.log('Price calc:', {
+              name: product.name,
+              category: product.category,
+              originalPrice: product.price,
+              hasPatreonPurchased,
+              discount: discountApplied.discount_value,
+              calculatedPrice
+            });
             return {
               ...product,
               original_quantity: originalQuantity,
@@ -76,7 +85,7 @@ const PassesProvider = ({ children }: { children: ReactNode }) => {
               attendee_id: attendee.id,
               original_price: product.price,
               disabled: false,
-              price: priceStrategy.calculatePrice(product, hasPatreonPurchased, discountApplied.discount_value)
+              price: calculatedPrice
             }
           });
 
