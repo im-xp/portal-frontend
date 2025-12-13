@@ -20,7 +20,7 @@ export function FormHeader() {
           src="https://storage.googleapis.com/icelandeclipse/portal-background5.jpg"
           alt="The Portal at Iceland Eclipse background image"
           style={{height: 'auto'}}
-          className="w-full md:min-h-[190px] md:w-[20vw] md:max-w-[240px] object-cover dark:invert rounded-2xl"
+          className="w-full md:min-h-[190px] md:w-[20vw] md:max-w-[240px] object-cover rounded-2xl"
         />
       </div>
       <div className="space-y-2">
@@ -38,7 +38,7 @@ export function FormHeader() {
         }
         {
           (startDate && endDate) && (
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
+            <div className="flex items-center text-sm text-foreground mb-4">
               <CalendarDays className="mr-2 h-4 w-4" />
               {startDate + ' - ' + endDate}
             </div>

@@ -26,7 +26,7 @@ body {
     /* Iceland Eclipse Brand - Light Mode */
     /* Main backgrounds */
     --background: 0 0% 98%;
-    --foreground: 217 92% 15%; /* #021849 Dark Blue */
+    --foreground: #021849; /* #021849 Dark Blue */
     
     /* Card components */
     --card: 0 0% 100%;
@@ -85,7 +85,7 @@ body {
     /* Iceland Eclipse Brand - Dark Mode */
     /* Main backgrounds - #021849 Dark Blue */
     --background: 217 92% 15%; /* #021849 */
-    --foreground: 210 8% 90%; /* #e6e7e8 Light Grey for all text */
+    --foreground: #021849; /* #e6e7e8 Light Grey for all text */
     
     /* Card components */
     --card: 217 85% 18%; /* Slightly lighter than background */
