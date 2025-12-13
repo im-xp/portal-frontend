@@ -123,7 +123,6 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 xl:order-1">
-                  <EdgeLand/>
                   <p className="text-sm font-medium">{city?.name}</p>
                 </div>
               </div>
