@@ -17,8 +17,8 @@ export function FormHeader() {
       <div className="flex items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={city.image_url}
-          alt={city.name}
+          src="https://storage.googleapis.com/icelandeclipse/portal-background5.jpg"
+          alt="The Portal at Iceland Eclipse background image"
           style={{height: 'auto'}}
           className="w-full md:min-h-[190px] md:w-[20vw] md:max-w-[240px] object-cover dark:invert rounded-2xl"
         />
