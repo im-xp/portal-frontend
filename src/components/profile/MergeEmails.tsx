@@ -475,8 +475,9 @@ export default function MergeEmails() {
           </div>
           <div className='flex-shrink-0'>
             <Button
+              variant="default"
               onClick={() => setIsModalOpen(true)}
-              className='bg-[#020817] hover:bg-[#020817]/90 text-white whitespace-nowrap rounded-lg px-5 py-2.5 h-auto'>
+              className='whitespace-nowrap rounded-lg px-5 py-2.5 h-auto'>
               Merge emails
             </Button>
           </div>

@@ -108,10 +108,9 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
         <div className="flex items-center gap-2">
           {!isEditing ? (
             <Button
-              variant="outline"
+              variant="default"
               size="sm"
               onClick={() => setIsEditing(true)}
-              className="text-gray-700 border-gray-300 hover:bg-gray-50"
             >
               <Edit2 className="w-4 h-4 mr-2" />
               Edit Profile
