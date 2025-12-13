@@ -38,7 +38,7 @@ const usePurchaseProducts = () => {
         edit_passes: editableMode
       }
       
-      const response = await api.post('payments', data)
+      const response = await api.post('payments/', data)
 
       if(response.status === 200){
         const redirectUrl = isFastCheckout ? `${window.location.origin}/checkout/success` : window.location.href;
