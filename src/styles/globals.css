@@ -25,79 +25,79 @@ body {
   :root {
     /* Iceland Eclipse Brand - Light Mode */
     /* Main backgrounds */
-    --background: #fcffff;
-    --foreground: #021849; /* #021849 Dark Blue */
+    --background: 0 0% 98%;
+    --foreground: 217 92% 15%; /* #021849 Dark Blue */
     
     /* Card components */
-    --card: #fff;
-    --card-foreground: #021849;
+    --card: 0 0% 100%;
+    --card-foreground: 217 92% 15%;
     
     /* Popovers */
-    --popover: #fff;
-    --popover-foreground: #021849;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 92% 15%;
     
     /* Primary - Iceland Eclipse Accent Cyan */
-    --primary: #3cc7e1; 
-    --primary-foreground: #fff;
+    --primary: 189 69% 56%; /* #3cc7e1 */
+    --primary-foreground: 0 0% 100%;
     
     /* Secondary - Dark Blue */
-    --secondary: #021849; 
-    --secondary-foreground: #fff;
+    --secondary: 217 92% 15%; /* #021849 */
+    --secondary-foreground: 0 0% 100%;
     
     /* Muted elements */
-    --muted: #EAEDF1;
-    --muted-foreground: #021849;
+    --muted: 210 20% 93%;
+    --muted-foreground: 217 50% 35%;
     
     /* Accent - Cyan */
-    --accent: #3cc7e1;
-    --accent-foreground: #fff;
+    --accent: 189 69% 56%; /* #3cc7e1 */
+    --accent-foreground: 0 0% 100%;
     
     /* Destructive states */
-    --destructive: #fd1414;
-    --destructive-foreground: #fff;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
     
     /* Borders and inputs */
-    --border: #e6e7e8;
+    --border: 210 25% 85%;
     --input: 210 25% 90%;
-    --ring: #3cc7e1;
+    --ring: 189 69% 56%;
     
     /* Chart colors - Iceland Eclipse palette */
-    --chart-1: #3cc7e1;  /* Cyan Accent */
-    --chart-2: #021849;  /* Dark Blue */
-    --chart-3: #e6e7e8;   /* Light Grey */
+    --chart-1: 189 69% 56%;  /* Cyan Accent */
+    --chart-2: 217 92% 15%;  /* Dark Blue */
+    --chart-3: 210 8% 90%;   /* Light Grey */
     --chart-4: 217 85% 25%;  /* Medium Blue */
     --chart-5: 189 50% 40%;  /* Dark Cyan */
     
     --radius: 0.5rem;
     
     /* Sidebar - Iceland Eclipse theme */
-    --sidebar-background: #fcffff;
-    --sidebar-foreground: #021849;
-    --sidebar-primary: #3cc7e1;
-    --sidebar-primary-foreground: #fff;
-    --sidebar-accent: #EAEDF1;
-    --sidebar-accent-foreground: #021849;
-    --sidebar-border: #e6e7e8;
-    --sidebar-ring: #3cc7e1;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 217 92% 15%;
+    --sidebar-primary: 189 69% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 93%;
+    --sidebar-accent-foreground: 217 92% 15%;
+    --sidebar-border: 210 25% 85%;
+    --sidebar-ring: 189 69% 56%;
   }
   
   .dark {
     /* Iceland Eclipse Brand - Dark Mode */
     /* Main backgrounds - #021849 Dark Blue */
-    --background: #021849;
-    --foreground: #ffffff;
+    --background: 217 92% 15%; /* #021849 */
+    --foreground: 210 8% 90%; /* #e6e7e8 Light Grey for all text */
     
     /* Card components */
-    --card: #021849;
-    --card-foreground: #ffffff;
+    --card: 217 85% 18%; /* Slightly lighter than background */
+    --card-foreground: 210 8% 90%; /* Light grey text */
     
     /* Popovers */
-    --popover: #021849;
-    --popover-foreground: #ffffff;
+    --popover: 217 85% 18%;
+    --popover-foreground: 210 8% 90%;
     
     /* Primary - Iceland Eclipse Accent Cyan */
-    --primary: #3cc7e1;
-    --primary-foreground: #ffffff;
+    --primary: 189 69% 56%; /* #3cc7e1 */
+    --primary-foreground: 0 0% 100%;
     
     /* Secondary - Cyan on Hover */
     --secondary: 217 85% 22%; /* Slightly lighter blue for hover */
@@ -108,20 +108,20 @@ body {
     --muted-foreground: 210 20% 70%; /* Lighter muted text */
     
     /* Accent - Cyan */
-    --accent: #3cc7e1;
-    --accent-foreground: #ffffff;
+    --accent: 189 69% 56%; /* #3cc7e1 */
+    --accent-foreground: 0 0% 100%;
     
     /* Destructive states */
-    --destructive: #fd1414;
-    --destructive-foreground: #ffffff;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
     
     /* Borders and inputs - White strokes */
-    --border: #ffffff;
-    --input: #ffffff;
-    --ring: #3cc7e1;
+    --border: 0 0% 100%; /* #ffffff */
+    --input: 217 85% 22%;
+    --ring: 189 69% 56%;
     
     /* Chart colors - Iceland Eclipse palette */
-    --chart-1: #3cc7e1;  /* Cyan Accent */
+    --chart-1: 189 69% 56%;  /* Cyan Accent */
     --chart-2: 217 85% 25%;  /* Medium Blue */
     --chart-3: 210 8% 90%;   /* Light Grey */
     --chart-4: 189 50% 40%;  /* Dark Cyan */
@@ -129,13 +129,13 @@ body {
     
     /* Sidebar - Iceland Eclipse dark theme */
     --sidebar-background: 217 92% 13%; /* Slightly darker than main bg */
-    --sidebar-foreground: #fcffff; /* Light grey text */
+    --sidebar-foreground: 210 8% 90%; /* Light grey text */
     --sidebar-primary: 189 69% 56%;
-    --sidebar-primary-foreground: #fcffff;
-    --sidebar-accent: #EAEDF1;
-    --sidebar-accent-foreground: #fcffff;
-    --sidebar-border: #e6e7e8;
-    --sidebar-ring: #3cc7e1;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 85% 18%;
+    --sidebar-accent-foreground: 210 8% 90%;
+    --sidebar-border: 217 70% 25%;
+    --sidebar-ring: 189 69% 56%;
   }
 }
 
