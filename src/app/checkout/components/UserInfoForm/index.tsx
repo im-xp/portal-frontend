@@ -160,7 +160,7 @@ const UserInfoForm = ({ group, onSubmit, isSubmitting, isLoading, error, isInvit
     return (
       <Card className="max-w-lg mx-auto backdrop-blur bg-white/90">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold mb-2">Checkout</CardTitle>
+          <CardTitle className="text-2xl font-bold mb-2 text-card-foreground">Checkout</CardTitle>
           <div className="mt-6 p-3 bg-red-100 border border-red-300 text-red-800 rounded-md">
             {errors.general || error}
           </div>
@@ -174,7 +174,7 @@ const UserInfoForm = ({ group, onSubmit, isSubmitting, isLoading, error, isInvit
     return (
       <Card className="max-w-lg mx-auto backdrop-blur bg-white/90">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold mb-2">Loading your information</CardTitle>
+          <CardTitle className="text-2xl font-bold mb-2 text-card-foreground">Loading your information</CardTitle>
         </CardHeader>
         <CardContent className="flex justify-center py-6">
           <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>

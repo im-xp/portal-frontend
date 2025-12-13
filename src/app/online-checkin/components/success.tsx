@@ -23,7 +23,7 @@ const success = ({arrivalDate, departureDate}: {arrivalDate: Date, departureDate
             <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
           </motion.div>
 
-          <h2 className="text-2xl font-bold mb-2">Online Check-in Successful!</h2>
+          <h2 className="text-2xl font-bold mb-2 text-foreground">Online Check-in Successful!</h2>
           <p className="text-gray-600 mb-6">
             Thank you for completing your online check-in for Edge Esmeralda 2025. We&apos;ve recorded your arrival and
             departure dates.

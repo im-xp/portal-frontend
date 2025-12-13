@@ -71,7 +71,7 @@ export function CheckInForm() {
 
   if (!email || !code || !application_id) {
     return <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
-      <h1 className="text-2xl font-bold mb-2">Invalid URL</h1>
+      <h1 className="text-2xl font-bold mb-2 text-foreground">Invalid URL</h1>
       <p className="text-gray-600 mb-6">
         Please use the correct URL to check in.
       </p>
@@ -91,7 +91,7 @@ export function CheckInForm() {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-2xl font-bold mb-2">Online Check-in for Edge Esmeralda 2025</h1>
+        <h1 className="text-2xl font-bold mb-2 text-foreground">Online Check-in for Edge Esmeralda 2025</h1>
         <p className="text-gray-600 mb-6">
           We are excited to welcome you in Healdsburg and share this special time ahead. Please
           <strong> enter your (estimated) arrival and departure dates</strong> to help us create an amazing
