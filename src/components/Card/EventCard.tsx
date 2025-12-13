@@ -25,7 +25,7 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
         <div className="relative sm:h-auto sm:hidden lg:inline-block lg:w-1/3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={image_url ?? "https://cdn.prod.website-files.com/67475a01312f8d8225a6b46e/6751bf69596d8a1e1a99d291_half-banner-min.jpg"}
+            src={image_url ?? "https://storage.googleapis.com/icelandeclipse/portal-background5.jpg"}
             alt={name}
             className="object-cover w-full h-full"
           />

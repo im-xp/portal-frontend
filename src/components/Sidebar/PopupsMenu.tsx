@@ -43,8 +43,8 @@ const PopupsMenu = ({ handleClickCity }: { handleClickCity: (city: PopupsProps) 
                           className="relative aspect-square"
                         >
                         <Image
-                          src="https://simplefi.s3.us-east-2.amazonaws.com/edge-patagonia-island-min.png"
-                          alt="EdgeCity illustration"
+                          src="https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png"
+                          alt="The Portal at Iceland Eclipse wormhole image"
                           width={48}
                           height={48}
                         />

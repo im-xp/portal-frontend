@@ -88,7 +88,7 @@ export default function AuthForm() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png"
-            alt="The Portal at Iceland Eclipse logo"
+            alt="The Portal at Iceland Eclipse wormhole image"
             style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0'}}
           />
         </motion.div>
