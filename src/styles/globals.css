@@ -88,7 +88,7 @@ body {
     --foreground: #021849; /* #e6e7e8 Light Grey for all text */
     
     /* Card components */
-    --card: 217 85% 18%; /* Slightly lighter than background */
+    --card: #fff; /* Slightly lighter than background */
     --card-foreground: 210 8% 90%; /* Light grey text */
     
     /* Popovers */
