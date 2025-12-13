@@ -13,12 +13,11 @@ export default function Quote() {
     >
       <div className="absolute top-8 left-8">
         <Image
-          src="https://cdn.prod.website-files.com/65b2cb5abdecf7cd7747e170/66b1dc2e893d609f5e3d5efa_ec_lockup_wht.svg"
-          alt="EdgeCity Logo"
-          width={100}
-          height={40}
+          src="https://storage.googleapis.com/icelandeclipse/the-portal-at-iceland-eclipse-logo.png"
+          alt="The Portal at Iceland Eclipse logo"
+          width={200}
+          height={80}
           priority
-          style={{ filter: 'brightness(0) saturate(100%)' }}
         />
       </div>
       {/* TODO: Add quot

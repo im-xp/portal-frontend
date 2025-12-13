@@ -81,15 +81,15 @@ export default function AuthForm() {
       <div className="max-w-md w-full mx-auto space-y-8 md:my-12">
         <motion.div
           initial={{ y: 0 }}
-          animate={{ y: [0, 16, 0] }}
-          transition={{ duration: 4, repeat: Infinity, repeatType: 'loop', ease: 'easeIn' }}
-          className="relative aspect-square w-[180px] mx-auto mb-8"
+          // animate={{ y: [0, 16, 0] }}
+          // transition={{ duration: 4, repeat: Infinity, repeatType: 'loop', ease: 'easeIn' }}
+          className="relative aspect-square w-[200px] mx-auto mb-8"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://simplefi.s3.us-east-2.amazonaws.com/edge-patagonia-island-min.png"
-            alt="EdgeCity illustration"
-            style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0.5rem'}}
+            src="https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png"
+            alt="The Portal at Iceland Eclipse logo"
+            style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0'}}
           />
         </motion.div>
         <motion.div
