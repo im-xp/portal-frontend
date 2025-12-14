@@ -26,7 +26,7 @@ const HeaderProfile = () => {
             {/* <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 bg-transparent">
               My Referrals
             </Button> */}
-            <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 bg-transparent" onClick={() => setIsInvoiceModalOpen(true)}>
+            <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-primary bg-transparent" onClick={() => setIsInvoiceModalOpen(true)}>
               <Newspaper className="h-4 w-4" />
               Invoices
             </Button>
