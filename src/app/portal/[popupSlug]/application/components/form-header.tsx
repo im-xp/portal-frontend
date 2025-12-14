@@ -48,11 +48,11 @@ export function FormHeader() {
         {city.slug === 'edge-patagonia' && (
           <div className=" p-1">
             <p className="font-semibold text-sm text-muted-foreground mb-1">
-              How to join Edge Patagonia:
+              How to join The Portal at Iceland Eclipse:
             </p>
             <div className="text-sm text-muted-foreground ml-1">
-              <p> 1.  Apply & buy a ticket</p>
-              <p> 2. Decide on coming solo / with a residency, then book accommodation.</p>
+              <p> 1. Apply &amp; buy a ticket</p>
+              <p> 2. Book accommodation.</p>
               <p> 3. Buy flights and get excited!</p>
             </div>
           </div>
