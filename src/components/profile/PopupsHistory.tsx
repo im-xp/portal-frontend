@@ -115,8 +115,8 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
             <div className="text-center text-gray-600 p-4">No events found</div>
           )}
           <div className="flex items-center gap-2 mb-4">
-            <Calendar className="w-6 h-6 text-foreground" />
-            <h4 className="text-md font-semibold text-foreground">Upcoming Pop-Ups</h4>
+            <Calendar className="w-6 h-6 text-gray-600" />
+            <h4 className="text-md font-semibold text-gray-600">Upcoming Pop-Ups</h4>
           </div>
           <div className="space-y-4">
             {
@@ -127,7 +127,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
             {upcomingPopupsFromApplications.map((popup, index) => (
               <div key={popup.popup_name} className="flex items-center gap-4 p-4 bg-background border border-border rounded-lg">
                 <Image
-                  src={popup.image_url || "https://storage.googleapis.com/icelandeclipse/portal-background5.jpg"}
+                  src={popup.image_url || "/placeholder.svg"}
                   alt={popup.popup_name}
                   width={70}
                   height={70}
@@ -139,14 +139,14 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                     {
                       popup.location && (
                         <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4 text-black" />
+                          <MapPin className="w-4 h-4 text-white" />
                           <span className="text-sm">{popup.location?.charAt(0).toUpperCase() + popup.location?.slice(1)}</span>
                         </div>
                       )
                     }
                     
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4 text-black" />
+                      <Calendar className="w-4 h-4 text-white" />
                       <span className="text-sm">{formatDate(popup.start_date)} - {formatDate(popup.end_date)}</span>
                     </div>
                   </div>
@@ -165,7 +165,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Clock className="w-6 h-6 text-foreground" />
-              <h4 className="text-md font-semibold text-foreground">Past Pop-Ups</h4>
+              <h4 className="text-md font-semibold text-gray-600">Past Pop-Ups</h4>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {
