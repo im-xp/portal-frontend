@@ -125,9 +125,9 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
               )
             }
             {upcomingPopupsFromApplications.map((popup, index) => (
-              <div key={popup.popup_name} className="flex items-center gap-4 p-4 border border-[#e2e8f0] rounded-lg">
+              <div key={popup.popup_name} className="flex items-center gap-4 p-4 bg-background border border-border rounded-lg">
                 <Image
-                  src={popup.image_url || "/placeholder.svg"}
+                  src={popup.image_url || "https://storage.googleapis.com/icelandeclipse/portal-background5.jpg"}
                   alt={popup.popup_name}
                   width={70}
                   height={70}
@@ -135,7 +135,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                 />
                 <div className="flex-1">
                   <h5 className="text-xl font-semibold text-foreground mb-2">{popup.popup_name}</h5>
-                  <div className="flex items-center gap-4 text-xs text-[#64748b]">
+                  <div className="flex items-center gap-4 text-xs text-foreground">
                     {
                       popup.location && (
                         <div className="flex items-center gap-1">
@@ -183,7 +183,7 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                   </div>
                   <div>
                     <h5 className="text-lg font-semibold text-black mb-2">{popup.popup_name}</h5>
-                    <div className="space-y-2 text-xs text-[#64748b] mb-4">
+                    <div className="space-y-2 text-xs text-muted-foreground mb-4">
 
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4 text-black" />
