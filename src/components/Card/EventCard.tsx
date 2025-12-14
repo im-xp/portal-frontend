@@ -20,7 +20,7 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
   const calendarDays = startDate + ' - ' + endDate
 
   return (
-    <CardAnimation anim={'entry'} duration={0.6} className="w-full overflow-hidden">
+    <CardAnimation anim={'entry'} duration={0.6} className="w-full overflow-hidden !bg-[#021849]"">
       <div className="flex flex-col sm:flex-row">
         <div className="relative sm:h-auto sm:hidden lg:inline-block lg:w-1/3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
