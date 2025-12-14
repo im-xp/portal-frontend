@@ -34,7 +34,7 @@ const HeaderProfile = () => {
             
             <div className="h-6 w-px bg-gray-300" />
 
-            <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 bg-transparent" onClick={() => logout()}>
+            <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-primary bg-transparent" onClick={() => logout()}>
               <LogOut className="h-4 w-4" />
             </Button>
           </div>
