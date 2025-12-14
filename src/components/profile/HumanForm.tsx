@@ -38,7 +38,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('El archivo es demasiado grande. Por favor selecciona una imagen menor a 5MB')
+      alert('The file is too large. Please select an image less than 5MB')
       return
     }
 
@@ -49,7 +49,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
       
       setEditForm({ ...editForm, picture_url: imageUrl })
     } catch (error) {
-      alert('Error al subir la imagen. Por favor intenta de nuevo.')
+      alert('There was an error uploading the image. Please try again.')
     } finally {
       setIsUploading(false)
       if (event.target) {
@@ -121,12 +121,12 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
                 variant="outline"
                 size="sm"
                 onClick={handleCancel}
-                className="text-gray-700 border-gray-300 hover:bg-gray-50 bg-transparent"
+                className="text-gray-700 border-gray-300 hover:bg-primary bg-transparent"
               >
                 <X className="w-4 h-4 mr-2" />
                 Cancel
               </Button>
-              <Button size="sm" onClick={handleSave} className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button size="sm" onClick={handleSave} className="bg-primary hover:bg-primary text-white">
                 <Save className="w-4 h-4 mr-2" />
                 Save
               </Button>
