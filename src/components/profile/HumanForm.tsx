@@ -33,7 +33,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
     if (!file) return
 
     if (!file.type.startsWith('image/')) {
-      alert('Por favor selecciona un archivo de imagen válido')
+      alert('Please select a valid image file')
       return
     }
 
