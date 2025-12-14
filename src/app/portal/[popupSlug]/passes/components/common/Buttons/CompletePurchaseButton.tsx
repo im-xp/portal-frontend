@@ -13,7 +13,7 @@ const CompletePurchaseButton = ({edit, waiverAccepted = true}: {edit?: boolean, 
     <ButtonAnimated
       disabled={loading || !someSelected || !waiverAccepted} 
       loading={loading} 
-      className="w-full md:w-fit md:min-w-[120px] text-white bg-slate-800" 
+      className="w-full md:w-fit md:min-w-[120px] text-white bg-primary" 
       onClick={() => purchaseProducts(attendees)}
       data-purchase
     >
