@@ -32,7 +32,7 @@ const TotalFloatingBar = ({ setOpenCart, waiverAccepted }: { setOpenCart: (prev:
       </div>
 
       <div className="flex justify-center items-center gap-2">
-        <Button variant="outline" className="p-5 whitespace-nowrap" onClick={handleOnClickReviewOrder}>
+        <Button variant="default" className="p-5 whitespace-nowrap" onClick={handleOnClickReviewOrder}>
           Review Order
         </Button>
         <Button variant="default" className="p-5 whitespace-nowrap" disabled={loading || !someSelected || !waiverAccepted} onClick={() => purchaseProducts(attendees)}>
