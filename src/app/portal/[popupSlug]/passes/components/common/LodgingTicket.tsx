@@ -45,7 +45,7 @@ const LodgingTicket = ({ attendee, toggleProduct }: LodgingTicketProps) => {
                 <p className="text-xl font-semibold">Lodging</p>
                 <div className="flex items-center gap-2 mt-1">
                   <Home className="h-4 w-4 text-gray-500"/>
-                  <p className="text-sm text-gray-500"><a href="https://imxp.notion.site/The-Portal-Housing-2c5ec4424fdb805090acd58f4f0679bf?pvs=143" target="_blank" rel="noopener noreferrer">View all Housing Options</a></p>
+                  <p className="text-sm text-primary underline hover:text-primary/80 transition-colors duration-200"><a href="https://imxp.notion.site/The-Portal-Housing-2c5ec4424fdb805090acd58f4f0679bf?pvs=143" target="_blank" rel="noopener noreferrer">View all Housing Options</a></p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
