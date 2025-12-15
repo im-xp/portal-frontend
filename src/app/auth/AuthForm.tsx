@@ -99,7 +99,7 @@ export default function AuthForm() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center max-w-md mx-auto mb-4">
-            <h2 className="mt-6 text-3xl font-bold text-foreground" style={{ textWrap: 'balance' }}>
+            <h2 className="mt-6 text-3xl font-bold text-white" style={{ textWrap: 'balance' }}>
               Sign Up or Log In to {config.name}
             </h2>
             <p className="mt-2 text-sm text-muted-foreground" style={{ textWrap: 'balance' }}>
