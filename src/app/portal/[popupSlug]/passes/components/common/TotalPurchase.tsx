@@ -23,9 +23,11 @@ const TotalPurchase = ({ attendees, isModal, isOpen, setIsOpen }: {attendees: At
   const productsCart = attendees.flatMap(attendee => {
     const selectedProducts = attendee.products.filter(p => p.selected)
     
-    // Si hay un month seleccionado, solo mostrar los productos month
+    // Si hay un month seleccionado, mostrar los productos month y lodging
     if (hasMonthSelected) {
-      return selectedProducts.filter(p => p.category === 'month' || p.category === 'local month')
+      return selectedProducts.filter(p => 
+        p.category === 'month' || p.category === 'local month' || p.category === 'lodging'
+      )
     }
     
     // Lógica original si no hay month seleccionado
@@ -33,6 +35,8 @@ const TotalPurchase = ({ attendees, isModal, isOpen, setIsOpen }: {attendees: At
   }).sort((a, b) => {
     if (a.category === 'patreon') return -1
     if (b.category === 'patreon') return 1
+    if (a.category === 'lodging') return 1
+    if (b.category === 'lodging') return -1
     return 0
   })
 
