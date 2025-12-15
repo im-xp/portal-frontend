@@ -126,7 +126,7 @@ export default function AuthForm() {
                 disabled={isLoading || !!message.message}
                 className={`appearance-none rounded-md relative block w-full px-3 py-5 border ${
                   isValidEmail ? 'border-border' : 'border-destructive'
-                } placeholder-muted-foreground text-foreground bg-background focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm`}
+                } placeholder:text-muted-foreground text-white bg-background focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm`}
               />
               {!isValidEmail && (
                 <p className="mt-2 text-sm text-red-600">Please enter a valid email address</p>
