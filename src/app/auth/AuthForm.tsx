@@ -148,6 +148,9 @@ export default function AuthForm() {
             You&apos;ll receive a magic link in your email inbox to log in.
             </p>
           </form>
+          <p className="mt-80 text-center">
+           <small className="text-xs text-muted-foreground">Powered by <a href="https://www.edgecity.live/">EdgeCity</a> and <a href="https://www.simplefi.tech/">SimpleFi</a></small>
+          </p>
         </motion.div>
       </div>
         {message.message !== '' && (
@@ -168,9 +171,6 @@ export default function AuthForm() {
             </div>
           </div>
         )}
-        <p className="mt-80 text-center">
-          <small className="text-xs text-muted-foreground">Powered by <a href="https://www.edgecity.live/">EdgeCity</a> and <a href="https://www.simplefi.tech/">SimpleFi</a></small>
-        </p>
     </div>
   )
 }
