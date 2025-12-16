@@ -33,7 +33,7 @@ const SuccessPage = () => {
     <div 
       className="min-h-screen w-full py-12 flex items-center justify-center"
       style={{
-        backgroundImage: "url('https://simplefi.s3.us-east-2.amazonaws.com/edge-bg.jpg')",
+        backgroundImage: "url('https://storage.googleapis.com/icelandeclipse/portal-background5.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -48,11 +48,11 @@ const SuccessPage = () => {
       >
         <div className="p-6 md:p-8">
           <div className="flex flex-col items-center text-center mb-6">
-            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mb-4">
               <CheckCircle className="h-10 w-10" />
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Tickets Purchased!</h1>
-            <p className="mt-2 text-gray-600">Thank you for your purchase. Your tickets are now ready for use.</p>
+            <p className="mt-2 text-gray-600">Thank you for joining us at The Portal. Your tickets are ready for use. We look forward to co-creating with you!</p>
           </div>
 
           {/* <div className="bg-gray-50 rounded-lg p-5 mb-6">
@@ -88,10 +88,10 @@ const SuccessPage = () => {
             
             <Button 
               onClick={handleGoToPortal}
-              className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white"
+              className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white"
             >
               <Home className="h-4 w-4" />
-              Go to Portal
+              Go back to The Portal
             </Button>
           </div>
 
