@@ -82,8 +82,8 @@ const QRcode = ({check_in_code, isOpen, onOpenChange}: {check_in_code: string, i
               </div>
               <Button 
                 onClick={handleDownload}
-                className="flex items-center gap-2"
-                variant="outline"
+                className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white"
+                variant="default"
                 aria-label="Download QR code"
               >
                 <Download className="h-4 w-4" />
