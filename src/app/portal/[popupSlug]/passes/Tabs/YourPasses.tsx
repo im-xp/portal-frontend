@@ -1,6 +1,7 @@
 import TitleTabs from "../components/common/TitleTabs"
 import { usePassesProvider } from '@/providers/passesProvider'
 import AttendeeTicket from "../components/common/AttendeeTicket"
+import LodgingTicket from "../components/common/LodgingTicket"
 import ToolbarTop from "../components/ToolbarTop"
 import { Separator } from "@/components/ui/separator"
 import Special from "../components/common/Products/Special"
@@ -48,6 +49,13 @@ const YourPasses = ({ onSwitchToBuy }: YourPassesProps) => {
           ))
         )}
       </div>
+
+      {/* Lodging Section - Only show for main attendee */}
+      {mainAttendee && !isDayCheckout && (
+        <div className="flex flex-col gap-4">
+          <LodgingTicket attendee={mainAttendee} />
+        </div>
+      )}
     </div>
   )
 }
