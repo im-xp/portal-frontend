@@ -46,8 +46,7 @@ const DiscountCode = ({defaultOpen = false, label = true}: {defaultOpen?: boolea
                 autoFocus
               />
               <Button
-                variant="secondary"
-                className="hover:no-underline font-bold text-[#7F22FE] bg-[#7F22FE]/10"
+                variant="default"
                 onClick={handleApplyDiscount}
                 disabled={discountCode.length === 0 || loading || validDiscount}
               >
