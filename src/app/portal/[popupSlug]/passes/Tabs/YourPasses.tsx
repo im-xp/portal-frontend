@@ -25,7 +25,7 @@ const YourPasses = ({ onSwitchToBuy }: YourPassesProps) => {
       <TitleTabs title="Your Passes" subtitle="View and manage your passes here. Need to make changes? Reach out to theportal@icelandeclipse.com" />
       
       <div className="my-4 flex justify-start">
-        <ToolbarTop canEdit={true} onSwitchToBuy={onSwitchToBuy}  canAddSpouse={city?.allows_spouse ?? false} canAddChildren={city?.allows_children ?? false} allows_coupons={city?.allows_coupons ?? false}/>
+        <ToolbarTop canEdit={true} onSwitchToBuy={onSwitchToBuy}  canAddSpouse={city?.allows_spouse ?? false} canAddChildren={city?.allows_children ?? false} allows_coupons={false}/>
       </div>
 
       <div className="flex flex-col gap-4">
