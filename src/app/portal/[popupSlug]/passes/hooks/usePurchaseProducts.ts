@@ -29,7 +29,7 @@ const usePurchaseProducts = () => {
     const filteredProducts = filterProductsToPurchase(productsPurchase, editableMode)
 
     try{
-      const isFastCheckout = window.location.href.includes('/checkout')
+      // const isFastCheckout = window.location.href.includes('/checkout')
 
       const data = {
         application_id: application.id,
@@ -41,7 +41,7 @@ const usePurchaseProducts = () => {
       const response = await api.post('payments/', data)
 
       if(response.status === 200){
-        const redirectUrl = isFastCheckout ? `${window.location.origin}/checkout/success` : window.location.href;
+        const redirectUrl = `${window.location.origin}/checkout/success`;
         if(response.data.status === 'pending'){
           if(MiniKit.isInstalled()){
             const checkoutUrl = response.data.checkout_url
@@ -55,11 +55,8 @@ const usePurchaseProducts = () => {
           if(editableMode){
             toggleEditing(false)
           }
-          if(isFastCheckout){
-            window.location.href = redirectUrl
-            return;
-          }
-          toast.success('Success! Your pass has been successfully updated. No additional payment was required.')
+          window.location.href = redirectUrl
+          return;
         }
         return response.data
       }
