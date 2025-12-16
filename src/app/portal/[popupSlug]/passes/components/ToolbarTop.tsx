@@ -54,6 +54,11 @@ const ToolbarTop = ({
   return (
     <div className="flex justify-between w-full flex-wrap gap-2">
       <div className="flex gap-2 flex-wrap">
+        {
+          allows_coupons && (
+            <DiscountCode defaultOpen={false} label={true}/>
+          )
+        }
         {canAddSpouse && !hasSpouse && (
           <Button
             variant="outline"
