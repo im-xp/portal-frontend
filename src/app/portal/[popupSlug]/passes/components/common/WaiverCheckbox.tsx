@@ -26,7 +26,7 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
           >
             I acknowledge the risks involved and{" "}
             <a 
-              href="https://docs.google.com/document/d/1tLbwNMapx-1OMxLLraT1CxzhaHnX5q97S7aqazict5g/edit?usp=sharing" 
+              href="https://imxp.notion.site/The-Portal-at-Iceland-Eclipse-Terms-Conditions-2cbec4424fdb80d6af96dae9683ef981?source=copy_link" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-background underline font-medium"
