@@ -14,7 +14,6 @@ const Header = () => {
           <Ticket className="h-5 w-5" />
           Weeks joining
         </TableHead>
-        <TableHead className="text-md font-semibold text-gray-900 whitespace-nowrap min-w-[200px]" >Organization</TableHead>
       </TableRow>
     </TableHeader>
   )
