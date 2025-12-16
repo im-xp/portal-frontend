@@ -95,7 +95,7 @@ const ToolbarTop = ({
       </div>
 
       <div className="flex gap-2 items-center">
-        {canEdit && canEditDate && <EditPassesButton onSwitchToBuy={onSwitchToBuy} />}
+        {/* {canEdit && canEditDate && <EditPassesButton onSwitchToBuy={onSwitchToBuy} />} */}
         {
           viewInvoices && (
             <>
