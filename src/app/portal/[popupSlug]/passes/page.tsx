@@ -14,16 +14,16 @@ export default function HomePasses() {
   const { attendeePasses: attendees, products } = usePassesProvider()
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  if(!attendees.length || !products.length) return <Loader />
-
   const someProductPurchased = attendees.some(a => a.products.some(p => p.purchased))
   
   // Set initial tab based on whether user has passes (only on first render after data loads)
   useEffect(() => {
-    if (activeTab === null) {
+    if (activeTab === null && attendees.length && products.length) {
       setActiveTab(someProductPurchased ? "your-passes" : "buy-passes");
     }
-  }, [someProductPurchased, activeTab]);
+  }, [someProductPurchased, activeTab, attendees.length, products.length]);
+
+  if(!attendees.length || !products.length) return <Loader />
 
   const initialTab = activeTab || "your-passes";
 
