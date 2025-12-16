@@ -54,7 +54,7 @@ const AttendeesTable = ({
           {
             loading ? (
               <TableRow>
-                <TableCell colSpan={6} className="h-[530px]">
+                <TableCell colSpan={5} className="h-[530px]">
                   <div className="flex justify-center items-center h-full">
                     <div className="w-6 h-6 border-2 border-gray-400 border-t-primary rounded-full animate-spin"></div>
                   </div>
@@ -71,8 +71,6 @@ const AttendeesTable = ({
                     <ParticipationTickets participation={attendee.participation} passes={products}/>
                   </CellControl>
                 </TableCell>
-                <CommonCell value={attendee.brings_kids === '*' ? '*' : attendee.brings_kids ? "Yes" : "No"} />
-                <CommonCell value={attendee.role && attendee.role?.length > 60 ? `${attendee.role.slice(0, 60)}...` : attendee.role ?? ''} />
                 <CommonCell value={attendee.organization && attendee.organization?.length > 80 ? `${attendee.organization.slice(0, 80)}...` : attendee.organization ?? ''} />
               </TableRow>
             ))

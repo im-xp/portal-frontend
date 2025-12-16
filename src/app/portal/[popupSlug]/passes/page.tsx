@@ -6,19 +6,26 @@ import BuyPasses from "./Tabs/BuyPasses"
 import { ShoppingCart, Ticket } from "lucide-react"
 import { usePassesProvider } from "@/providers/passesProvider"
 import { Loader } from "@/components/ui/Loader"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function HomePasses() {
   usePermission()
 
   const { attendeePasses: attendees, products } = usePassesProvider()
-  const [activeTab, setActiveTab] = useState<string>("your-passes");
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
   if(!attendees.length || !products.length) return <Loader />
 
   const someProductPurchased = attendees.some(a => a.products.some(p => p.purchased))
+  
+  // Set initial tab based on whether user has passes (only on first render after data loads)
+  useEffect(() => {
+    if (activeTab === null) {
+      setActiveTab(someProductPurchased ? "your-passes" : "buy-passes");
+    }
+  }, [someProductPurchased, activeTab]);
 
-  const initialTab = activeTab || (someProductPurchased ? "your-passes" : "buy-passes");
+  const initialTab = activeTab || "your-passes";
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
