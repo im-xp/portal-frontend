@@ -26,12 +26,12 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
           >
             I acknowledge the risks involved and{" "}
             <a 
-              href="https://waiver.smartwaiver.com/w/mp89nnv4h2ukzm3fhlkca/web/" 
+              href="https://docs.google.com/document/d/1tLbwNMapx-1OMxLLraT1CxzhaHnX5q97S7aqazict5g/edit?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline font-medium"
+              className="text-background underline font-medium"
             >
-              agree to the Waiver and Release of Liability.
+              agree to the Terms and Conditions.
             </a>
           </Label>
           <Tooltip>
@@ -46,7 +46,7 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
               side="top" 
               className="max-w-xs p-3 text-xs leading-relaxed"
             >
-              I understand that participating in this event involves inherent risks, including the possibility of injury or loss. By checking this box, I confirm that I have read and agree to the Waiver and Release of Liability, and I voluntarily accept these risks and release the organizers from any claims related to my participation.
+              I understand that participating in this event involves inherent risks, including the possibility of injury or loss. By checking this box, I confirm that I have read and agree to the Terms and Conditions, and I voluntarily accept these risks and release the organizers from any claims related to my participation.
             </TooltipContent>
           </Tooltip>
         </div>
