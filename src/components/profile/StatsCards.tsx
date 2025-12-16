@@ -19,8 +19,8 @@ const StatsCards = ({userData}: {userData: CitizenProfile | null}) => {
             <p className="text-sm text-gray-600 mb-1">Pop-ups attended</p>
             <p className="text-3xl font-bold text-gray-900">{completedPopups.length}</p>
           </div>
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-            <MapPinned className="w-6 h-6 text-green-600" />
+          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+            <MapPinned className="w-6 h-6 text-white" />
           </div>
         </div>
       </Card>
