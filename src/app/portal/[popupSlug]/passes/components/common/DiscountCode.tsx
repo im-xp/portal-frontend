@@ -23,7 +23,7 @@ const DiscountCode = ({defaultOpen = false, label = true}: {defaultOpen?: boolea
     <div className="flex px-0 gap-4">
       {
         label && (
-          <p className="text-sm font-medium underline whitespace-nowrap cursor-pointer my-2" onClick={() => setOpen(!open)}>Have a coupon?</p>
+          <p className="text-sm font-medium underline whitespace-nowrap cursor-pointer my-2 text-foreground hover:text-primary transition-colors" onClick={() => setOpen(!open)}>Have a coupon?</p>
         )
       }
       {
