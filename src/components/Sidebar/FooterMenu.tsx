@@ -37,7 +37,7 @@ const FooterMenu = ({handleLogout, user}: {handleLogout: () => void, user: UserT
     <SidebarFooter>
         <PoapMint />
         <SidebarMenu>
-          {stars !== null && (
+          {/* {stars !== null && (
             <a 
               href={repoUrl}
               target="_blank" 
@@ -53,7 +53,8 @@ const FooterMenu = ({handleLogout, user}: {handleLogout: () => void, user: UserT
                 <span className="font-medium">{stars}</span>
               </div>
             </a>
-          )}
+          )} */}
+          <p className="text text-muted-foreground">Powered by <a href="https://www.edgecity.live/" target="_blank" rel="noopener noreferrer">EdgeCity</a> and <a href="https://www.simplefi.tech/" target="_blank" rel="noopener noreferrer">SimpleFi</a></p>
           <SidebarMenuItem>
              <Link href={"/portal/profile"}>
               <div className="flex items-center gap-4 p-2 px-4 hover:bg-gray-100 hover:text-gray-700 text-muted-foreground rounded-lg transition-colors cursor-pointer mb-4 mt-4">
