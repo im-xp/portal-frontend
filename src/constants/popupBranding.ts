@@ -53,28 +53,28 @@ export const popupBranding: Record<string, PopupBranding> = {
   },
   'ripple-on-the-nile': {
     name: 'Ripple on the Nile',
-    // Placeholder images - replace with actual Ripple branding assets
-    logo: 'https://placehold.co/200x80/1a365d/gold?text=RIPPLE',
+    logo: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-the-nile-logo.png',
     logoAlt: 'Ripple on the Nile logo',
-    heroImage: 'https://images.unsplash.com/photo-1568322503652-5306a7417be9?w=400&h=400&fit=crop&q=80',
+    heroImage: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-nile-icon.png',
     heroAlt: 'Ripple on the Nile hero image',
-    backgroundImage: 'https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=1920&q=80',
+    backgroundImage: 'https://storage.googleapis.com/egypt-eclipse/egypt-bg.jpg',
     welcomeMessage: 'Welcome to Ripple on the Nile!',
     colors: {
-      // Ripple on the Nile - Warm sandy/gold with terracotta accent
-      background: '35 30% 12%',          // Dark warm brown
-      foreground: '45 30% 90%',          // Warm off-white
-      primary: '38 92% 50%',             // Gold/amber
-      primaryForeground: '35 30% 10%',   // Dark brown text on gold
-      secondary: '25 60% 25%',           // Terracotta brown
-      secondaryForeground: '45 30% 90%',
-      muted: '35 25% 18%',
-      mutedForeground: '45 20% 65%',
-      accent: '38 92% 50%',              // Gold
-      accentForeground: '35 30% 10%',
-      border: '45 30% 80%',              // Light warm border
-      input: '35 25% 18%',
-      ring: '38 92% 50%',
+      // Ripple on the Nile - Dark brown with pale yellow accent
+      // Primary: #170c02, Secondary/Accent: #fdfca6, Hover: #281504
+      background: '27 79% 5%',           // #170c02 - Dark brown
+      foreground: '59 94% 82%',          // #fdfca6 - Pale yellow
+      primary: '59 94% 82%',             // #fdfca6 - Pale yellow (buttons)
+      primaryForeground: '27 79% 5%',    // Dark brown text on yellow
+      secondary: '27 82% 9%',            // #281504 - Hover brown
+      secondaryForeground: '59 94% 82%',
+      muted: '27 70% 8%',
+      mutedForeground: '59 70% 70%',
+      accent: '59 94% 82%',              // #fdfca6 - Pale yellow
+      accentForeground: '27 79% 5%',
+      border: '59 94% 82%',              // Pale yellow border
+      input: '27 82% 9%',                // #281504
+      ring: '59 94% 82%',
     },
   },
 }
