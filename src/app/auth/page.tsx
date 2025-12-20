@@ -2,6 +2,8 @@
 
 import Quote from '@/app/auth/Quote'
 import { Loader } from '@/components/ui/Loader'
+import { PopupTheme } from '@/components/PopupTheme'
+import { getPopupBranding } from '@/constants/popupBranding'
 import useAuthentication from '@/hooks/useAuthentication'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
@@ -19,6 +21,7 @@ function AuthContent() {
   const router = useRouter()
   const params = useSearchParams()
   const popupSlug = params.get('popup')
+  const branding = getPopupBranding(popupSlug)
 
   const handleLogin = useCallback(async () => {
     const isLogged = await login()
@@ -40,10 +43,12 @@ function AuthContent() {
   }
 
   return (
-    <div className="flex min-h-screen">
-      <Quote />
-      <AuthForm />
-    </div>
+    <PopupTheme colors={branding.colors}>
+      <div className="flex min-h-screen bg-background">
+        <Quote />
+        <AuthForm />
+      </div>
+    </PopupTheme>
   )
 }
 
