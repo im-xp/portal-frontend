@@ -5,8 +5,8 @@ import { Button, ButtonAnimated } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { api } from '@/api'
 import { motion } from 'framer-motion'
-import { useSearchParams } from 'next/navigation'
 import { getPopupBranding } from '@/constants/popupBranding'
+import { usePopupSlug } from '@/hooks/usePopupSlug'
 import useSignInWorldApp from '@/hooks/useSignInWorldApp'
 import Image from 'next/image'
 import DrawerEmailWorldID from './DrawerEmailWorldID'
@@ -14,8 +14,7 @@ import { MiniKit } from '@worldcoin/minikit-js'
 
 export default function AuthForm() {
   const [isMounted, setIsMounted] = useState(false)
-  const params = useSearchParams()
-  const popupSlug = params.get('popup')
+  const popupSlug = usePopupSlug()
   const branding = getPopupBranding(popupSlug)
   const { signIn } = useSignInWorldApp()
   const [open, setOpen] = useState(false)

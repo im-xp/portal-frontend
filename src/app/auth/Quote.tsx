@@ -1,12 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import { useSearchParams } from 'next/navigation'
 import { getPopupBranding } from '@/constants/popupBranding'
+import { usePopupSlug } from '@/hooks/usePopupSlug'
 
 export default function Quote() {
-  const params = useSearchParams()
-  const popupSlug = params.get('popup')
+  const popupSlug = usePopupSlug()
   const branding = getPopupBranding(popupSlug)
 
   return (

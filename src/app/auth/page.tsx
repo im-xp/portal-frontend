@@ -5,7 +5,8 @@ import { Loader } from '@/components/ui/Loader'
 import { PopupTheme } from '@/components/PopupTheme'
 import { getPopupBranding } from '@/constants/popupBranding'
 import useAuthentication from '@/hooks/useAuthentication'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { usePopupSlug } from '@/hooks/usePopupSlug'
+import { useRouter } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
@@ -19,8 +20,7 @@ const AuthForm = dynamic(() => import('@/app/auth/AuthForm'), {
 function AuthContent() {
   const { login, token, isLoading, isAuthenticated } = useAuthentication()
   const router = useRouter()
-  const params = useSearchParams()
-  const popupSlug = params.get('popup')
+  const popupSlug = usePopupSlug()
   const branding = getPopupBranding(popupSlug)
 
   const handleLogin = useCallback(async () => {
