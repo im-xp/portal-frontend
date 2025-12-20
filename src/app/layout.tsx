@@ -1,33 +1,61 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import "../styles/globals.css";
 import { MiniKitProvider } from '@worldcoin/minikit-js/minikit-provider';
 import { Raleway } from 'next/font/google';
 import GoogleAnalytics from "@/components/utils/GoogleAnalytics";
 import { Toaster } from "sonner";
-import { config } from "@/constants/config";
 
 const raleway = Raleway({
   subsets: ['latin'],
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: config.metadata.title,
-  description: config.metadata.description,
-  icons: {
-    icon: config.metadata.icon,
+// Domain to popup metadata mapping
+const popupMetadata: Record<string, {
+  title: string;
+  description: string;
+  image: string;
+  icon?: string;
+}> = {
+  'ripple.egypt-eclipse.com': {
+    title: 'Ripple on the Nile',
+    description: 'Welcome to Ripple on the Nile. Log in or sign up to access your Egypt adventure.',
+    image: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-nile-icon.png',
   },
-  openGraph: {
-    title: config.metadata.openGraph.title,
-    description: config.metadata.openGraph.description,
-    images: [{
-      url: config.metadata.openGraph.images[0].url,
-      width: config.metadata.openGraph.images[0].width,
-      height: config.metadata.openGraph.images[0].height,
-      alt: config.metadata.openGraph.images[0].alt,
-    }]
-  }
+  // Default (Iceland)
+  'default': {
+    title: 'The Portal at Iceland Eclipse',
+    description: 'Welcome to the Portal at Iceland Eclipse. Log in or sign up to access Portal events.',
+    image: 'https://storage.googleapis.com/icelandeclipse/the-portal-at-iceland-eclipse-logo__square.png',
+  },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const host = headersList.get('x-forwarded-host') || headersList.get('host') || '';
+  const hostname = host.split(':')[0];
+  
+  const meta = popupMetadata[hostname] || popupMetadata['default'];
+  
+  return {
+    title: meta.title,
+    description: meta.description,
+    icons: {
+      icon: '/icon.png',
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      images: [{
+        url: meta.image,
+        width: 1200,
+        height: 630,
+        alt: meta.title,
+      }],
+    },
+  };
+}
 
 export default function RootLayout({children }: Readonly<{ children: React.ReactNode }>) {
   return (
