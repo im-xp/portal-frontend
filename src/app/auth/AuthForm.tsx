@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { api } from '@/api'
 import { motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
-import { config } from '@/constants/config'
+import { getPopupBranding } from '@/constants/popupBranding'
 import useSignInWorldApp from '@/hooks/useSignInWorldApp'
 import Image from 'next/image'
 import DrawerEmailWorldID from './DrawerEmailWorldID'
@@ -16,6 +16,7 @@ export default function AuthForm() {
   const [isMounted, setIsMounted] = useState(false)
   const params = useSearchParams()
   const popupSlug = params.get('popup')
+  const branding = getPopupBranding(popupSlug)
   const { signIn } = useSignInWorldApp()
   const [open, setOpen] = useState(false)
   const [worldData, setWorldData] = useState<{signature: string | null, address: string | null}>({signature: null, address: null})
@@ -87,8 +88,8 @@ export default function AuthForm() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png"
-            alt="The Portal at Iceland Eclipse wormhole image"
+            src={branding.heroImage}
+            alt={branding.heroAlt}
             style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0'}}
           />
         </motion.div>
@@ -100,7 +101,7 @@ export default function AuthForm() {
         >
           <div className="text-center max-w-md mx-auto mb-4">
             <h2 className="mt-6 text-3xl font-bold text-white" style={{ textWrap: 'balance' }}>
-              Sign Up or Log In to {config.name}
+              Sign Up or Log In to {branding.name}
             </h2>
             <p className="mt-2 text-sm text-muted-foreground" style={{ textWrap: 'balance' }}>
             Welcome! If it's your first time, sign up below. If you attended a past event, use the same email to import your prior application.
