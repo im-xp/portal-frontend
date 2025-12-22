@@ -47,21 +47,21 @@ export const popupBranding: Record<string, PopupBranding> = {
     heroAlt: 'The Portal at Iceland Eclipse wormhole image',
     backgroundImage: 'https://images.typeform.com/images/gAqmGWTiyfrT/background/large',
     colors: {
-      // Iceland Eclipse - Dark blue with cyan accent
-      background: '217 92% 15%',        // #021849 Dark Blue
-      foreground: '210 8% 90%',         // Light grey text
-      primary: '189 69% 56%',           // #3cc7e1 Cyan
-      primaryForeground: '0 0% 100%',   // White
-      secondary: '217 85% 22%',         // Lighter blue
-      secondaryForeground: '210 8% 90%',
-      muted: '217 70% 20%',
-      mutedForeground: '210 20% 70%',
-      accent: '189 69% 56%',            // Cyan
-      accentForeground: '0 0% 100%',
-      border: '0 0% 100%',              // White borders
-      input: '217 85% 22%',
+      // Iceland Eclipse - Light theme matching production globals.css
+      background: '0 0% 98%',             // Off-white page background
+      foreground: '217 92% 15%',          // #021849 Dark blue text
+      primary: '189 69% 56%',             // #3cc7e1 Cyan
+      primaryForeground: '0 0% 100%',     // White text on cyan (for tabs)
+      secondary: '217 92% 15%',           // Dark blue (for purchased passes)
+      secondaryForeground: '0 0% 100%',   // White text on dark blue
+      muted: '210 20% 93%',               // Light grey (page background)
+      mutedForeground: '217 50% 35%',     // Dark muted text
+      accent: '189 69% 56%',              // Cyan (for section headers)
+      accentForeground: '217 92% 15%',    // Dark text on cyan
+      border: '210 25% 85%',              // Light grey borders
+      input: '210 25% 90%',               // Light input backgrounds
       ring: '189 69% 56%',
-      // Card colors - white cards with dark text for Iceland
+      // Card colors - white cards with dark text
       card: '0 0% 100%',
       cardForeground: '217 92% 15%',
       // Sidebar - Iceland Eclipse dark theme

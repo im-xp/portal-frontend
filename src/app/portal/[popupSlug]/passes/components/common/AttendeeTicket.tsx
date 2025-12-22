@@ -146,7 +146,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
               <div className="flex flex-col gap-3">
                 {localProducts.length > 0 && (
                   <Collapsible open={localOpen} onOpenChange={setLocalOpen} className="space-y-2">
-                    <CollapsibleTrigger className="w-full bg-primary text-primary-foreground rounded-md" aria-label="Toggle Local Tickets">
+                    <CollapsibleTrigger className="w-full bg-accent text-accent-foreground rounded-md" aria-label="Toggle Local Tickets">
                       <div className="flex justify-between items-center p-3">
                         <div className="flex items-center gap-2">
                           <ChevronRight className={cn("h-4 w-4 transition-transform duration-200", localOpen && "transform rotate-90")} />
@@ -186,7 +186,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
 
                 {commonProducts.length > 0 && (
                   <Collapsible open={commonOpen} onOpenChange={setCommonOpen} className="space-y-2">
-                    <CollapsibleTrigger className="w-full bg-primary text-primary-foreground rounded-md" aria-label="Toggle Common Tickets">
+                    <CollapsibleTrigger className="w-full bg-accent text-accent-foreground rounded-md" aria-label="Toggle Common Tickets">
                       <div className="flex justify-between items-center p-3">
                         <div className="flex items-center gap-2">
                           <ChevronRight className={cn("h-4 w-4 transition-transform duration-200", commonOpen && "transform rotate-90")} />

@@ -20,7 +20,7 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
   const calendarDays = startDate + ' - ' + endDate
 
   return (
-    <CardAnimation anim={'entry'} duration={0.6} className="w-full overflow-hidden !bg-[#021849]">
+    <CardAnimation anim={'entry'} duration={0.6} className="w-full overflow-hidden bg-background text-foreground">
       <div className="flex flex-col sm:flex-row">
         <div className="relative sm:h-auto sm:hidden lg:inline-block lg:w-1/3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -31,13 +31,13 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
           />
         </div>
         <CardContent className="flex flex-col w-full p-6 mr-10">
-          <h3 className="text-2xl font-bold mb-2 text-card-foreground">{name}</h3>
+          <h3 className="text-2xl font-bold mb-2">{name}</h3>
           <p className="text-sm text-muted-foreground mb-4">{tagline}</p>
           <div className="flex items-center text-sm text-muted-foreground mb-2">
             <MapPin className="mr-2 h-4 w-4" />
             {location}
           </div>
-          <div className="flex items-center text-sm text-foreground mb-4">
+          <div className="flex items-center text-sm mb-4">
             <CalendarDays className="mr-2 h-4 w-4" />
             {calendarDays}
           </div>

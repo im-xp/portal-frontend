@@ -63,7 +63,7 @@ const LodgingTicket = ({ attendee, toggleProduct }: LodgingTicketProps) => {
 
           <div className="flex flex-col p-8 gap-2 xl:pr-10">
             <Collapsible open={lodgingOpen} onOpenChange={setLodgingOpen} className="space-y-2">
-              <CollapsibleTrigger className="w-full bg-primary text-primary-foreground rounded-md" aria-label="Toggle Lodging Options">
+              <CollapsibleTrigger className="w-full bg-accent text-accent-foreground rounded-md" aria-label="Toggle Lodging Options">
                 <div className="flex justify-between items-center p-3">
                   <div className="flex items-center gap-2">
                     <ChevronRight className={cn("h-4 w-4 transition-transform duration-200", lodgingOpen && "transform rotate-90")} />

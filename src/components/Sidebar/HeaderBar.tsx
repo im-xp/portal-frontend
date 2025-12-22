@@ -25,10 +25,10 @@ const HeaderBar = () => {
   
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b border-border bg-card px-6 w-[100%]">
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b border-border bg-card text-card-foreground px-6 w-[100%]">
       <SidebarTrigger />
       <Breadcrumb>
-        <BreadcrumbList>
+        <BreadcrumbList className="text-card-foreground">
           <BreadcrumbItem>
             <BreadcrumbPage className="cursor-pointer" onClick={handleClickCity}>
               {city?.name}
