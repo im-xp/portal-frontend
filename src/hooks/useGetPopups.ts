@@ -4,6 +4,7 @@ import { PopupsProps } from "@/types/Popup"
 import { useParams, usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"
 import useAuthentication from "./useAuthentication"
+import { usePopupSlug } from "./usePopupSlug"
 
 type UseGetPopups = {
   getPopupsApi: () => Promise<void>
@@ -13,8 +14,11 @@ const useGetPopups = (): UseGetPopups => {
   const { setPopups } = useCityProvider()
   const { logout } = useAuthentication()
   const router = useRouter()
-  const { popupSlug } = useParams()
+  const { popupSlug: pathPopupSlug } = useParams()
   const pathname = usePathname()
+  
+  // Also check query param/cookie for popup slug (set by middleware for domain-based routing)
+  const queryPopupSlug = usePopupSlug()
 
   const findValidCity = (cities: PopupsProps[], slug?: string) => {
     return cities.find(city => 
@@ -35,9 +39,15 @@ const useGetPopups = (): UseGetPopups => {
           return
         }
 
-        if(!popupSlug || !findValidCity(cities, popupSlug as string)){
+        // First check path-based popup slug, then query param/cookie from middleware
+        const effectivePopupSlug = (pathPopupSlug as string) || queryPopupSlug
+        
+        if(!effectivePopupSlug || !findValidCity(cities, effectivePopupSlug)){
           const selectedCity = findValidCity(cities)
           if (selectedCity) router.push(`/portal/${selectedCity.slug}`)
+        } else if (!pathPopupSlug && queryPopupSlug && findValidCity(cities, queryPopupSlug)) {
+          // User is on /portal but came from a specific domain - redirect to that popup
+          router.push(`/portal/${queryPopupSlug}`)
         }
       }
     } catch(err: any) {

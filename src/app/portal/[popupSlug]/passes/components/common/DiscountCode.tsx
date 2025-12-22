@@ -34,7 +34,7 @@ const DiscountCode = ({defaultOpen = false, label = true}: {defaultOpen?: boolea
                 disabled={loading || validDiscount}
                 error={!validDiscount && !!discountMsg && discountCode.length > 0 ? discountMsg : ''}
                 placeholder="Enter coupon code" 
-                className="bg-white text-black"
+                className="bg-card text-card-foreground"
                 data-discount-code={discountCode}
                 value={discountCode.toUpperCase()}
                 onChange={handleDiscountChange}

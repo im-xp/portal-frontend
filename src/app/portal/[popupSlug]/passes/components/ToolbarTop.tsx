@@ -62,7 +62,7 @@ const ToolbarTop = ({
         {canAddSpouse && !hasSpouse && (
           <Button
             variant="outline"
-            className="bg-white text-black hover:bg-white hover:shadow-md transition-all"
+            className="bg-card text-card-foreground hover:bg-secondary hover:shadow-md transition-all"
             disabled={!attendees.length}
             onClick={() => handleOpenModal('spouse')}
           >
@@ -74,7 +74,7 @@ const ToolbarTop = ({
         {canAddChildren && (
           <Button
             variant="default"
-            className="bg-white text-black hover:bg-white hover:shadow-md transition-all"
+            className="bg-card text-card-foreground hover:bg-secondary hover:shadow-md transition-all"
             disabled={!attendees.length}
             onClick={() => handleOpenModal('kid')}
         >

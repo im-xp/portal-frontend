@@ -49,7 +49,7 @@ const TotalPurchase = ({ attendees, isModal, isOpen, setIsOpen }: {attendees: At
       className="space-y-4 pt-0"
       data-cart
     >
-      <CollapsibleTrigger className={cn("w-full bg-neutral-200 rounded-md", isModal && "bg-transparent")}>
+      <CollapsibleTrigger className={cn("w-full bg-secondary rounded-md", isModal && "bg-transparent")}>
         <div className="flex justify-between items-center p-3">
           <div className="flex items-center gap-2">
             <ChevronRight 

@@ -37,7 +37,7 @@ const Groups = () => {
   if(groups.length === 0) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 mb-8">
+    <div className="bg-card text-card-foreground rounded-lg border border-border mb-8">
       <div className="p-6 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-gray-900">Groups</h2>
       </div>

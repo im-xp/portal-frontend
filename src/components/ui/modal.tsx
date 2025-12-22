@@ -4,7 +4,7 @@ const Modal = ({open, onClose, title, description, children, className}: {open: 
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className={`bg-white rounded-lg p-6 max-w-md ${className}`}>
+      <DialogContent className={`bg-card text-card-foreground rounded-lg p-6 max-w-md ${className}`}>
         <DialogHeader className="text-left pb-0">
           <DialogTitle className="text-lg font-semibold text-gray-900 leading-none tracking-tight">{title}</DialogTitle>
           {description && (

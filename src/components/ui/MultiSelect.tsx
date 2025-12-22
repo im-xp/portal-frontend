@@ -43,8 +43,8 @@ export function MultiSelect({ options, onChange, defaultValue }: MultiSelectProp
               onClick={() => toggleOption(option.value)}
               className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 isSelected
-                  ? 'bg-gray-700 text-white hover:bg-gray-800 border'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  ? 'bg-primary text-primary-foreground hover:bg-primary/90 border border-primary'
+                  : 'bg-card text-card-foreground hover:bg-muted border border-border'
               }`}
             >
               <span className="mr-2">{option.label}</span>

@@ -138,7 +138,7 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
             {(isFloating) => (
               (isFloating) ? (
                 <div className="flex justify-center lg:ml-[255px]">
-                  <div className="bg-white p-4 shadow-lg border border-neutral-200 rounded-lg min-w-[600px] pointer-events-auto">
+                  <div className="bg-card text-card-foreground p-4 shadow-lg border border-border rounded-lg min-w-[600px] pointer-events-auto">
                     <div className="space-y-3">
                       <WaiverCheckbox 
                         checked={waiverAccepted} 
@@ -176,7 +176,7 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
         <div className="block md:hidden">
           <BottomSheet>
             {(isModal) => (
-              <div className={`${isModal ? 'bg-white p-4 shadow-lg border-t border-neutral-200 rounded-t-2xl' : ''}`}>
+              <div className={`${isModal ? 'bg-card text-card-foreground p-4 shadow-lg border-t border-border rounded-t-2xl' : ''}`}>
                 <TotalPurchase
                   attendees={attendees}
                   isModal={isModal}

@@ -27,16 +27,7 @@ export function middleware(request: NextRequest) {
     }
     
     // Rewrite to include the popup param
-    const response = NextResponse.rewrite(url)
-    
-    // Also set a cookie so client-side navigations can read it
-    response.cookies.set('popup_slug', popupSlug, {
-      path: '/',
-      maxAge: 60 * 60 * 24, // 24 hours
-      sameSite: 'lax',
-    })
-    
-    return response
+    return NextResponse.rewrite(url)
   }
   
   return NextResponse.next()

@@ -59,7 +59,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
   }
 
   return (
-    <Card className="p-6 bg-white mb-8">
+    <Card className="p-6 bg-card text-card-foreground mb-8">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
           <div className="relative">

@@ -12,7 +12,7 @@ const HeaderProfile = () => {
 
 
   return (
-    <div className="p-6 border-b border-gray-200 bg-white">
+    <div className="p-6 border-b border-border bg-card text-card-foreground">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">My Profile</h1>

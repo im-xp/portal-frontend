@@ -13,7 +13,7 @@ const withSpecialProductPresentation = (WrappedComponent: React.ComponentType<an
         return null;
       }
       if (selected) {
-        return <Check className="w-4 h-4" color="#005F3A"/>;
+        return <Check className="w-4 h-4 text-primary"/>;
       }
       return <Plus className="w-4 h-4" />;
     };
@@ -31,10 +31,10 @@ interface ProductTitleProps {
 const ProductTitle = ({ product, selected, disabled }: ProductTitleProps) => (
   <span className={cn(
     "font-semibold flex items-center gap-2",
-    selected && "text-[#005F3A]",
-    disabled && "text-neutral-300"
+    selected && "text-primary",
+    disabled && "text-muted-foreground/50"
   )}>
-    <Crown className={cn("w-5 h-5 text-orange-500", disabled && "text-neutral-300")} />
+    <Crown className={cn("w-5 h-5 text-orange-500", disabled && "text-muted-foreground/50")} />
     {product.name}
     {
       !disabled && (
@@ -53,8 +53,8 @@ interface ProductPriceProps {
 const ProductPrice = ({ product, selected, disabled }: ProductPriceProps) => (
   <span className={cn(
     "font-medium",
-    selected && "text-[#005F3A]",
-    disabled && "text-neutral-300"
+    selected && "text-primary",
+    disabled && "text-muted-foreground/50"
   )}>
     ${product.price.toLocaleString()}
   </span>
@@ -64,10 +64,10 @@ const TooltipPatreon = ({ purchased }: { purchased?: boolean }) => (
   <Tooltip>
     <TooltipTrigger asChild>
       <div className="cursor-pointer">
-        <Info className={cn("w-4 h-4 text-neutral-400", purchased && "text-white")} />
+        <Info className={cn("w-4 h-4 text-muted-foreground", purchased && "text-foreground")} />
       </div>
     </TooltipTrigger>
-    <TooltipContent className="bg-white text-black max-w-[420px] border border-gray-200">
+    <TooltipContent className="bg-card text-card-foreground max-w-[420px] border border-border">
       ⁠A patron pass gives you access to the whole month and supports scholarships 
       for researchers, artists and young builders. Edge Institute is a certified 
       501c3 and you will receive a written acknowledgement from us for your records.
@@ -85,11 +85,11 @@ interface SpecialProps {
 type VariantStyles = 'selected' | 'purchased' | 'edit' | 'disabled' | 'default'
 
 const variants: Record<VariantStyles, string> = {
-  selected: 'bg-gradient-to-r from-[#FF7B7B]/30 to-[#E040FB]/30 border-neutral-300',
-  purchased: 'bg-background text-white border-neutral-700 cursor-not-allowed',
-  edit: 'bg-slate-800/30 border-dashed border-slate-200 text-neutral-700',
-  disabled: 'bg-neutral-0 text-neutral-300 cursor-not-allowed ',
-  default: 'bg-white border-neutral-300 text-neutral-700 hover:bg-gradient-to-r hover:from-[#FF7B7B]/10 hover:to-[#E040FB]/10',
+  selected: 'bg-gradient-to-r from-[#FF7B7B]/30 to-[#E040FB]/30 border-primary',
+  purchased: 'bg-background text-foreground border-border cursor-not-allowed',
+  edit: 'bg-secondary/30 border-dashed border-border text-card-foreground',
+  disabled: 'bg-muted/50 text-muted-foreground cursor-not-allowed',
+  default: 'bg-card border-border text-card-foreground hover:bg-gradient-to-r hover:from-[#FF7B7B]/10 hover:to-[#E040FB]/10',
 }
 
 // Componente base
@@ -111,7 +111,7 @@ function SpecialBase({
       data-selected={selected}
       data-price={product.price}
       className={cn(
-        'w-full py-1 px-4 flex items-center justify-between gap-2 border border-neutral-200 rounded-md',
+        'w-full py-1 px-4 flex items-center justify-between gap-2 border rounded-md',
         variants[purchased ? 'purchased' : isDisabled || !onClick ? 'disabled' : selected ? 'selected' : 'default']
       )}
     >
@@ -123,7 +123,7 @@ function SpecialBase({
       <div className="flex items-center gap-4">
         {
           product.purchased ? (
-            <span className="text-sm font-medium text-[white]">
+            <span className="text-sm font-medium text-foreground">
               Purchased
             </span>
           ) : (

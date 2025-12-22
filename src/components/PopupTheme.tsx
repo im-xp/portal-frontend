@@ -23,6 +23,16 @@ export function PopupTheme({ colors, children }: PopupThemeProps) {
       --border: ${colors.border};
       --input: ${colors.input};
       --ring: ${colors.ring};
+      --card: ${colors.card};
+      --card-foreground: ${colors.cardForeground};
+      --sidebar-background: ${colors.sidebarBackground};
+      --sidebar-foreground: ${colors.sidebarForeground};
+      --sidebar-primary: ${colors.sidebarPrimary};
+      --sidebar-primary-foreground: ${colors.sidebarPrimaryForeground};
+      --sidebar-accent: ${colors.sidebarAccent};
+      --sidebar-accent-foreground: ${colors.sidebarAccentForeground};
+      --sidebar-border: ${colors.sidebarBorder};
+      --sidebar-ring: ${colors.sidebarRing};
     }
   `
 

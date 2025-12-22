@@ -102,13 +102,13 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
   return (
     <div className="relative h-full w-full">
       <div className="w-full overflow-hidden">
-        <div className="w-full rounded-3xl border border-gray-200 h-full xl:grid xl:grid-cols-[1fr_2px_2fr] bg-white">
+        <div className="w-full rounded-3xl border border-border h-full xl:grid xl:grid-cols-[1fr_2px_2fr] bg-card text-card-foreground">
 
           <div className="relative flex flex-col p-6 overflow-hidden h-full">
             <div 
               className="absolute inset-0 z-0 rounded-3xl"
               style={{
-                background: `linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8) 20%, #FFFFFF 90%), url(${city?.image_url})`,
+                background: `linear-gradient(0deg, transparent, hsl(var(--card) / 0.8) 20%, hsl(var(--card)) 90%), url(${city?.image_url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'top',
               }}
@@ -117,8 +117,8 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
               <div className="flex flex-col justify-center xl:order-2">
                 <p className="text-xl font-semibold">{attendee.name}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <User className="h-4 w-4 text-gray-500"/>
-                  <p className="text-sm text-gray-500">{badgeName[attendee.category] || attendee.category}</p>
+                  <User className="h-4 w-4 text-muted-foreground"/>
+                  <p className="text-sm text-muted-foreground">{badgeName[attendee.category] || attendee.category}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -132,9 +132,9 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
 
           </div>
 
-          <div className="border-r-2 border-dashed border-gray-200 self-stretch relative">
-            <div className="absolute -top-[23px] -left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div>
-            <div className="absolute max-xl:-top-[23px] max-xl:-right-[23px] xl:-bottom-[23px] xl:-right-auto xl:-left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div> 
+          <div className="border-r-2 border-dashed border-border self-stretch relative">
+            <div className="absolute -top-[23px] -left-[23px] w-[48px] h-[46px] bg-muted rounded-3xl border border-border"></div>
+            <div className="absolute max-xl:-top-[23px] max-xl:-right-[23px] xl:-bottom-[23px] xl:-right-auto xl:-left-[23px] w-[48px] h-[46px] bg-muted rounded-3xl border border-border"></div> 
           </div>
 
           <div className="flex flex-col p-8 gap-2 xl:pr-10">
@@ -146,7 +146,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
               <div className="flex flex-col gap-3">
                 {localProducts.length > 0 && (
                   <Collapsible open={localOpen} onOpenChange={setLocalOpen} className="space-y-2">
-                    <CollapsibleTrigger className="w-full bg-accent rounded-md" aria-label="Toggle Local Tickets">
+                    <CollapsibleTrigger className="w-full bg-primary text-primary-foreground rounded-md" aria-label="Toggle Local Tickets">
                       <div className="flex justify-between items-center p-3">
                         <div className="flex items-center gap-2">
                           <ChevronRight className={cn("h-4 w-4 transition-transform duration-200", localOpen && "transform rotate-90")} />
@@ -186,7 +186,7 @@ const AttendeeTicket = ({attendee, toggleProduct, isDayCheckout}: {attendee: Att
 
                 {commonProducts.length > 0 && (
                   <Collapsible open={commonOpen} onOpenChange={setCommonOpen} className="space-y-2">
-                    <CollapsibleTrigger className="w-full bg-accent rounded-md" aria-label="Toggle Common Tickets">
+                    <CollapsibleTrigger className="w-full bg-primary text-primary-foreground rounded-md" aria-label="Toggle Common Tickets">
                       <div className="flex justify-between items-center p-3">
                         <div className="flex items-center gap-2">
                           <ChevronRight className={cn("h-4 w-4 transition-transform duration-200", commonOpen && "transform rotate-90")} />

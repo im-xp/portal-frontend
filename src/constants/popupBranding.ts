@@ -13,6 +13,18 @@ export type PopupColors = {
   border: string            // Border color
   input: string             // Input background
   ring: string              // Focus ring
+  // Card colors (for content cards)
+  card: string
+  cardForeground: string
+  // Sidebar colors
+  sidebarBackground: string
+  sidebarForeground: string
+  sidebarPrimary: string
+  sidebarPrimaryForeground: string
+  sidebarAccent: string
+  sidebarAccentForeground: string
+  sidebarBorder: string
+  sidebarRing: string
 }
 
 export type PopupBranding = {
@@ -49,6 +61,18 @@ export const popupBranding: Record<string, PopupBranding> = {
       border: '0 0% 100%',              // White borders
       input: '217 85% 22%',
       ring: '189 69% 56%',
+      // Card colors - white cards with dark text for Iceland
+      card: '0 0% 100%',
+      cardForeground: '217 92% 15%',
+      // Sidebar - Iceland Eclipse dark theme
+      sidebarBackground: '217 92% 13%',
+      sidebarForeground: '210 8% 90%',
+      sidebarPrimary: '189 69% 56%',
+      sidebarPrimaryForeground: '0 0% 100%',
+      sidebarAccent: '217 85% 18%',
+      sidebarAccentForeground: '210 8% 90%',
+      sidebarBorder: '217 70% 25%',
+      sidebarRing: '189 69% 56%',
     },
   },
   'ripple-on-the-nile': {
@@ -75,6 +99,18 @@ export const popupBranding: Record<string, PopupBranding> = {
       border: '59 94% 82%',              // Pale yellow border
       input: '27 82% 9%',                // #281504
       ring: '59 94% 82%',
+      // Card colors - dark brown cards with light text for Ripple
+      card: '27 79% 8%',                 // Dark brown card background
+      cardForeground: '0 0% 95%',        // Near-white text on cards for readability
+      // Sidebar - Ripple dark brown theme
+      sidebarBackground: '27 79% 4%',    // Slightly darker brown
+      sidebarForeground: '59 94% 82%',   // Pale yellow text
+      sidebarPrimary: '59 94% 82%',
+      sidebarPrimaryForeground: '27 79% 5%',
+      sidebarAccent: '27 82% 9%',        // Hover brown
+      sidebarAccentForeground: '59 94% 82%',
+      sidebarBorder: '27 70% 12%',
+      sidebarRing: '59 94% 82%',
     },
   },
 }

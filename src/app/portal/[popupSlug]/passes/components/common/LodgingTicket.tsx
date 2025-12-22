@@ -29,13 +29,13 @@ const LodgingTicket = ({ attendee, toggleProduct }: LodgingTicketProps) => {
   return (
     <div className="relative h-full w-full">
       <div className="w-full overflow-hidden">
-        <div className="w-full rounded-3xl border border-gray-200 h-full xl:grid xl:grid-cols-[1fr_2px_2fr] bg-white">
+        <div className="w-full rounded-3xl border border-border h-full xl:grid xl:grid-cols-[1fr_2px_2fr] bg-card text-card-foreground">
 
           <div className="relative flex flex-col p-6 overflow-hidden h-full">
             <div 
               className="absolute inset-0 z-0 rounded-3xl"
               style={{
-                background: `linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8) 20%, #FFFFFF 90%), url(${city?.image_url})`,
+                background: `linear-gradient(0deg, transparent, hsl(var(--card) / 0.8) 20%, hsl(var(--card)) 90%), url(${city?.image_url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'top',
               }}
@@ -44,7 +44,7 @@ const LodgingTicket = ({ attendee, toggleProduct }: LodgingTicketProps) => {
               <div className="flex flex-col justify-center xl:order-2">
                 <p className="text-xl font-semibold">Lodging</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <Home className="h-4 w-4 text-gray-500"/>
+                  <Home className="h-4 w-4 text-muted-foreground"/>
                   <p className="text-sm text-foreground underline hover:text-primary transition-colors duration-200"><a href="https://imxp.notion.site/The-Portal-Housing-2c5ec4424fdb805090acd58f4f0679bf?pvs=143" target="_blank" rel="noopener noreferrer">View all Housing Options</a></p>
                 </div>
               </div>
@@ -56,14 +56,14 @@ const LodgingTicket = ({ attendee, toggleProduct }: LodgingTicketProps) => {
             </div>
           </div>
 
-          <div className="border-r-2 border-dashed border-gray-200 self-stretch relative">
-            <div className="absolute -top-[23px] -left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div>
-            <div className="absolute max-xl:-top-[23px] max-xl:-right-[23px] xl:-bottom-[23px] xl:-right-auto xl:-left-[23px] w-[48px] h-[46px] bg-neutral-100 rounded-3xl border border-gray-200"></div> 
+          <div className="border-r-2 border-dashed border-border self-stretch relative">
+            <div className="absolute -top-[23px] -left-[23px] w-[48px] h-[46px] bg-muted rounded-3xl border border-border"></div>
+            <div className="absolute max-xl:-top-[23px] max-xl:-right-[23px] xl:-bottom-[23px] xl:-right-auto xl:-left-[23px] w-[48px] h-[46px] bg-muted rounded-3xl border border-border"></div> 
           </div>
 
           <div className="flex flex-col p-8 gap-2 xl:pr-10">
             <Collapsible open={lodgingOpen} onOpenChange={setLodgingOpen} className="space-y-2">
-              <CollapsibleTrigger className="w-full bg-accent rounded-md" aria-label="Toggle Lodging Options">
+              <CollapsibleTrigger className="w-full bg-primary text-primary-foreground rounded-md" aria-label="Toggle Lodging Options">
                 <div className="flex justify-between items-center p-3">
                   <div className="flex items-center gap-2">
                     <ChevronRight className={cn("h-4 w-4 transition-transform duration-200", lodgingOpen && "transform rotate-90")} />

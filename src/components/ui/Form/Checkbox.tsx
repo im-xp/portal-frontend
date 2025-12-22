@@ -33,7 +33,6 @@ const CheckboxForm = ({ label, id, checked, onCheckedChange, disabled, defaultCh
           onCheckedChange={(checked: boolean) => onCheckedChange(checked)}
           disabled={disabled}
           defaultChecked={defaultChecked}
-          className="bg-white"
           required={required}
         />
         {label && <LabelMuted htmlFor={id} className="cursor-pointer">{label}</LabelMuted>}

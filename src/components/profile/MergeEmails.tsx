@@ -292,7 +292,7 @@ export default function MergeEmails() {
           variant='outline'
           onClick={handleClose}
           disabled={isLoading}
-          className='bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg w-full py-2.5 px-4 h-auto font-normal'>
+          className='bg-card border border-border text-card-foreground hover:bg-muted rounded-lg w-full py-2.5 px-4 h-auto font-normal'>
           Done
         </Button>
       </div>
@@ -381,7 +381,7 @@ export default function MergeEmails() {
             variant='outline'
             onClick={handleBack}
             disabled={isLoading}
-            className='bg-white border border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg w-full py-2.5 px-4 h-auto font-normal'>
+            className='bg-card border border-border text-card-foreground hover:bg-muted rounded-lg w-full py-2.5 px-4 h-auto font-normal'>
             Back
           </Button>
         </div>

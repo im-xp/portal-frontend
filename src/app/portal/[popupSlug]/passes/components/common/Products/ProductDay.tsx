@@ -13,11 +13,11 @@ import { usePassesProvider } from "@/providers/passesProvider"
 type VariantStyles = 'selected' | 'purchased' | 'edit' | 'disabled' | 'default'
 
 const variants: Record<VariantStyles, string> = {
-  selected: 'bg-[#b3e1ec] border-primary text-cyan-900 hover:bg-[#b3e1ec]/80',
-  purchased: 'bg-background text-white border-neutral-700',
-  edit: 'bg-slate-800/30 border-dashed border-slate-200 text-neutral-700 border', 
-  disabled: 'bg-neutral-0 text-neutral-300 cursor-not-allowed ',
-  default: 'bg-white border-neutral-300 text-neutral-700 hover:bg-slate-100',
+  selected: 'bg-primary/20 border-primary text-primary-foreground hover:bg-primary/30',
+  purchased: 'bg-background text-foreground border-border',
+  edit: 'bg-secondary/30 border-dashed border-border text-card-foreground border', 
+  disabled: 'bg-muted/50 text-muted-foreground cursor-not-allowed',
+  default: 'bg-card border-border text-card-foreground hover:bg-secondary/50',
 }
 
 const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {product: ProductsPass, onClick: (attendeeId: number | undefined, product: ProductsPass) => void, defaultDisabled?: boolean, hasMonthPurchased?: boolean}) => {
@@ -108,7 +108,7 @@ const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {produc
         <div 
           onClick={handleMainClick}
           className={cn(
-            'flex items-center gap-2 border border-neutral-200 rounded-md p-2 relative cursor-pointer',
+            'flex items-center gap-2 border rounded-md p-2 relative cursor-pointer',
             variants[ purchased ? 'purchased' : disabled ? 'disabled' : selected ? 'selected' : 'default'],
             disabled && 'cursor-not-allowed'
           )}
@@ -134,9 +134,9 @@ const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {produc
                   product.description && (
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Info className={cn(`w-4 h-4 text-slate-500 hover:text-slate-700`, product.purchased && 'text-white hover:text-white')} />
+                        <Info className="w-4 h-4 text-muted-foreground hover:text-foreground" />
                       </TooltipTrigger>
-                      <TooltipContent className="bg-white text-black shadow-md border border-gray-200 max-w-sm">
+                      <TooltipContent className="bg-card text-card-foreground shadow-md border border-border max-w-sm">
                         {product.description}
                       </TooltipContent>
                     </Tooltip>
@@ -148,12 +148,12 @@ const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {produc
                     <>
                       {
                         originalPrice !== product.price && (
-                          <p className={cn("text-xs text-muted-foreground line-through", disabled && 'text-neutral-300')}>
+                          <p className={cn("text-xs text-muted-foreground line-through", disabled && 'text-muted-foreground/50')}>
                             ${originalPrice.toLocaleString()}
                           </p>
                         )
                       }
-                      <p className={cn("text-md font-medium", disabled && 'text-neutral-300')}>$ {product.price.toLocaleString()}</p>
+                      <p className={cn("text-md font-medium", disabled && 'text-muted-foreground/50')}>$ {product.price.toLocaleString()}</p>
                     </>
                   )
                 }
@@ -174,7 +174,7 @@ const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {produc
         </div>
       </TooltipTrigger>
       {hasMonthPurchased && (
-        <TooltipContent className="bg-white text-black shadow-md border border-gray-200 max-w-sm">
+        <TooltipContent className="bg-card text-card-foreground shadow-md border border-border max-w-sm">
           You already have a monthly pass. No need to buy a day ticket.
         </TooltipContent>
       )}
