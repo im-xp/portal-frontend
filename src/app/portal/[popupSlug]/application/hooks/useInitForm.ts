@@ -26,9 +26,21 @@ const useInitForm = (setFormData: any) => {
         }
 
         if (status === 'draft') {
+          // Extract custom_data fields and prefix them with 'custom_'
+          const customDataFields: Record<string, any> = {};
+          if (application.custom_data && typeof application.custom_data === 'object') {
+            for (const [key, value] of Object.entries(application.custom_data)) {
+              customDataFields[`custom_${key}`] = value;
+            }
+          }
+          
+          // Remove custom_data from application since we've extracted it
+          const { custom_data, ...applicationData } = application;
+          
           setFormData((prevData: any) => ({
             ...prevData,
-            ...application
+            ...applicationData,
+            ...customDataFields,
           }));
         }
       } catch (error) {

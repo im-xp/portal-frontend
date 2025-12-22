@@ -55,8 +55,23 @@ const useSavesForm = () => {
     
     delete processedData.interested_in_residency
 
+    // Extract custom fields (prefixed with 'custom_') into custom_data JSONB
+    const customData: Record<string, unknown> = {};
+    const standardData: Record<string, unknown> = {};
+    
+    for (const [key, value] of Object.entries(processedData)) {
+      if (key.startsWith('custom_')) {
+        // Remove 'custom_' prefix and add to customData
+        const customKey = key.replace('custom_', '');
+        customData[customKey] = value;
+      } else {
+        standardData[key] = value;
+      }
+    }
+
     return {
-      ...processedData,
+      ...standardData,
+      custom_data: Object.keys(customData).length > 0 ? customData : undefined,
       citizen_id: user.citizen_id,
       popup_city_id: city.id,
     };

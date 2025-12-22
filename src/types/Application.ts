@@ -54,4 +54,6 @@ export interface ApplicationProps {
   submitted_at?: string;
   credit: number;
   group_id?: string;
+  // Custom form data for popup-specific questions (stored as JSONB)
+  custom_data?: Record<string, unknown>;
 }
