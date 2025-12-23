@@ -7,6 +7,7 @@ import { useApplication } from "@/providers/applicationProvider"
 import { usePassesProvider } from "@/providers/passesProvider"
 import { toast } from "sonner"
 import { MiniKit } from "@worldcoin/minikit-js"
+import { useCityProvider } from "@/providers/cityProvider"
 
 const usePurchaseProducts = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -14,6 +15,8 @@ const usePurchaseProducts = () => {
   const application = getRelevantApplication()
   const getApplication = useGetApplications(false)
   const { discountApplied, isEditing, toggleEditing } = usePassesProvider()
+  const { getCity } = useCityProvider()
+  const city = getCity()
 
   const purchaseProducts = async (attendeePasses: AttendeeProps[]) => {
     if(!application) return;
@@ -41,7 +44,7 @@ const usePurchaseProducts = () => {
       const response = await api.post('payments/', data)
 
       if(response.status === 200){
-        const redirectUrl = `${window.location.origin}/checkout/success`;
+        const redirectUrl = `${window.location.origin}/checkout/success${city?.slug ? `?popup=${city.slug}` : ''}`;
         if(response.data.status === 'pending'){
           if(MiniKit.isInstalled()){
             const checkoutUrl = response.data.checkout_url

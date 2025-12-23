@@ -29,7 +29,7 @@ const WaiverCheckbox = ({ checked, onCheckedChange, className }: WaiverCheckboxP
               href="https://imxp.notion.site/The-Portal-at-Iceland-Eclipse-Terms-Conditions-2cbec4424fdb80d6af96dae9683ef981?source=copy_link" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-background underline font-medium"
+              className="text-primary underline font-medium hover:text-primary/80"
             >
               agree to the Terms and Conditions.
             </a>
