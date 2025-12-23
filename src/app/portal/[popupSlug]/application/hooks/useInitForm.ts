@@ -20,10 +20,12 @@ const useInitForm = (setFormData: any) => {
 
         if(!application || !status) return
 
-        if (status === 'import') {
-          setExistingApplication(application);
-          setShowExistingCard(true);
-        }
+        // Disabled: no longer offering to import previous applications
+        // Users must fill out a new application each time
+        // if (status === 'import') {
+        //   setExistingApplication(application);
+        //   setShowExistingCard(true);
+        // }
 
         if (status === 'draft') {
           // Extract custom_data fields and prefix them with 'custom_'
