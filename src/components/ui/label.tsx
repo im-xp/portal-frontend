@@ -32,7 +32,7 @@ const LabelMuted = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <LabelPrimitive.Root
     ref={ref}
-    className={cn(labelVariants(), "text-gray-700", className)}
+    className={cn(labelVariants(), "text-muted-foreground", className)}
     {...props}
   />
 ))

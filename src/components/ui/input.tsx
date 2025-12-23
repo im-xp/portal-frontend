@@ -3,10 +3,10 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const inputVariants = {
-  base: "flex h-9 w-full bg-transparent px-3 py-1 text-base transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+  base: "flex h-9 w-full bg-background px-3 py-1 text-base text-foreground transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
   outlined: {
-    default: "shadow-sm rounded-md border border-input focus-visible:ring-1 focus-visible:ring-ring",
-    disabled: "bg-gray-100 border-gray-400",
+    default: "shadow-sm rounded-md border border-input focus-visible:ring-2 focus-visible:ring-ring",
+    disabled: "opacity-50 border-muted",
     error: "border-red-500"
   },
   standard: {

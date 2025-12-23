@@ -16,6 +16,9 @@ export type PopupColors = {
   // Card colors (for content cards)
   card: string
   cardForeground: string
+  // Popover colors (for dropdowns, menus)
+  popover: string
+  popoverForeground: string
   // Sidebar colors
   sidebarBackground: string
   sidebarForeground: string
@@ -64,6 +67,9 @@ export const popupBranding: Record<string, PopupBranding> = {
       // Card colors - white cards with dark text
       card: '0 0% 100%',
       cardForeground: '217 92% 15%',
+      // Popover colors
+      popover: '0 0% 100%',
+      popoverForeground: '217 92% 15%',
       // Sidebar - Iceland Eclipse dark theme
       sidebarBackground: '217 92% 13%',
       sidebarForeground: '210 8% 90%',
@@ -92,16 +98,19 @@ export const popupBranding: Record<string, PopupBranding> = {
       primaryForeground: '27 79% 5%',    // Dark brown text on yellow
       secondary: '27 82% 9%',            // #281504 - Hover brown
       secondaryForeground: '59 94% 82%',
-      muted: '27 70% 8%',
+      muted: '27 70% 12%',               // Slightly lighter for addon backgrounds
       mutedForeground: '59 70% 70%',
       accent: '59 94% 82%',              // #fdfca6 - Pale yellow
       accentForeground: '27 79% 5%',
-      border: '59 94% 82%',              // Pale yellow border
-      input: '27 82% 9%',                // #281504
+      border: '59 50% 45%',              // Muted gold - visible but not harsh
+      input: '59 50% 45%',               // Match border for consistent input styling
       ring: '59 94% 82%',
       // Card colors - dark brown cards with light text for Ripple
       card: '27 79% 8%',                 // Dark brown card background
-      cardForeground: '0 0% 95%',        // Near-white text on cards for readability
+      cardForeground: '59 94% 82%',      // Pale yellow text on cards
+      // Popover colors - matching card for dropdowns
+      popover: '27 79% 10%',             // Slightly lighter than card
+      popoverForeground: '59 94% 82%',   // Pale yellow text
       // Sidebar - Ripple dark brown theme
       sidebarBackground: '27 79% 4%',    // Slightly darker brown
       sidebarForeground: '59 94% 82%',   // Pale yellow text

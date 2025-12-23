@@ -82,6 +82,7 @@ export function CustomFieldsForm({
           <CheckboxForm
             key={field.key}
             title={field.label}
+            label="Yes"
             id={fieldKey}
             checked={!!value}
             onCheckedChange={(checked) => handleChange(fieldKey, checked)}

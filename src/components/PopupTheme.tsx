@@ -25,6 +25,8 @@ export function PopupTheme({ colors, children }: PopupThemeProps) {
       --ring: ${colors.ring};
       --card: ${colors.card};
       --card-foreground: ${colors.cardForeground};
+      --popover: ${colors.popover};
+      --popover-foreground: ${colors.popoverForeground};
       --sidebar-background: ${colors.sidebarBackground};
       --sidebar-foreground: ${colors.sidebarForeground};
       --sidebar-primary: ${colors.sidebarPrimary};
