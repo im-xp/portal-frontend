@@ -88,7 +88,7 @@ export const rippleOnTheNile: DynamicForm = {
       label: "Have you ever been part of a co-creation container?",
       type: "boolean",
       section: "other",
-      required: true,
+      required: false,
     },
     {
       key: "cocreation_details",
@@ -133,7 +133,7 @@ export const rippleOnTheNile: DynamicForm = {
       label: "Have you ever been to Egypt before?",
       type: "boolean",
       section: "other",
-      required: true,
+      required: false,
     },
     {
       key: "questions_concerns",
