@@ -6,18 +6,26 @@ export async function GET(request: NextRequest) {
   request.headers.forEach((value, key) => {
     headers[key] = value
   })
+
+  // Get all search params
+  const searchParams: Record<string, string> = {}
+  request.nextUrl.searchParams.forEach((value, key) => {
+    searchParams[key] = value
+  })
   
   return NextResponse.json({
     host: request.headers.get('host'),
     xForwardedHost: request.headers.get('x-forwarded-host'),
-    xVercelDeploymentUrl: request.headers.get('x-vercel-deployment-url'),
     url: request.url,
+    searchParams: searchParams,
+    popupParam: request.nextUrl.searchParams.get('popup'),
     nextUrl: {
       hostname: request.nextUrl.hostname,
       host: request.nextUrl.host,
       href: request.nextUrl.href,
+      search: request.nextUrl.search,
     },
-    allHeaders: headers,
+    middlewareNote: 'If popup param is present, middleware worked!',
   }, { status: 200 })
 }
 

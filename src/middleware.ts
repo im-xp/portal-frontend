@@ -27,5 +27,6 @@ export const config = {
     '/',
     '/auth',
     '/portal/:path*',
+    '/api/debug-headers',  // Temporary for debugging
   ],
 }
