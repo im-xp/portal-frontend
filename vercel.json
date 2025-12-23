@@ -12,6 +12,16 @@
   },
   "rewrites": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "ripple.egypt-eclipse.com" }],
+      "destination": "/?popup=ripple-on-the-nile"
+    },
+    {
+      "source": "/auth",
+      "has": [{ "type": "host", "value": "ripple.egypt-eclipse.com" }],
+      "destination": "/auth?popup=ripple-on-the-nile"
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "ripple.egypt-eclipse.com" }],
       "destination": "/:path*?popup=ripple-on-the-nile"

@@ -7,7 +7,8 @@ const domainToPopup: Record<string, string> = {
 }
 
 export function middleware(request: NextRequest) {
-  const host = request.headers.get('host') || ''
+  // On Vercel, use x-forwarded-host for the original domain
+  const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || ''
   const popupSlug = domainToPopup[host]
   
   // If this domain has a popup mapping and the URL doesn't already have the popup param
