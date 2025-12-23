@@ -6,15 +6,15 @@ import { useCityProvider } from "@/providers/cityProvider"
 import { PopupsProps } from "@/types/Popup"
 import { ChevronsUpDown } from 'lucide-react'
 import { DropdownMenuContent, DropdownMenuItem } from "./DropdownMenu"
-import { Avatar, AvatarFallback } from "../ui/avatar"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { getPopupBranding } from "@/constants/popupBranding"
 
 const PopupsMenu = ({ handleClickCity }: { handleClickCity: (city: PopupsProps) => void }) => {
   const { getCity, getPopups } = useCityProvider()
   const city = getCity()
   const popups = getPopups()
-  const cityName = city?.name ? city.name.split(' ').map(word => word[0].toUpperCase()).join('') : 'C'
+  const branding = getPopupBranding(city?.slug || null)
   const cityDate = new Date(city?.start_date ?? '')?.toLocaleDateString('en-EN', {day: 'numeric', month: 'long', year: 'numeric'})
 
   return (
@@ -43,8 +43,8 @@ const PopupsMenu = ({ handleClickCity }: { handleClickCity: (city: PopupsProps) 
                           className="relative aspect-square"
                         >
                         <Image
-                          src="https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png"
-                          alt="The Portal at Iceland Eclipse wormhole image"
+                          src={branding.heroImage}
+                          alt={branding.heroAlt}
                           width={48}
                           height={48}
                         />
