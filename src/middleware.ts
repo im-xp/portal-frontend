@@ -11,11 +11,15 @@ export function middleware(request: NextRequest) {
   const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || ''
   const popupSlug = domainToPopup[host]
   
-  // If this domain has a popup mapping and the URL doesn't already have the popup param
-  if (popupSlug && !request.nextUrl.searchParams.has('popup')) {
-    const url = request.nextUrl.clone()
-    url.searchParams.set('popup', popupSlug)
-    return NextResponse.rewrite(url)
+  if (popupSlug) {
+    // Set cookie so client-side JS can read the popup slug
+    const response = NextResponse.next()
+    response.cookies.set('popup_slug', popupSlug, {
+      path: '/',
+      sameSite: 'lax',
+      secure: true,
+    })
+    return response
   }
   
   return NextResponse.next()
