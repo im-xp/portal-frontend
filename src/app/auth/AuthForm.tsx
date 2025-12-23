@@ -77,7 +77,7 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="flex flex-col justify-center w-full md:w-1/2 p-4">
+    <div className="flex flex-col justify-center w-full md:w-1/2 p-4 bg-sidebar">
       <div className="max-w-md w-full mx-auto space-y-8 md:my-12">
         <motion.div
           initial={{ y: 0 }}
@@ -99,10 +99,10 @@ export default function AuthForm() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-center max-w-md mx-auto mb-4">
-            <h2 className="mt-6 text-3xl font-bold text-white" style={{ textWrap: 'balance' }}>
+            <h2 className="mt-6 text-3xl font-bold text-sidebar-foreground" style={{ textWrap: 'balance' }}>
               Sign Up or Log In to {branding.name}
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground" style={{ textWrap: 'balance' }}>
+            <p className="mt-2 text-sm text-sidebar-foreground/70" style={{ textWrap: 'balance' }}>
             Welcome! If it's your first time, sign up below. If you attended a past event, use the same email to import your prior application.
             </p>
           </div>
@@ -125,8 +125,8 @@ export default function AuthForm() {
                 }}
                 disabled={isLoading || !!message.message}
                 className={`appearance-none rounded-md relative block w-full px-3 py-5 border ${
-                  isValidEmail ? 'border-border' : 'border-destructive'
-                } placeholder:text-white text-white bg-background focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm`}
+                  isValidEmail ? 'border-sidebar-border' : 'border-destructive'
+                } placeholder:text-sidebar-foreground/50 text-sidebar-foreground bg-sidebar-accent focus:outline-none focus:ring-sidebar-primary focus:border-sidebar-primary focus:z-10 sm:text-sm`}
               />
               {!isValidEmail && (
                 <p className="mt-2 text-sm text-red-600">Please enter a valid email address</p>
@@ -144,12 +144,12 @@ export default function AuthForm() {
                 </svg>
               ) : 'Continue'}
             </ButtonAnimated>
-            <p className="mt-2 text-sm text-muted-foreground" style={{ textAlign: 'center', textWrap: 'balance' }}>
+            <p className="mt-2 text-sm text-sidebar-foreground/70" style={{ textAlign: 'center', textWrap: 'balance' }}>
             You&apos;ll receive a magic link in your email inbox to log in.
             </p>
           </form>
           <p className="mt-12 text-center">
-           <small className="text-xs text-muted-foreground">Powered by <a href="https://www.edgecity.live/" target="_blank" rel="noopener noreferrer">EdgeCity</a> and <a href="https://www.simplefi.tech/" target="_blank" rel="noopener noreferrer">SimpleFi</a></small>
+           <small className="text-xs text-sidebar-foreground/70">Powered by <a href="https://www.edgecity.live/" target="_blank" rel="noopener noreferrer" className="text-sidebar-foreground/70 hover:text-sidebar-foreground">EdgeCity</a> and <a href="https://www.simplefi.tech/" target="_blank" rel="noopener noreferrer" className="text-sidebar-foreground/70 hover:text-sidebar-foreground">SimpleFi</a></small>
           </p>
         </motion.div>
       </div>
