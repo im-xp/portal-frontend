@@ -4,6 +4,7 @@ export type CategoryProducts = 'week' | 'patreon' | 'month' | 'supporter' | 'exc
 
 export interface ProductsProps {
   name: string;
+  slug: string;
   price: number;
   popup_city_id: number;
   description: string | null;
