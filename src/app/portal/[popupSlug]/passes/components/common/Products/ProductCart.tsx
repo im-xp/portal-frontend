@@ -3,7 +3,10 @@ import { ProductsPass } from "@/types/Products"
 import { badgeName } from "../../../constants/multiuse"
 
 const ProductCart = ({ product }: { product: ProductsPass }) => {
-  const price =  product.original_price ? product.original_price : product.price
+  // For donations, use custom_price; otherwise use original_price or price
+  const price = product.category === 'donation' 
+    ? (product.custom_price ?? 0) 
+    : (product.original_price ? product.original_price : product.price)
   
   const quantity = product.category.includes('day') ? (product.quantity ?? 0) - (product.original_quantity ?? 0) : 1
 

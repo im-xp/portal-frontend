@@ -1,6 +1,6 @@
 import { AttendeeCategory } from "./Attendee";
 
-export type CategoryProducts = 'week' | 'patreon' | 'month' | 'supporter' | 'exclusive' | 'day' | 'local week' | 'local month' | 'local day' | 'lodging'
+export type CategoryProducts = 'week' | 'patreon' | 'month' | 'supporter' | 'exclusive' | 'day' | 'local week' | 'local month' | 'local day' | 'lodging' | 'donation'
 
 export interface ProductsProps {
   name: string;
@@ -30,4 +30,5 @@ export interface ProductsPass extends ProductsProps {
   original_price?: number;
   disabled?: boolean;
   original_quantity?: number;
+  custom_price?: number;  // For donation products - user-specified amount
 }

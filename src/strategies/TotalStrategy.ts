@@ -218,22 +218,38 @@ export class TotalCalculator {
       };
     }, { total: 0, originalTotal: 0, discountAmount: 0 });
 
+    // Calculate donation totals separately (donations use custom_price, not discountable)
+    const donationTotal = attendees.reduce((total, attendee) => {
+      return total + attendee.products
+        .filter(p => p.category === 'donation' && p.selected && !p.purchased)
+        .reduce((sum, p) => sum + (p.custom_price ?? 0), 0);
+    }, 0);
+
+    // Add donations to the totals
+    const resultWithDonations = {
+      total: baseResult.total + donationTotal,
+      originalTotal: baseResult.originalTotal + donationTotal,
+      discountAmount: baseResult.discountAmount
+    };
+
     // Compare individual discount vs group discount and apply only the greater one
     if (groupDiscountPercentage && groupDiscountPercentage > 0) {
-      const groupDiscountAmount = baseResult.originalTotal * (groupDiscountPercentage / 100);
+      // Donations should not be discounted, so only apply group discount to non-donation original total
+      const nonDonationOriginal = baseResult.originalTotal;
+      const groupDiscountAmount = nonDonationOriginal * (groupDiscountPercentage / 100);
       const individualDiscountAmount = baseResult.discountAmount;
       
       // Use the greater discount
       if (groupDiscountAmount > individualDiscountAmount) {
         return {
-          total: baseResult.originalTotal - groupDiscountAmount,
-          originalTotal: baseResult.originalTotal,
+          total: nonDonationOriginal - groupDiscountAmount + donationTotal,
+          originalTotal: resultWithDonations.originalTotal,
           discountAmount: groupDiscountAmount
         };
       }
     }
 
-    return baseResult;
+    return resultWithDonations;
   }
 
   private getStrategy(products: ProductsPass[]): PriceCalculationStrategy {

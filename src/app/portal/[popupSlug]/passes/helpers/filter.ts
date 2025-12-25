@@ -72,5 +72,11 @@ export const filterProductsToPurchase = (products: ProductsPass[], editableMode:
 
   // console.log('reducedProducts', reducedProducts, {editableMode})
 
-  return reducedProducts.map(p => ({product_id: p.id, attendee_id: p.attendee_id, quantity: p.quantity ?? 1}))
+  return reducedProducts.map(p => ({
+    product_id: p.id, 
+    attendee_id: p.attendee_id, 
+    quantity: p.quantity ?? 1,
+    // Include custom_price for donation products
+    ...(p.category === 'donation' && p.custom_price ? { custom_price: p.custom_price } : {})
+  }))
 }

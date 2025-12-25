@@ -248,6 +248,24 @@ class LodgingProductStrategy implements ProductStrategy {
   }
 }
 
+class DonationProductStrategy implements ProductStrategy {
+  handleSelection(attendees: AttendeeProps[], attendeeId: number, product: ProductsPass): AttendeeProps[] {
+    return attendees.map(attendee => {
+      if (attendee.id !== attendeeId) return attendee;
+
+      return {
+        ...attendee,
+        products: attendee.products.map(p => ({
+          ...p,
+          // For donations, preserve the custom_price from the incoming product
+          selected: p.id === product.id ? (product.custom_price ? true : !p.selected) : p.selected,
+          custom_price: p.id === product.id ? product.custom_price : p.custom_price
+        }))
+      };
+    });
+  }
+}
+
 export const getProductStrategy = (product: ProductsPass, isEditing: boolean): ProductStrategy => {
 
   if (product.exclusive && product.category !== 'month') return new ExclusiveProductStrategy();
@@ -271,6 +289,8 @@ export const getProductStrategy = (product: ProductsPass, isEditing: boolean): P
       return new DayProductStrategy();
     case 'lodging':
       return new LodgingProductStrategy();
+    case 'donation':
+      return new DonationProductStrategy();
     default:
       return new WeekProductStrategy();
   }

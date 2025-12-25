@@ -9,6 +9,7 @@ import DiscountCode from "../components/common/DiscountCode"
 import ToolbarTop from "../components/ToolbarTop"
 import { Separator } from "@/components/ui/separator"
 import Special from "../components/common/Products/Special"
+import Donation from "../components/common/Products/Donation"
 import BalancePasses from "../components/common/BalancePasses"
 import BottomSheet from "@/components/common/BottomSheet"
 import TotalFloatingBar from "../components/common/TotalFloatingBar"
@@ -42,10 +43,19 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
   const isDayCheckout = searchParams.has("day-passes");
   const mainAttendee = attendees.find(a => a.category === 'main')
   const specialProduct = mainAttendee?.products.find(p => p.category === 'patreon')
+  const donationProduct = mainAttendee?.products.find(p => p.category === 'donation')
   const someProductSelected = attendees.some(a => a.products.some(p => p.selected && (p.category.includes('day') ? (p.quantity ?? 0) > (p.original_quantity ?? 0) : true)))
   const { total } = useTotal()
   const { getCity } = useCityProvider()
   const city = getCity()
+
+  const handleDonationSubmit = (amount: number) => {
+    if (mainAttendee && donationProduct) {
+      // Update the product with custom_price and toggle selection
+      const updatedProduct = { ...donationProduct, custom_price: amount, selected: true }
+      toggleProduct(mainAttendee.id, updatedProduct)
+    }
+  }
   
   if (!attendees.length || !products.length) {
     return (
@@ -62,6 +72,15 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
       <TitleTabs title="Buy Passes">
         <div dangerouslySetInnerHTML={{ __html: parseMarkdown(city?.passes_description || "") }} />
       </TitleTabs>
+
+      {/* Donation Section - At the top, only show if donation product exists */}
+      {donationProduct && mainAttendee?.id && !isDayCheckout && (
+        <Donation
+          disabled={isEditing}
+          product={donationProduct}
+          onDonationSubmit={handleDonationSubmit}
+        />
+      )}
 
       <BalancePasses />
 
