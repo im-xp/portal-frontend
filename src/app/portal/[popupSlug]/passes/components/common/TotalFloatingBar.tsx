@@ -20,12 +20,12 @@ const TotalFloatingBar = ({ setOpenCart, waiverAccepted }: { setOpenCart: (prev:
   }
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center text-primary-foreground">
       <div className="flex justify-center items-center gap-2">
         <p className="text-sm font-medium">Total</p>
         {
           originalTotal > 0 && originalTotal !== total && (
-            <span className=" text-muted-foreground line-through">${originalTotal.toFixed(0)}</span>
+            <span className="text-primary-foreground/70 line-through">${originalTotal.toFixed(0)}</span>
           )
         }
         <span className="font-medium">{total > 0 ? `$${total.toFixed(2)}` : '$0'}</span>
