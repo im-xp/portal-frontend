@@ -15,13 +15,18 @@ class DefaultPriceStrategy implements PriceStrategy {
       return 0;
     }
 
-    if (product.category !== 'patreon' && product.category !== 'supporter' && discount > 0) {
+    // Discounts only apply to regular passes, NOT to:
+    // - Patreon/Supporter products
+    // - Portal Patron (premium month pass)
+    // - Lodging products
+    const isDiscountExcluded = 
+      product.category === 'patreon' || 
+      product.category === 'supporter' ||
+      product.category === 'lodging' ||
+      product.slug === 'portal-patron';
+
+    if (!isDiscountExcluded && discount > 0) {
       return originalPrice * (1 - discount / 100) * (product.quantity || 1);
-      // if (discount.discount_type === 'percentage') {
-      //   return originalPrice * (1 - discount.discount_value / 100);
-      // } else if (discount.discount_type === 'fixed') {
-      //   return Math.max(0, originalPrice - discount.discount_value);
-      // }
     }
     
     return originalPrice;

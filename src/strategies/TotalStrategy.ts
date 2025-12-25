@@ -27,6 +27,23 @@ abstract class BasePriceStrategy implements PriceCalculationStrategy {
     }, 0);
   }
 
+  // Calculate the total of products eligible for discounts
+  // Excludes: patreon, supporter, lodging, and portal-patron
+  protected calculateDiscountableTotal(products: ProductsPass[]): number {
+    return products
+      .filter(p => p.selected && !p.purchased)
+      .filter(p => 
+        p.category !== 'patreon' && 
+        p.category !== 'supporter' && 
+        p.category !== 'lodging' &&
+        p.slug !== 'portal-patron'
+      )
+      .reduce((sum, product) => {
+        const price = product.original_price ?? product.price ?? 0;
+        return sum + (price * (product.quantity || 1));
+      }, 0);
+  }
+
   abstract calculate(products: ProductsPass[], discount: DiscountProps): TotalResult;
 }
 
@@ -47,7 +64,9 @@ class MonthlyPriceStrategy extends BasePriceStrategy {
       .reduce((sum, product) => sum + (product.price * (product.quantity ?? 1)), 0)
 
     const originalTotal = this.calculateOriginalTotal(products)
-    const discountAmount = discount.discount_value ? originalTotal * (discount.discount_value / 100): 0;
+    // Discounts only apply to eligible products (not lodging or portal-patron)
+    const discountableTotal = this.calculateDiscountableTotal(products)
+    const discountAmount = discount.discount_value ? discountableTotal * (discount.discount_value / 100): 0;
 
 
     return {
@@ -72,9 +91,9 @@ class MonthlyPriceStrategy extends BasePriceStrategy {
 
 class WeeklyPriceStrategy extends BasePriceStrategy {
   calculate(products: ProductsPass[], discount: DiscountProps): TotalResult {
-    // Include week, day, AND lodging products
+    // Include week, day, lodging, AND portal-patron products
     const selectedProducts = products.filter(p => 
-      (p.category === 'week' || p.category === 'local week' || p.category.includes('day') || p.category === 'lodging') && p.selected
+      (p.category === 'week' || p.category === 'local week' || p.category.includes('day') || p.category === 'lodging' || p.slug === 'portal-patron') && p.selected
     );
     
     const totalSelected = selectedProducts.reduce((sum, product) => {
@@ -94,7 +113,9 @@ class WeeklyPriceStrategy extends BasePriceStrategy {
     }, 0);
     
     const originalTotal = this.calculateOriginalTotal(products)
-    const discountAmount = discount.discount_value ? originalTotal * (discount.discount_value / 100): 0;
+    // Discounts only apply to eligible products (not lodging or portal-patron)
+    const discountableTotal = this.calculateDiscountableTotal(products)
+    const discountAmount = discount.discount_value ? discountableTotal * (discount.discount_value / 100): 0;
 
     return {
       total: totalSelected,
@@ -123,11 +144,22 @@ class PatreonPriceStrategy extends BasePriceStrategy {
 class MonthlyPurchasedPriceStrategy extends BasePriceStrategy {
   calculate(products: ProductsPass[], _discount: DiscountProps): TotalResult {
     const someSelectedWeek = products.some(p => p.selected && (p.category === 'week' || p.category === 'local week'))
+    
+    // Always include lodging in the total, even without week passes selected
+    const lodgingTotal = products
+      .filter(p => p.category === 'lodging' && p.selected && !p.purchased)
+      .reduce((sum, product) => sum + (product.price * (product.quantity ?? 1)), 0)
+
+    // Include Portal Patron (by slug) in the total
+    const patronTotal = products
+      .filter(p => p.slug === 'portal-patron' && p.selected && !p.purchased)
+      .reduce((sum, product) => sum + (product.price * (product.quantity ?? 1)), 0)
 
     if(!someSelectedWeek) {
+      // Even without week selected, lodging and patron should still be counted
       return {
-        total: 0,
-        originalTotal: 0,
+        total: lodgingTotal + patronTotal,
+        originalTotal: lodgingTotal + patronTotal,
         discountAmount: 0
       };
     }
@@ -140,7 +172,7 @@ class MonthlyPurchasedPriceStrategy extends BasePriceStrategy {
     const originalTotal = this.calculateOriginalTotal(products)
     
     return {
-      total: totalWeekPurchased - ((monthProductPurchased?.price ?? 0) * (monthProductPurchased?.quantity ?? 1)),
+      total: totalWeekPurchased + lodgingTotal + patronTotal - ((monthProductPurchased?.price ?? 0) * (monthProductPurchased?.quantity ?? 1)),
       originalTotal: originalTotal,
       discountAmount: 0
     };
@@ -159,7 +191,9 @@ class DayPriceStrategy extends BasePriceStrategy {
     }, 0);
     
     const originalTotal = this.calculateOriginalTotal(products)
-    const discountAmount = discount.discount_value ? originalTotal * (discount.discount_value / 100): 0;
+    // Discounts only apply to eligible products (not lodging or portal-patron)
+    const discountableTotal = this.calculateDiscountableTotal(products)
+    const discountAmount = discount.discount_value ? discountableTotal * (discount.discount_value / 100): 0;
 
     return {
       total: totalSelected,
