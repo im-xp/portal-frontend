@@ -133,14 +133,14 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
     
     try {
       // Convertir campos vacíos a null (but keep numbers as-is)
-      const processedData = Object.entries(formData).reduce((acc, [key, value]) => {
+      const processedData = Object.entries(formData).reduce<Record<string, string | number | null>>((acc, [key, value]) => {
         if (typeof value === 'string' && value.trim().length === 0) {
-          acc[key as keyof FormData] = null;
+          acc[key] = null;
         } else {
-          acc[key as keyof FormData] = value;
+          acc[key] = value;
         }
         return acc;
-      }, {} as FormData);
+      }, {});
       
       if (isEditMode && member) {
         // Editar miembro existente (PUT request)
