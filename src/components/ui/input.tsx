@@ -7,12 +7,12 @@ const inputVariants = {
   outlined: {
     default: "shadow-sm rounded-md border border-input focus-visible:ring-2 focus-visible:ring-ring",
     disabled: "opacity-50 border-muted",
-    error: "border-red-500"
+    error: "border-red-400 focus-visible:ring-red-400/30"
   },
   standard: {
-    default: "border-b focus-visible:border-b-2 focus-visible:border-gray-400",
+    default: "border-b focus-visible:border-b-2 focus-visible:border-primary",
     disabled: "",
-    error: "border-red-500"
+    error: "border-red-400"
   }
 } as const
 

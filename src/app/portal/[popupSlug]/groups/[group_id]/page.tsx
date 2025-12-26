@@ -65,7 +65,7 @@ const GroupPage = () => {
   }
 
   return (
-    <div className=" mx-auto space-y-6 max-w-5xl p-6">
+    <div className="mx-auto max-w-5xl p-6 space-y-6">
       <TeamHeader 
         totalMembers={group.members.length} 
         group={group}
@@ -79,8 +79,8 @@ const GroupPage = () => {
       />
       
       {filteredMembers.length === 0 ? (
-        <div className="p-8 text-center bg-white rounded-md border">
-          <p className="text-gray-500">No members found</p>
+        <div className="p-8 text-center rounded-lg border border-border bg-card/50">
+          <p className="text-muted-foreground">No members found</p>
         </div>
       ) : (
         <>

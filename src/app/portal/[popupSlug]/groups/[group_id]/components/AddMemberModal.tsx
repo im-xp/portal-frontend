@@ -10,6 +10,7 @@ import { toast } from 'sonner'
 import Modal from '@/components/ui/modal'
 import { Member } from '@/types/Group'
 import { GENDER_OPTIONS } from '@/constants/util'
+import { ProductsProps } from '@/types/Products'
 
 interface MemberFormModalProps {
   open: boolean
@@ -26,6 +27,7 @@ interface FormData {
   organization: string | null
   role: string | null
   gender: string | null
+  product_id: number | null
 }
 
 const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalProps) => {
@@ -39,11 +41,33 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
     telegram: null,
     organization: null,
     role: null,
-    gender: null
+    gender: null,
+    product_id: null
   })
   
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [availableProducts, setAvailableProducts] = useState<ProductsProps[]>([])
+  const [loadingProducts, setLoadingProducts] = useState(false)
+
+  // Fetch available products for the group
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!group_id || isEditMode) return
+      setLoadingProducts(true)
+      try {
+        const response = await api.get(`/groups/${group_id}/products`)
+        setAvailableProducts(response.data || [])
+      } catch (error) {
+        console.error('Error fetching group products:', error)
+      } finally {
+        setLoadingProducts(false)
+      }
+    }
+    if (open) {
+      fetchProducts()
+    }
+  }, [group_id, open, isEditMode])
   
   // Cargar datos del miembro si estamos en modo edición
   useEffect(() => {
@@ -55,12 +79,13 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
         telegram: member.telegram || '',
         organization: member.organization || '',
         role: member.role || '',
-        gender: member.gender || ''
+        gender: member.gender || '',
+        product_id: null
       })
     }
   }, [member])
   
-  const handleInputChange = (field: keyof FormData, value: string) => {
+  const handleInputChange = (field: keyof FormData, value: string | number | null) => {
     setFormData({
       ...formData,
       [field]: value
@@ -107,11 +132,13 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
     setIsSubmitting(true)
     
     try {
-      // Convertir campos vacíos a null
+      // Convertir campos vacíos a null (but keep numbers as-is)
       const processedData = Object.entries(formData).reduce((acc, [key, value]) => {
-        acc[key as keyof FormData] = typeof value === 'string' && value.trim().length === 0 
-          ? null 
-          : value;
+        if (typeof value === 'string' && value.trim().length === 0) {
+          acc[key as keyof FormData] = null;
+        } else {
+          acc[key as keyof FormData] = value;
+        }
         return acc;
       }, {} as FormData);
       
@@ -146,7 +173,8 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
           telegram: null,
           organization: null,
           role: null,
-          gender: null
+          gender: null,
+          product_id: null
         })
       }
       
@@ -184,7 +212,7 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
               onChange={(e) => handleInputChange('first_name', e.target.value)}
               error={errors.first_name}
             />
-            {errors.first_name && <p className="text-red-500 text-sm">{errors.first_name}</p>}
+            {errors.first_name && <p className="text-red-400 text-sm">{errors.first_name}</p>}
           </FormInputWrapper>
 
           {/* Last Name */}
@@ -196,7 +224,7 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
               onChange={(e) => handleInputChange('last_name', e.target.value)}
               error={errors.last_name}
             />
-            {errors.last_name && <p className="text-red-500 text-sm">{errors.last_name}</p>}
+            {errors.last_name && <p className="text-red-400 text-sm">{errors.last_name}</p>}
           </FormInputWrapper>
         </div>
 
@@ -211,7 +239,7 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
             error={errors.email}
             disabled={isEditMode}
           />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+          {errors.email && <p className="text-red-400 text-sm">{errors.email}</p>}
         </FormInputWrapper>
 
         {/* Telegram */}
@@ -264,12 +292,39 @@ const MemberFormModal = ({ open, onClose, onSuccess, member }: MemberFormModalPr
           </Select>
         </FormInputWrapper>
 
-        <div className="flex justify-end space-x-2 pt-4">
+        {/* Auto-assign Product (only for new members) */}
+        {!isEditMode && availableProducts.length > 0 && (
+          <FormInputWrapper>
+            <LabelRequired htmlFor="product_id" isRequired={false}>Auto-assign Pass</LabelRequired>
+            <Select
+              value={formData.product_id?.toString() || ''}
+              onValueChange={(value) => handleInputChange('product_id', value ? parseInt(value) : null)}
+              disabled={loadingProducts}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder={loadingProducts ? "Loading passes..." : "Select a pass to assign (optional)"} />
+              </SelectTrigger>
+              <SelectContent>
+                {availableProducts.map((product) => (
+                  <SelectItem key={product.id} value={product.id.toString()}>
+                    {product.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-muted-foreground mt-1">
+              If selected, this pass will be automatically added to the member's account.
+            </p>
+          </FormInputWrapper>
+        )}
+
+        <div className="flex justify-end space-x-3 pt-4">
           <Button 
             type="button"
-            variant="outline"
+            variant="ghost"
             onClick={onClose}
             disabled={isSubmitting}
+            className="text-muted-foreground hover:text-foreground"
           >
             Cancel
           </Button>

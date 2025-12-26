@@ -29,6 +29,7 @@ interface MemberData {
   organization?: string
   role?: string
   gender?: string
+  product_id?: number
 }
 
 const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProps) => {
@@ -140,7 +141,8 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
           telegram: row.telegram || undefined,
           organization: row.organization || undefined,
           role: row.role || undefined,
-          gender: row.gender || undefined
+          gender: row.gender || undefined,
+          product_id: row.product_id ? parseInt(row.product_id) : undefined
         })
       }
     })
@@ -260,11 +262,11 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
 
   const handleDownloadTemplate = () => {
     // Define required and optional columns
-    const headers = ['first_name', 'last_name', 'email', 'telegram', 'organization', 'role', 'gender'];
+    const headers = ['first_name', 'last_name', 'email', 'telegram', 'organization', 'role', 'gender', 'product_id'];
     
     // Create CSV content
     const csvContent = headers.join(',') + '\n' + 
-                       'John,Doe,john.doe@example.com,@johndoe,Company Name,Member,Male';
+                       'John,Doe,john.doe@example.com,@johndoe,Company Name,Member,Male,123';
     
     // Create blob and download link
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -306,7 +308,7 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
                 </a>
               </TooltipTrigger>
               <TooltipContent className="max-w-xs">
-                <p>Download a CSV template with all required columns (first_name, last_name, email) and optional fields.</p>
+                <p>Download a CSV template with required columns (first_name, last_name, email) and optional fields including product_id to auto-assign passes.</p>
               </TooltipContent>
             </Tooltip>
           </span>
@@ -316,8 +318,10 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
       <div className="space-y-6">
         {/* File upload area */}
         <div 
-          className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-            isDragging ? 'border-primary bg-primary/5' : 'border-gray-300'
+          className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all ${
+            isDragging 
+              ? 'border-primary bg-primary/10' 
+              : 'border-border hover:border-primary/50 hover:bg-muted/30'
           }`}
           onDragEnter={handleDragEnter}
           onDragOver={handleDragOver}
@@ -335,27 +339,31 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
           
           {!file && (
             <div className="flex flex-col items-center justify-center gap-2">
-              <Upload className="h-10 w-10 text-gray-400 mb-2" />
-              <p className="text-sm font-medium">
+              <Upload className="h-10 w-10 text-muted-foreground mb-2" />
+              <p className="text-sm font-medium text-foreground">
                 Drop your document here, or <span className="text-primary">click to browse</span>
               </p>
-              <p className="text-xs text-gray-500">Supported formats: .csv, .xls, .xlsx, .xlsm, .ods, .ots</p>
+              <p className="text-xs text-muted-foreground">Supported formats: .csv, .xls, .xlsx, .xlsm, .ods, .ots</p>
             </div>
           )}
 
           {file && (
             <div className="flex flex-col items-center justify-center gap-2">
-              <FileUp className="h-10 w-10 text-gray-400 mb-2" />
-              <p className="text-sm font-medium break-all">{file.name}</p>
+              <FileUp className="h-10 w-10 text-primary mb-2" />
+              <p className="text-sm font-medium text-foreground break-all">{file.name}</p>
               <div className="flex items-center gap-2">
-                {uploadStatus === 'validating' && <p className="text-xs text-amber-500">Validating...</p>}
+                {uploadStatus === 'validating' && (
+                  <p className="text-xs text-amber-400 flex items-center gap-1">
+                    <span className="animate-pulse">●</span> Validating...
+                  </p>
+                )}
                 {uploadStatus === 'validated' && (
-                  <p className="text-xs text-green-500 flex items-center gap-1">
+                  <p className="text-xs text-emerald-400 flex items-center gap-1">
                     <Check className="h-3 w-3" /> Valid file with {parsedData.length} members
                   </p>
                 )}
                 {uploadStatus === 'error' && (
-                  <p className="text-xs text-red-500 flex items-center gap-1">
+                  <p className="text-xs text-red-400 flex items-center gap-1">
                     <AlertCircle className="h-3 w-3" /> Invalid file
                   </p>
                 )}
@@ -366,46 +374,47 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
         
         {/* Validation error message */}
         {validationError && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <div className="flex gap-2">
-              <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+          <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+            <div className="flex gap-3">
+              <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium text-red-800 mb-1">Validation errors found</p>
-                <pre className="text-xs whitespace-pre-line text-red-700">{validationError}</pre>
+                <p className="text-sm font-medium text-red-400 mb-1">Validation errors found</p>
+                <pre className="text-xs whitespace-pre-line text-red-300/80">{validationError}</pre>
               </div>
             </div>
           </div>
         )}
 
         {/* Update existing members checkbox */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <Checkbox 
             id="updateExisting"
             checked={updateExisting}
             onCheckedChange={(checked: boolean) => setUpdateExisting(checked)}
+            className="border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary"
           />
-          <label htmlFor="updateExisting" className="text-sm font-medium text-gray-700">
+          <label htmlFor="updateExisting" className="text-sm font-medium text-foreground cursor-pointer">
             Update existing members
           </label>
           <Tooltip>
             <TooltipTrigger asChild>
-              <HelpCircle className="h-4 w-4 text-gray-400 cursor-help" />
+              <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help hover:text-foreground transition-colors" />
             </TooltipTrigger>
-            <TooltipContent className="max-w-xs">
-              <p>If checked, existing members will be updated with new data from the file. If unchecked, existing members will be skipped.</p>
+            <TooltipContent className="max-w-xs bg-popover border-border">
+              <p className="text-popover-foreground">If checked, existing members will be updated with new data from the file. If unchecked, existing members will be skipped.</p>
             </TooltipContent>
           </Tooltip>
         </div>
 
         {/* Action buttons */}
-        <div className="flex justify-between gap-3">
+        <div className="flex justify-between gap-3 pt-2">
           <div>
             {file && (
               <Button
                 type="button"
-                variant="outline"
+                variant="ghost"
                 onClick={handleClearFile}
-                className="flex items-center gap-1"
+                className="flex items-center gap-1 text-muted-foreground hover:text-foreground"
               >
                 <X className="h-4 w-4" /> Clear
               </Button>
@@ -414,9 +423,10 @@ const ImportMembersModal = ({ open, onClose, onSuccess }: ImportMembersModalProp
           <div className="flex gap-3">
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               onClick={onClose}
               disabled={isSubmitting}
+              className="text-muted-foreground hover:text-foreground"
             >
               Cancel
             </Button>

@@ -10,7 +10,7 @@ interface MembersListProps {
 const MembersList = ({ members, onMemberUpdated, isAmbassadorGroup }: MembersListProps) => {
   if (members.length === 0) {
     return (
-      <div className="p-8 text-center text-gray-500">
+      <div className="p-8 text-center text-muted-foreground">
         No members found. Try a different search term or add a new member.
       </div>
     )

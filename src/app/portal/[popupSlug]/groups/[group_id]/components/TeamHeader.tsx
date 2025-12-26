@@ -91,20 +91,20 @@ const TeamHeader = ({ totalMembers, group, onMemberAdded, onGroupUpdated }: Team
     <div className="space-y-6">
       <div>
         <div className="flex items-center gap-4 mb-2">
-          <h1 className="text-2xl font-bold">{group.name}</h1>
-          <Badge variant={'outline'} className="w-fit mt-1">{group.is_ambassador_group ? 'Ambassador' : 'Group'}</Badge>
+          <h1 className="text-2xl font-bold text-foreground">{group.name}</h1>
+          <Badge variant={'outline'} className="w-fit mt-1 border-primary/50 text-primary">{group.is_ambassador_group ? 'Ambassador' : 'Group'}</Badge>
         </div>
-        <p className="text-gray-500 text-sm">
+        <p className="text-muted-foreground text-sm">
           View and manage your group members here. Need to make changes? You can click on a member and edit
           or remove them from the group.
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-3 justify-between">
+      <div className="flex flex-wrap gap-3 justify-between items-center">
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center text-muted-foreground">
           <Users size={16} className="mr-2" />
-          <p className="text-sm text-gray-500">{totalMembers}{group.max_members ? `/${group.max_members}` : ''} members</p>
+          <p className="text-sm">{totalMembers}{group.max_members ? `/${group.max_members}` : ''} members</p>
         </div>
 
         <div className="flex gap-3 flex-wrap">
@@ -112,16 +112,14 @@ const TeamHeader = ({ totalMembers, group, onMemberAdded, onGroupUpdated }: Team
             !isAmbassadorGroup && (
               <>
               <Button 
-                variant="outline" 
-                className="bg-white"
+                variant="outline"
                 onClick={() => setIsImportModalOpen(true)}
               >
                 <Import className="w-4 h-4" /> Import
               </Button>
 
               <Button 
-                variant="outline" 
-                className="bg-white"
+                variant="outline"
                 onClick={() => setIsModalOpen(true)}
               >
                 <Plus className="w-4 h-4" /> Add a new member
@@ -132,7 +130,6 @@ const TeamHeader = ({ totalMembers, group, onMemberAdded, onGroupUpdated }: Team
           
           <Button
             onClick={handleCopyCheckoutLink}
-            
           >
             {isCopied ? (
               <>
@@ -144,16 +141,6 @@ const TeamHeader = ({ totalMembers, group, onMemberAdded, onGroupUpdated }: Team
               </>
             )}
           </Button>
-
-          {/* {isAmbassadorGroup && (
-            <Button
-              variant="outline"
-              className="bg-white"
-              onClick={() => setIsWelcomeMessageModalOpen(true)}
-            >
-              <Edit className="w-4 h-4" /> Edit Welcome Message
-            </Button>
-          )} */}
         </div>
 
       </div>

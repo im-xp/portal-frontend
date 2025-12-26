@@ -64,25 +64,25 @@ const MemberItem = ({ member, onMemberUpdated, isAmbassadorGroup }: MemberItemPr
   }
 
   return (
-    <div className="border rounded-md overflow-hidden bg-white">
+    <div className="border border-border rounded-lg overflow-hidden bg-card">
       <div 
-        className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50"
+        className="p-4 flex items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors"
         onClick={() => setIsExpanded(!isExpanded)}
         tabIndex={0}
         aria-label={`Toggle details for ${member.first_name} ${member.last_name}`}
         onKeyDown={(e) => e.key === 'Enter' && setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center gap-3">
-          <User size={20} />
-          <span className="font-medium">{member.first_name} {member.last_name}</span>
+          <User size={20} className="text-foreground" />
+          <span className="font-medium text-foreground">{member.first_name} {member.last_name}</span>
           {member.products.length > 0 && (
-            <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
+            <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-medium">
               pass holder
             </span>
           )}
         </div>
         <motion.button 
-          className="text-gray-400 hover:text-gray-600 transition-all duration-300"
+          className="text-muted-foreground hover:text-foreground transition-all duration-300"
           aria-label={isExpanded ? "Collapse" : "Expand"}
           initial={false}
           animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -95,21 +95,21 @@ const MemberItem = ({ member, onMemberUpdated, isAmbassadorGroup }: MemberItemPr
       <AnimatePresence>
         {isExpanded && (
           <motion.div 
-            className="bg-white"
+            className="bg-card"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 pb-6 pt-2">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="px-6 pb-6 pt-2 border-t border-border">
+              <div className="grid grid-cols-2 gap-4 mt-4">
                 {/* Columna izquierda con información personal */}
                 <div className="space-y-4">
                   <DetailItem label="GENDER" value={member.gender || ''} />
                   
                   <div>
-                    <p className="text-xs text-gray-500 uppercase font-medium">mail</p>
-                    <p className="text-sm font-medium mt-1">{member.email}</p>
+                    <p className="text-xs text-muted-foreground uppercase font-medium">email</p>
+                    <p className="text-sm font-medium mt-1 text-foreground">{member.email}</p>
                   </div>
                   
                   <DetailItem label="TELEGRAM" value={member.telegram || ''} />
@@ -123,13 +123,13 @@ const MemberItem = ({ member, onMemberUpdated, isAmbassadorGroup }: MemberItemPr
                   <DetailItem label="ROLE" value={member.role || ''} />
                   <div>
 
-                  <p className="text-xs text-gray-500 uppercase font-medium mb-1">PASSES</p>
+                  <p className="text-xs text-muted-foreground uppercase font-medium mb-1">PASSES</p>
                   <ParticipationTickets participation={member.products} passes={passes}/>
                   </div>
                 </div>
               </div>
               
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-end gap-3 mt-6">
                 {
                   !isAmbassadorGroup && (
                     <>
@@ -145,9 +145,8 @@ const MemberItem = ({ member, onMemberUpdated, isAmbassadorGroup }: MemberItemPr
                           <TooltipTrigger asChild>
                             <div className="inline-block">
                               <Button 
-                                variant={'outline'}
+                                variant={'destructive'}
                                 aria-label="Remove member"
-                                className='text-red-500 border-red-500 hover:bg-red-500 hover:text-white'
                                 onClick={handleDeleteClick}
                                 disabled={member.products.length > 0}
                               >
@@ -156,7 +155,7 @@ const MemberItem = ({ member, onMemberUpdated, isAmbassadorGroup }: MemberItemPr
                             </div>
                           </TooltipTrigger>
                           {member.products.length > 0 && (
-                            <TooltipContent side="top" className="bg-gray-800 text-white px-3 py-2 rounded shadow-lg z-50">
+                            <TooltipContent side="top" className="bg-popover text-popover-foreground px-3 py-2 rounded shadow-lg z-50 border border-border">
                               <p>This member already has an active ticket.</p>
                             </TooltipContent>
                           )}
@@ -165,8 +164,6 @@ const MemberItem = ({ member, onMemberUpdated, isAmbassadorGroup }: MemberItemPr
                     </>
                   )
                 }
-                
-                
               </div>
             </div>
           </motion.div>

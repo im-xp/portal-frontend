@@ -8,12 +8,12 @@ interface SearchBarProps {
 
 const SearchBar = ({ searchTerm, setSearchTerm }: SearchBarProps) => {
   return (
-    <div className="mb-4">
+    <div>
       <div className="relative">
-        <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           placeholder="Search members by name or email"
-          className="pl-10 bg-white"
+          className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
