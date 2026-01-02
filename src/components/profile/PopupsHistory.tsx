@@ -105,23 +105,23 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
   return (
     <Card className="p-6">
       <div className="mb-4">
-        <h2 className="text-xl font-semibold text-gray-900">Pop-Ups</h2>
-        <p className="text-sm text-gray-600">Your upcoming and past Pop-Ups</p>
+        <h2 className="text-xl font-semibold text-foreground">Pop-Ups</h2>
+        <p className="text-sm text-muted-foreground">Your upcoming and past Pop-Ups</p>
       </div>
 
       <div className="py-2">
         <div className="space-y-6">
           {popups.length === 0 && (
-            <div className="text-center text-gray-600 p-4">No events found</div>
+            <div className="text-center text-muted-foreground p-4">No events found</div>
           )}
           <div className="flex items-center gap-2 mb-4">
-            <Calendar className="w-6 h-6 text-gray-600" />
-            <h4 className="text-md font-semibold text-gray-600">Upcoming Pop-Ups</h4>
+            <Calendar className="w-6 h-6 text-muted-foreground" />
+            <h4 className="text-md font-semibold text-muted-foreground">Upcoming Pop-Ups</h4>
           </div>
           <div className="space-y-4">
             {
               upcomingPopupsFromApplications.length === 0 && (
-                <div className="text-center text-gray-600 p-4">No upcoming events found</div>
+                <div className="text-center text-muted-foreground p-4">No upcoming events found</div>
               )
             }
             {upcomingPopupsFromApplications.map((popup, index) => (
@@ -139,14 +139,14 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                     {
                       popup.location && (
                         <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4 text-white" />
+                          <MapPin className="w-4 h-4 text-foreground" />
                           <span className="text-sm">{popup.location?.charAt(0).toUpperCase() + popup.location?.slice(1)}</span>
                         </div>
                       )
                     }
                     
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4 text-white" />
+                      <Calendar className="w-4 h-4 text-foreground" />
                       <span className="text-sm">{formatDate(popup.start_date)} - {formatDate(popup.end_date)}</span>
                     </div>
                   </div>
@@ -160,17 +160,17 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
             ))}
           </div>
 
-          <div className="h-px w-full bg-gray-200" />
+          <div className="h-px w-full bg-border" />
 
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Clock className="w-6 h-6 text-foreground" />
-              <h4 className="text-md font-semibold text-gray-600">Past Pop-Ups</h4>
+              <h4 className="text-md font-semibold text-muted-foreground">Past Pop-Ups</h4>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {
                 pastPopups.length === 0 && (
-                  <div className="text-center text-gray-600 p-4 col-span-3">No past events found</div>
+                  <div className="text-center text-muted-foreground p-4 col-span-3">No past events found</div>
                 )
               }
               {pastPopups.map((popup) => (
@@ -182,21 +182,21 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                     </div> */}
                   </div>
                   <div>
-                    <h5 className="text-lg font-semibold text-black mb-2">{popup.popup_name}</h5>
+                    <h5 className="text-lg font-semibold text-foreground mb-2">{popup.popup_name}</h5>
                     <div className="space-y-2 text-xs text-muted-foreground mb-4">
 
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-black" />
+                        <MapPin className="w-4 h-4 text-foreground" />
                         <span className="text-sm">{popup.location}</span>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-black" />
+                        <Calendar className="w-4 h-4 text-foreground" />
                         <span className="text-sm">{formatDate(popup.start_date)} - {formatDate(popup.end_date)}</span>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-black" />
+                        <Clock className="w-4 h-4 text-foreground" />
                         <span className="text-sm">{popup.total_days} days attended</span>
                       </div>
 
@@ -210,11 +210,11 @@ const PopupsHistory = ({popups}: {popups: CitizenProfilePopup[]}) => {
                       const buttonText = isClaimed ? "Go to POAP" : "Mint POAP"
 
                       return (
-                        <div onClick={() => window.open(mainPoap.poap_url, '_blank')} className="w-full p-2 flex justify-center items-center gap-3 bg-gray-100 rounded-sm h-[42px] hover:bg-gray-200 cursor-pointer">
+                        <div onClick={() => window.open(mainPoap.poap_url, '_blank')} className="w-full p-2 flex justify-center items-center gap-3 bg-muted rounded-sm h-[42px] hover:bg-accent cursor-pointer">
                           {
-                            isClaimed ? <ExternalLink className="w-4 h-4 text-slate-700"/> : <PoapIcon />
+                            isClaimed ? <ExternalLink className="w-4 h-4 text-foreground"/> : <PoapIcon />
                           }
-                          <p className="text-sm font-medium text-slate-700">{buttonText}</p>
+                          <p className="text-sm font-medium text-foreground">{buttonText}</p>
                         </div>
                       )
                     })()}

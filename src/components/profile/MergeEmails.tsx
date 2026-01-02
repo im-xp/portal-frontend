@@ -455,19 +455,19 @@ export default function MergeEmails() {
       <Card className='p-6'>
         <div className='flex items-start justify-between gap-4'>
           <div className='flex items-start gap-4 flex-1'>
-            <div className='w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0'>
-              <Mail className='w-6 h-6 text-purple-600 stroke-[1.5]' />
+            <div className='w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0'>
+              <Mail className='w-6 h-6 text-primary stroke-[1.5]' />
             </div>
             <div className='flex-1'>
               <div className='flex items-center gap-2 mb-2'>
-                <h3 className='text-lg font-semibold text-[#020817]'>
+                <h3 className='text-lg font-semibold text-foreground'>
                   Combine your Edge City metrics from different accounts
                 </h3>
-                <span className='px-2 py-0.5 bg-blue-100 text-blue-800 text-xs font-medium rounded-full whitespace-nowrap'>
+                <span className='px-2 py-0.5 bg-primary/20 text-primary text-xs font-medium rounded-full whitespace-nowrap'>
                   new
                 </span>
               </div>
-              <p className='text-sm text-[#64748b]'>
+              <p className='text-sm text-muted-foreground'>
                 Connect multiple emails to see combined stats across all your
                 activities. You can also do this in settings.
               </p>

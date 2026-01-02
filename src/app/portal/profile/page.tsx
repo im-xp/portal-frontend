@@ -98,10 +98,10 @@ export default function ProfileContent() {
   if(!isLoading && !profile) {
     return(
       <div className="flex-1 flex flex-col items-center justify-center h-full">
-        <Card className="p-6 bg-white gap-2">
-          <p className="text-gray-600 text-center">No profile data available.</p>
-          <p className="text-gray-600 text-center">Please contact support if you believe this is an error.</p>
-          <p className="text-red-600 text-center">{error}</p>
+        <Card className="p-6 bg-card gap-2">
+          <p className="text-muted-foreground text-center">No profile data available.</p>
+          <p className="text-muted-foreground text-center">Please contact support if you believe this is an error.</p>
+          <p className="text-red-500 text-center">{error}</p>
         </Card>
       </div>
     )
@@ -113,10 +113,10 @@ export default function ProfileContent() {
       <HeaderProfile />
 
       {/* Profile Content */}
-      <div className="flex-1 p-6 bg-gray-50">
+      <div className="flex-1 p-6 bg-background">
         <div className="max-w-5xl mx-auto space-y-6">
           {isLoading && (
-            <div className="text-gray-600">Loading profile...</div>
+            <div className="text-muted-foreground">Loading profile...</div>
           )}
           {updateError && (
             <div className="text-red-600 mb-4">{updateError}</div>

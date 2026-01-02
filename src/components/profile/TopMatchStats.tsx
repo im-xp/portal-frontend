@@ -69,8 +69,8 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
     <Card className="p-6">
       <div className="flex flex-col h-full">
         <div className="mb-4">
-          <h2 className="text-2xl font-semibold text-gray-900">Top Connections</h2>
-          <p className="text-sm text-gray-600">Your most frequent event partners</p>
+          <h2 className="text-2xl font-semibold text-foreground">Top Connections</h2>
+          <p className="text-sm text-muted-foreground">Your most frequent event partners</p>
         </div>
         <div className="flex-1 flex flex-col gap-3 mt-2">
           {eventsLoading ? (
@@ -89,7 +89,7 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
           ) : topMatches.length > 0 ? (
             // Show top matches
             topMatches.map((match, index) => (
-              <div key={match.email} className="flex items-center justify-between gap-3 mt-2 border-b border-gray-100 pb-3">
+              <div key={match.email} className="flex items-center justify-between gap-3 mt-2 border-b border-border pb-3">
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <Avatar className="w-9 h-9">
@@ -102,7 +102,7 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
                           className="w-full h-full object-cover rounded-full"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                        <div className="w-full h-full bg-primary rounded-full flex items-center justify-center text-primary-foreground text-xs font-semibold">
                           {match.nickname.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -112,26 +112,26 @@ const TopMatchStats = ({userData, eventsLoading, events}: {userData: CitizenProf
                     </div> */}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                    <p className="text-sm font-medium text-foreground truncate">
                       {match.nickname}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {match.email}
                     </p>
                   </div>
                 </div>
-                <div className="text-sm font-medium text-blue-400 text-right">
+                <div className="text-sm font-medium text-primary text-right">
                   {match.eventsCount}
-                  <p className="text-xs text-gray-500">events</p>
+                  <p className="text-xs text-muted-foreground">events</p>
                 </div>
               </div>
             ))
           ) : (
             // No matches state
             <div className="flex flex-col items-center justify-center flex-1 text-center py-4">
-              <Users className="w-8 h-8 text-gray-300 mb-2" />
-              <p className="text-sm text-gray-500">No shared events found</p>
-              <p className="text-xs text-gray-400">Attend more events to find matches</p>
+              <Users className="w-8 h-8 text-muted-foreground mb-2" />
+              <p className="text-sm text-muted-foreground">No shared events found</p>
+              <p className="text-xs text-muted-foreground">Attend more events to find matches</p>
             </div>
           )}
         </div>

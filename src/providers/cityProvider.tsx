@@ -1,7 +1,7 @@
 "use client";
 
 import { PopupsProps } from '@/types/Popup';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { createContext, ReactNode, useContext, useState, useCallback } from 'react';
 
 interface CityContext_interface {
@@ -17,11 +17,15 @@ const CityProvider = ({ children }: {children: ReactNode}) => {
   const [popups, setPopupsState] = useState<PopupsProps[]>([]);
   const [cityPreselected, setCityPreselected] = useState<number | null>(null);
   const params = useParams()
+  const searchParams = useSearchParams()
+
+  // Get popup slug from URL path param, or fall back to query param (for pages like /portal/profile?popup=...)
+  const popupSlug = (params.popupSlug as string | undefined) || searchParams.get('popup')
 
   const getValidCity = useCallback((): PopupsProps | null => {
-    const city = popups.find((popup: PopupsProps) => popup.slug === params.popupSlug && popup.clickable_in_portal && popup.visible_in_portal)
+    const city = popups.find((popup: PopupsProps) => popup.slug === popupSlug && popup.clickable_in_portal && popup.visible_in_portal)
     return city ?? null;
-  }, [popups, params.popupSlug])
+  }, [popups, popupSlug])
 
   const getCity = useCallback((): PopupsProps | null => {
     const city = getValidCity()

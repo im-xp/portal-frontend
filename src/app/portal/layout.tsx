@@ -9,17 +9,19 @@ import { BackofficeSidebar } from "@/components/Sidebar/Sidebar"
 import HeaderBar from "@/components/Sidebar/HeaderBar"
 import Providers from "../../components/Providers"
 import { useGetPoaps } from "@/hooks/useGetPoaps"
-import { usePathname, useParams } from "next/navigation"
+import { usePathname, useParams, useSearchParams } from "next/navigation"
 import { PopupTheme } from "@/components/PopupTheme"
 import { getPopupBranding } from "@/constants/popupBranding"
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const params = useParams()
+  const searchParams = useSearchParams()
   const isProfilePage = pathname === '/portal/profile'
   
   // Get popup slug from URL path (e.g., /portal/ripple-on-the-nile)
-  const popupSlug = params.popupSlug as string | undefined
+  // Fall back to query param for pages outside [popupSlug] (e.g., /portal/profile?popup=ripple-on-the-nile)
+  const popupSlug = (params.popupSlug as string | undefined) || searchParams.get('popup')
   const branding = getPopupBranding(popupSlug || null)
 
   return (

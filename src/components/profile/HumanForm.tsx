@@ -64,7 +64,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
         <div className="flex items-center gap-4">
           <div className="relative">
             <div 
-              className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-blue-200 group"
+              className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-primary/30 group"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               onClick={handleAvatarClick}
@@ -76,7 +76,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
                   className="w-full h-full rounded-full object-cover"
                 />
               ) : (
-                <User className="w-8 h-8 text-blue-600" />
+                <User className="w-8 h-8 text-primary" />
               )}
               
               {(isHovering || isUploading) && (
@@ -99,10 +99,10 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
             />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-foreground">
               {userData?.first_name} {userData?.last_name}
             </h2>
-            <p className="text-gray-600">{userData?.role}</p>
+            <p className="text-muted-foreground">{userData?.role}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -121,12 +121,12 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
                 variant="outline"
                 size="sm"
                 onClick={handleCancel}
-                className="text-gray-700 border-gray-300 hover:bg-primary bg-transparent"
+                className="text-foreground border-border hover:bg-accent bg-transparent"
               >
                 <X className="w-4 h-4 mr-2" />
                 Cancel
               </Button>
-              <Button size="sm" onClick={handleSave} className="bg-primary hover:bg-primary text-white">
+              <Button size="sm" onClick={handleSave} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Save className="w-4 h-4 mr-2" />
                 Save
               </Button>
@@ -139,15 +139,15 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {userData?.primary_email && (
             <div className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-gray-400" />
+              <Mail className="w-5 h-5 text-muted-foreground" />
               <div className="flex-1">
-                <p className="text-sm text-gray-600">Email</p>
-                <p className="text-gray-900">{userData?.primary_email}</p>
+                <p className="text-sm text-muted-foreground">Email</p>
+                <p className="text-foreground">{userData?.primary_email}</p>
                 {filteredLinkedEmails.length > 0 && (
                   <div className="mt-1">
                     <button
                       onClick={() => setShowLinkedEmails(!showLinkedEmails)}
-                      className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition-colors"
+                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {showLinkedEmails ? (
                         <>
@@ -164,7 +164,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
                     {showLinkedEmails && (
                       <div className="mt-1 space-y-0.5">
                         {filteredLinkedEmails.map((email, index) => (
-                          <p key={index} className="text-xs text-gray-500">{email}</p>
+                          <p key={index} className="text-xs text-muted-foreground">{email}</p>
                         ))}
                       </div>
                     )}
@@ -175,37 +175,37 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
           )}
            {userData?.gender && (
             <div className="flex items-center gap-3">
-              <User className="w-5 h-5 text-gray-400" />
+              <User className="w-5 h-5 text-muted-foreground" />
               <div>
-                <p className="text-sm text-gray-600">Gender</p>
-                <p className="text-gray-900">{userData?.gender}</p>
+                <p className="text-sm text-muted-foreground">Gender</p>
+                <p className="text-foreground">{userData?.gender}</p>
               </div>
             </div>
           )}
           {userData?.organization && (
             <div className="flex items-center gap-3">
-              <Building className="w-5 h-5 text-gray-400" />
+              <Building className="w-5 h-5 text-muted-foreground" />
               <div>
-                <p className="text-sm text-gray-600">Organization</p>
-                <p className="text-gray-900">{userData?.organization}</p>
+                <p className="text-sm text-muted-foreground">Organization</p>
+                <p className="text-foreground">{userData?.organization}</p>
               </div>
             </div>
           )}
           {userData?.x_user && (
             <div className="flex items-center gap-3">
-              <RiTwitterXFill className="w-5 h-5 text-gray-400" />
+              <RiTwitterXFill className="w-5 h-5 text-muted-foreground" />
               <div>
-                <p className="text-sm text-gray-600">X (Twitter)</p>
-                <p className="text-gray-900">{userData?.x_user}</p>
+                <p className="text-sm text-muted-foreground">X (Twitter)</p>
+                <p className="text-foreground">{userData?.x_user}</p>
               </div>
             </div>
           )}
           {userData?.telegram && (
             <div className="flex items-center gap-3">
-              <RiTelegram2Line className="w-5 h-5 text-gray-400" />
+              <RiTelegram2Line className="w-5 h-5 text-muted-foreground" />
               <div>
-                <p className="text-sm text-gray-600">Telegram</p>
-                <p className="text-gray-900">{userData?.telegram}</p>
+                <p className="text-sm text-muted-foreground">Telegram</p>
+                <p className="text-foreground">{userData?.telegram}</p>
               </div>
             </div>
           )}
@@ -214,7 +214,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
-              <Label htmlFor="first_name" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="first_name" className="text-sm font-medium text-foreground">
                 First Name
               </Label>
               <Input
@@ -225,7 +225,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
               />
             </div>
             <div>
-              <Label htmlFor="last_name" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="last_name" className="text-sm font-medium text-foreground">
                 Last Name
               </Label>
               <Input
@@ -236,7 +236,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
               />
             </div>
             <div>
-              <Label htmlFor="secondary_email" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="secondary_email" className="text-sm font-medium text-foreground">
                 Organization
               </Label>
               <Input
@@ -250,7 +250,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
           </div>
           <div className="space-y-4">
             <div>
-              <Label htmlFor="x_user" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="x_user" className="text-sm font-medium text-foreground">
                 X (Twitter)
               </Label>
               <Input
@@ -261,7 +261,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
               />
             </div>
             <div>
-              <Label htmlFor="telegram" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="telegram" className="text-sm font-medium text-foreground">
                 Telegram
               </Label>
               <Input
@@ -272,7 +272,7 @@ const HumanForm = ({userData, isEditing, setIsEditing, handleSave, handleCancel,
               />
             </div>
             <div>
-              <Label htmlFor="role" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="role" className="text-sm font-medium text-foreground">
                 Role
               </Label>
               <Input

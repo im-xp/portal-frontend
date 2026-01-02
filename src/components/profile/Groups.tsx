@@ -38,8 +38,8 @@ const Groups = () => {
 
   return (
     <div className="bg-card text-card-foreground rounded-lg border border-border mb-8">
-      <div className="p-6 border-b border-gray-200">
-        <h2 className="text-xl font-semibold text-gray-900">Groups</h2>
+      <div className="p-6 border-b border-border">
+        <h2 className="text-xl font-semibold text-foreground">Groups</h2>
       </div>
 
       <div className="p-6">
@@ -52,8 +52,8 @@ const Groups = () => {
               <Card key={`group-${index}`} className={`p-4 hover:shadow-md transition-shadow ${isPopupActive ? 'cursor-pointer' : ''}`} onClick={isPopupActive ? () => router.push(`/portal/${groupPopup?.slug}/groups/${group.id}`) : undefined}>
               <div className="flex justify-between items-center">
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-semibold text-gray-900">{group.name}</h3>
-                  <p className="text-sm text-gray-600 font-medium">{group.popup_name}</p>
+                  <h3 className="font-semibold text-foreground">{group.name}</h3>
+                  <p className="text-sm text-muted-foreground font-medium">{group.popup_name}</p>
                   <Badge variant={'outline'} className="w-fit mt-1">{group.is_ambassador_group ? 'Ambassador' : 'Group'}</Badge>
                 </div>
                 <ButtonCopyLink group={group} popups={popups} isPopupActive={isPopupActive}/>
