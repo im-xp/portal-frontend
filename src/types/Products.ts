@@ -19,6 +19,8 @@ export interface ProductsProps {
   builder_price: number | null;
   compare_price: number | null;
   exclusive: boolean;
+  max_inventory: number | null;  // null = unlimited
+  current_sold: number;
 }
 
 export interface ProductsPass extends ProductsProps {

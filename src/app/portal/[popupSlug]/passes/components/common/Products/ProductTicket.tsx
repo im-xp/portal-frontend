@@ -7,6 +7,7 @@ import { TooltipContent } from "@/components/ui/tooltip"
 import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip"
 import ProductDay from "./ProductDay"
 import { Separator } from "@/components/ui/separator"
+import { isSoldOut } from "@/helpers/inventory"
 
 type VariantStyles = 'selected' | 'purchased' | 'edit' | 'disabled' | 'default' | 'week-with-month'
 
@@ -20,7 +21,8 @@ const variants: Record<VariantStyles, string> = {
 }
 
 const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {product: ProductsPass, onClick: (attendeeId: number | undefined, product: ProductsPass) => void, defaultDisabled?: boolean, hasMonthPurchased?: boolean}) => {
-  const disabled = product.disabled || defaultDisabled
+  const soldOut = isSoldOut(product)
+  const disabled = product.disabled || defaultDisabled || soldOut
   const originalPrice = product.original_price ?? product.price
   const { purchased, selected } = product
   const { isEditing } = usePassesProvider()
@@ -83,16 +85,20 @@ const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {produc
           
           {
             !product.purchased && !isWeekWithMonth && (
-              <>
-                {
-                  originalPrice !== product.price && (
-                    <p className={cn("text-xs text-muted-foreground line-through", disabled && 'opacity-50')}>
-                      ${originalPrice.toLocaleString()}
-                    </p>
-                  )
-                }
-                <p className={cn("text-md font-medium", disabled && 'opacity-50')}>$ {product.price.toLocaleString()}</p>
-              </>
+              soldOut ? (
+                <span className="text-sm font-medium text-destructive/70">Sold Out</span>
+              ) : (
+                <>
+                  {
+                    originalPrice !== product.price && (
+                      <p className={cn("text-xs text-muted-foreground line-through", disabled && 'opacity-50')}>
+                        ${originalPrice.toLocaleString()}
+                      </p>
+                    )
+                  }
+                  <p className={cn("text-md font-medium", disabled && 'opacity-50')}>$ {product.price.toLocaleString()}</p>
+                </>
+              )
             )
           }
 

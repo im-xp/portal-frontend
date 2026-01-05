@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { isSoldOut } from "@/helpers/inventory";
 
 interface DonationProps {
   product: ProductsPass;
@@ -20,7 +21,8 @@ export default function Donation({ product, onDonationSubmit, disabled }: Donati
   const [error, setError] = useState<string>("");
   
   const { selected, purchased, custom_price } = product;
-  const isDisabled = disabled;
+  const soldOut = isSoldOut(product);
+  const isDisabled = disabled || soldOut;
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -86,12 +88,14 @@ export default function Donation({ product, onDonationSubmit, disabled }: Donati
             )}>
               {product.name}
             </span>
-            <span className="text-sm text-muted-foreground">
-              {selected && custom_price 
-                ? `$${custom_price.toLocaleString()} selected`
-                : purchased 
-                  ? "Thank you for your donation!"
-                  : "Support someone's journey to Ripple"
+            <span className={cn("text-sm text-muted-foreground", soldOut && "text-destructive/70")}>
+              {soldOut
+                ? "Sold Out"
+                : selected && custom_price 
+                  ? `$${custom_price.toLocaleString()} selected`
+                  : purchased 
+                    ? "Thank you for your donation!"
+                    : "Support someone's journey to Ripple"
               }
             </span>
           </div>

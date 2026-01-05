@@ -2,6 +2,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { ProductsPass } from "@/types/Products";
 import { Check, Crown, Info, Plus } from 'lucide-react'
 import { cn } from "@/lib/utils";
+import { isSoldOut } from "@/helpers/inventory";
 
 // HOC para manejar la lógica de presentación
 const withSpecialProductPresentation = (WrappedComponent: React.ComponentType<any>) => {
@@ -101,8 +102,9 @@ function SpecialBase({
 }: SpecialProps & { getStatusIcon: () => JSX.Element, disabled: boolean }) {
 
   const { selected, disabled: productDisabled, purchased } = product
+  const soldOut = isSoldOut(product)
 
-  const isDisabled = disabled || productDisabled
+  const isDisabled = disabled || productDisabled || soldOut
   const hasOnClick = !isDisabled && onClick && !purchased
   return (
     <button
@@ -126,6 +128,8 @@ function SpecialBase({
             <span className="text-sm font-medium text-foreground">
               Purchased
             </span>
+          ) : soldOut ? (
+            <span className="text-sm font-medium text-destructive/70">Sold Out</span>
           ) : (
             <ProductPrice product={product} selected={selected ?? false} disabled={isDisabled || !onClick} />
           )

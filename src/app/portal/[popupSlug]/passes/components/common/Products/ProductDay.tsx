@@ -9,6 +9,7 @@ import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip"
 import { useEffect, useState } from "react" 
 import { useSearchParams } from "next/navigation"
 import { usePassesProvider } from "@/providers/passesProvider"
+import { isSoldOut } from "@/helpers/inventory"
 
 type VariantStyles = 'selected' | 'purchased' | 'edit' | 'disabled' | 'default'
 
@@ -22,7 +23,8 @@ const variants: Record<VariantStyles, string> = {
 
 const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {product: ProductsPass, onClick: (attendeeId: number | undefined, product: ProductsPass) => void, defaultDisabled?: boolean, hasMonthPurchased?: boolean}) => {
   const { isEditing } = usePassesProvider()
-  const disabled = product.disabled || defaultDisabled || hasMonthPurchased || isEditing
+  const soldOut = isSoldOut(product)
+  const disabled = product.disabled || defaultDisabled || hasMonthPurchased || isEditing || soldOut
   const originalPrice = product.compare_price ?? product.price
   const { purchased, selected } = product
 
@@ -144,7 +146,9 @@ const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {produc
                 }
                 
                 {
-                  !disabled && (
+                  soldOut ? (
+                    <span className="text-sm font-medium text-destructive/70">Sold Out</span>
+                  ) : !disabled && (
                     <>
                       {
                         originalPrice !== product.price && (
