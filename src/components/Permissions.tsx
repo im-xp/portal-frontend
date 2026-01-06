@@ -7,15 +7,24 @@ const Permissions = ({children}: {children: React.ReactNode}) => {
   const router = useRouter()
   const {resources} = useResources()
 
+  // Check if route matches exactly or is a nested route under an active resource
+  const isAuthorized = resources.some(resource => {
+    if (resource.status !== 'active') return false
+    // Exact match
+    if (resource.path === route) return true
+    // Nested route match (e.g., /portal/ripple/attendees/123 under /portal/ripple/attendees)
+    if (route.startsWith(resource.path + '/')) return true
+    return false
+  })
   
   useEffect(() => {
-    if(resources.some(resource => resource.path === route && resource.status === 'active')) {
+    if(isAuthorized) {
       return;
     }
     router.push('/portal')
-  }, [route, router, resources])
+  }, [route, router, isAuthorized])
 
-  if(resources.some(resource => resource.path === route && resource.status === 'active')) {
+  if(isAuthorized) {
     return children
   }
   return <div>You are not authorized to access this page</div>

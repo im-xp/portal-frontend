@@ -1,7 +1,7 @@
 'use client'
 
 import useGetData from "./hooks/useGetData"
-import AttendeesTable from "./components/AttendeesTable"
+import AttendeeGrid from "./components/AttendeeGrid"
 import Permissions from "@/components/Permissions"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Switch } from "../../../../components/ui/switch"
 import { useEffect, useState } from "react"
 import useExportCsv from "./hooks/useExportCsv"
-import { FileDown, Loader2, ListFilter } from "lucide-react"
+import { FileDown, Loader2, ListFilter, Search } from "lucide-react"
 
 const Page = () => {
   const { 
@@ -30,7 +30,7 @@ const Page = () => {
     handleToggleWeek,
     applyFilters,
     clearFilters,
-  } = useGetData()
+  } = useGetData(12) // Default to 12 for better grid layout
   const [filtersOpen, setFiltersOpen] = useState(false)
   const { isExporting, handleExportCsv } = useExportCsv()
 
@@ -52,25 +52,29 @@ const Page = () => {
   return (
     <TooltipProvider>
       <Permissions>
-        <div className="flex flex-col h-full max-w-5xl mx-auto p-6">
+        <div className="flex flex-col h-full max-w-6xl mx-auto p-6">
         <div className="flex-none">
-          <h1 className="text-2xl font-semibold tracking-tight">Attendee Directory</h1>
-          <p className="text-sm text-muted-foreground mt-4">
-            Reach out to your friends to plan dates, find shared housing, or organize activities together. 
-            <br />
-            *This directory includes only the information of those who have voluntarily opted in to share their details.
+          <h1 className="text-2xl font-semibold tracking-tight">Participant Directory</h1>
+          <p className="text-sm text-muted-foreground mt-2">
+            Get to know your fellow participants—reach out to connect, plan activities, or find collaborators.
+          </p>
+          <p className="text-xs text-muted-foreground/70 mt-1">
+            Only showing participants who opted in to share their details.
           </p>
         </div>
 
         <div className="mt-6 flex items-center gap-3">
-          <Input
-            aria-label="Search in directory"
-            placeholder="Search by name, email, organization..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleSearchKeyDown}
-            className="bg-white"
-          />
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              aria-label="Search in directory"
+              placeholder="Search by name, organization, role..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearchKeyDown}
+              className="bg-card pl-10"
+            />
+          </div>
           {(searchQuery.trim() !== '' || bringsKids !== null || selectedWeeks.length > 0) && (
             <Button
               variant="ghost"
@@ -163,14 +167,13 @@ const Page = () => {
           </Tooltip>
         </div>
 
-        <AttendeesTable 
+        <AttendeeGrid 
           attendees={attendees} 
           loading={loading}
           totalAttendees={totalAttendees}
           currentPage={currentPage}
           pageSize={pageSize}
           onPageChange={handlePageChange}
-          onPageSizeChange={handlePageSizeChange}
         />
         </div>
       </Permissions>

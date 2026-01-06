@@ -3,12 +3,12 @@ import { useCityProvider } from "@/providers/cityProvider"
 import { AttendeeDirectory } from "@/types/Attendee"
 import { useEffect, useMemo, useState } from "react"
 
-const useGetData = () => {
+const useGetData = (initialPageSize: number = 10) => {
   const [attendees, setAttendees] = useState<AttendeeDirectory[]>([])
   const [totalAttendees, setTotalAttendees] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [pageSize, setPageSize] = useState<number>(10)
+  const [pageSize, setPageSize] = useState<number>(initialPageSize)
   const { getCity } = useCityProvider()
   const city = getCity()
 

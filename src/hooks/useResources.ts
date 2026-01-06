@@ -10,8 +10,9 @@ const useResources = () => {
   const city = getCity()
 
   const isEdge = city?.slug === 'edge-esmeralda' || city?.slug === 'buenos-aires'
+  const isRipple = city?.slug === 'ripple-on-the-nile'
   const applicationAccepted = application?.status === 'accepted'
-  const canSeeAttendees = applicationAccepted
+  const canSeeAttendees = applicationAccepted && isRipple // Only show for Ripple
 
   const resources: Resource[] = [
     {
@@ -41,7 +42,7 @@ const useResources = () => {
       ]
     },
     {
-      name: 'Attendee Directory', 
+      name: 'Participant Directory', 
       icon: Users,
       status: canSeeAttendees ? 'active' : 'hidden',
       path: `/portal/${city?.slug}/attendees`,

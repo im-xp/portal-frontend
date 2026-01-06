@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
       {
         hostname: 'simplefi.s3.us-east-2.amazonaws.com',
       },
+      {
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        hostname: 'drive.google.com',
+      },
+      {
+        hostname: '*.dropboxusercontent.com',
+      },
     ],
     // Configuración para evitar problemas con sharp en Vercel
     unoptimized: true,
