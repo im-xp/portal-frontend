@@ -243,7 +243,7 @@ const EditProfilePage = () => {
         <Button
           variant="ghost"
           onClick={() => router.push(`/portal/${popupSlug}/attendees/${attendeeId}`)}
-          className="mb-6 -ml-2 text-muted-foreground hover:text-foreground"
+          className="mb-6 -ml-2 text-muted-foreground hover:text-foreground/90 hover:bg-white/5 transition-all duration-200"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Profile
