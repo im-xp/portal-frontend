@@ -101,8 +101,8 @@ const ProfilePage = () => {
   const fullName = [attendee.first_name, attendee.last_name].filter(Boolean).join(' ')
   const initials = [attendee.first_name?.[0], attendee.last_name?.[0]].filter(Boolean).join('').toUpperCase()
   
-  // Check if this is the user's own profile
-  const isOwnProfile = user && attendee && attendee.citizen_id === user.citizen_id
+  // Check if this is the user's own profile (compare as strings since types may vary)
+  const isOwnProfile = user && attendee && String(attendee.citizen_id) === String(user.citizen_id)
   
   // Get profile image - prefer custom_data headshot_url
   // Convert cloud storage share links to embeddable URLs

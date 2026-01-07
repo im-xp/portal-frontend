@@ -49,8 +49,8 @@ const EditProfilePage = () => {
         const existingApp = getRelevantApplication()
 
         if (existingApp && existingApp.id === parseInt(attendeeId)) {
-          // Verify ownership
-          if (existingApp.citizen_id !== user.citizen_id) {
+          // Verify ownership (convert to string for comparison)
+          if (String(existingApp.citizen_id) !== String(user.citizen_id)) {
             setError('You can only edit your own profile')
             return
           }
@@ -66,7 +66,7 @@ const EditProfilePage = () => {
         if (response.status === 200) {
           const application = response.data
 
-          if (application.citizen_id !== user.citizen_id) {
+          if (String(application.citizen_id) !== String(user.citizen_id)) {
             setError('You can only edit your own profile')
             return
           }
