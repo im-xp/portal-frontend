@@ -8,9 +8,10 @@ import { AttendeeDirectory } from '@/types/Attendee'
 import { Card } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, MapPin, MessageCircle, Mail, Loader2 } from 'lucide-react'
+import { ArrowLeft, MapPin, MessageCircle, Mail, Loader2, Pencil } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Permissions from '@/components/Permissions'
+import useGetTokenAuth from '@/hooks/useGetTokenAuth'
 import SocialLinksDisplay from '../components/SocialLinksDisplay'
 import { hasSocialLinks } from '../utils/parseSocialLinks'
 import { convertToEmbeddableImageUrl } from '../utils/convertImageUrl'
@@ -31,6 +32,7 @@ const ProfilePage = () => {
   const params = useParams()
   const router = useRouter()
   const { getCity } = useCityProvider()
+  const { user } = useGetTokenAuth()
   const city = getCity()
   
   const attendeeId = params.attendeeId as string
@@ -98,6 +100,9 @@ const ProfilePage = () => {
 
   const fullName = [attendee.first_name, attendee.last_name].filter(Boolean).join(' ')
   const initials = [attendee.first_name?.[0], attendee.last_name?.[0]].filter(Boolean).join('').toUpperCase()
+  
+  // Check if this is the user's own profile
+  const isOwnProfile = user && attendee && attendee.citizen_id === user.citizen_id
   
   // Get profile image - prefer custom_data headshot_url
   // Convert cloud storage share links to embeddable URLs
@@ -169,10 +174,24 @@ const ProfilePage = () => {
               
               {/* Name & Basic Info */}
               <div className="flex-1 text-center md:text-left">
-                <h1 className="text-3xl font-bold text-foreground mb-2">
-                  {fullName || 'Anonymous'}
-                </h1>
-                
+                <div className="flex items-center justify-center md:justify-between gap-4 mb-2 flex-wrap">
+                  <h1 className="text-3xl font-bold text-foreground">
+                    {fullName || 'Anonymous'}
+                  </h1>
+
+                  {/* Edit Button - Only show for own profile */}
+                  {isOwnProfile && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => router.push(`/portal/${popupSlug}/attendees/${attendeeId}/edit`)}
+                    >
+                      <Pencil className="w-4 h-4 mr-2" />
+                      Edit Profile
+                    </Button>
+                  )}
+                </div>
+
                 {attendee.role && (
                   <p className="text-lg text-primary font-medium mb-1">
                     {attendee.role}
