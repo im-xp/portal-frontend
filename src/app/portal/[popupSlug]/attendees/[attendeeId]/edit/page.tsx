@@ -85,6 +85,14 @@ const EditProfilePage = () => {
     fetchApplication()
   }, [city, user, attendeeId])
 
+  // Update page title when form data loads
+  useEffect(() => {
+    if (formData.first_name || formData.last_name) {
+      const fullName = [formData.first_name, formData.last_name].filter(Boolean).join(' ')
+      document.title = `Edit ${fullName}` || 'Edit Profile'
+    }
+  }, [formData.first_name, formData.last_name])
+
   const initializeFormData = (application: any) => {
     const data: Record<string, any> = {
       first_name: application.first_name ?? '',

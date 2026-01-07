@@ -15,7 +15,6 @@ import useGetTokenAuth from '@/hooks/useGetTokenAuth'
 import SocialLinksDisplay from '../components/SocialLinksDisplay'
 import { hasSocialLinks } from '../utils/parseSocialLinks'
 import { convertToEmbeddableImageUrl } from '../utils/convertImageUrl'
-
 // Helper to format custom_data keys into readable labels
 const formatLabel = (key: string): string => {
   return key
@@ -73,6 +72,14 @@ const ProfilePage = () => {
 
     fetchAttendee()
   }, [city, attendeeId])
+
+  // Update page title when attendee data loads
+  useEffect(() => {
+    if (attendee) {
+      const fullName = [attendee.first_name, attendee.last_name].filter(Boolean).join(' ')
+      document.title = fullName || 'Participant Profile'
+    }
+  }, [attendee])
 
   if (loading) {
     return (

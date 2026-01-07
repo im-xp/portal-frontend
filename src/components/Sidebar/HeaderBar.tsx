@@ -5,6 +5,7 @@ import { useCityProvider } from "@/providers/cityProvider"
 import { usePathname, useRouter } from 'next/navigation'
 import { Fragment } from "react"
 import useGroupMapping from "./hooks/useGroupMapping"
+import useAttendeeMapping from "./hooks/useAttendeeMapping"
 import BreadcrumbSegment from "./BreadcrumbSegment"
 
 const HeaderBar = () => {
@@ -12,7 +13,8 @@ const HeaderBar = () => {
   const pathname = usePathname()
   const city = getCity()
   const router = useRouter()
-  const { groupMapping, isLoading } = useGroupMapping()
+  const { groupMapping, isLoading: isLoadingGroups } = useGroupMapping()
+  const { attendeeMapping, isLoading: isLoadingAttendees } = useAttendeeMapping()
   
   const handleClickCity = () => {
     router.push(`/portal/${city?.slug}`)
@@ -42,8 +44,11 @@ const HeaderBar = () => {
               </BreadcrumbSeparator>
               <BreadcrumbSegment 
                 path={path} 
-                isLoading={isLoading} 
-                groupMapping={groupMapping} 
+                prevPath={pathsToDisplay[index - 1]}
+                isLoadingGroups={isLoadingGroups}
+                isLoadingAttendees={isLoadingAttendees}
+                groupMapping={groupMapping}
+                attendeeMapping={attendeeMapping}
               />
             </Fragment>
           ))}
