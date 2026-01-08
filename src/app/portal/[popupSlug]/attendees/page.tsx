@@ -30,7 +30,7 @@ const Page = () => {
     handleToggleWeek,
     applyFilters,
     clearFilters,
-  } = useGetData(12) // Default to 12 for better grid layout
+  } = useGetData(20) // Default to 20 attendees per page
   const [filtersOpen, setFiltersOpen] = useState(false)
   const { isExporting, handleExportCsv } = useExportCsv()
 
