@@ -4,10 +4,14 @@ import { Resource } from "@/types/resources"
 import { FileText, Home, Ticket, Users } from "lucide-react"
 
 const useResources = () => {
-  const { getCity } = useCityProvider()
-  const { getRelevantApplication } = useApplication()
+  const { getCity, getPopups } = useCityProvider()
+  const { getRelevantApplication, applications } = useApplication()
   const application = getRelevantApplication()
   const city = getCity()
+  const popups = getPopups()
+
+  // Check if data is still loading (providers haven't fetched yet)
+  const isLoading = applications === null || popups.length === 0
 
   const isEdge = city?.slug === 'edge-esmeralda' || city?.slug === 'buenos-aires'
   const isRipple = city?.slug === 'ripple-on-the-nile'
@@ -54,6 +58,6 @@ const useResources = () => {
     // }
   ]
 
-  return ({resources})
+  return ({ resources, isLoading })
 }
 export default useResources
