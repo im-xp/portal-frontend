@@ -80,13 +80,27 @@ export function parseSocialLinks(text: string | null | undefined): ParsedSocialL
   const links: ParsedSocialLink[] = []
   const seenUrls = new Set<string>()
   
-  // 1. Extract all URLs
-  const urlRegex = /https?:\/\/[^\s<>"{}|\\^`\[\]]+/gi
-  const urls = text.match(urlRegex) || []
+  // 1. Extract all URLs (with or without protocol)
+  // Match: https://..., http://..., www.domain.com/..., or domain.com/... for known social domains
+  const urlRegex = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com|facebook\.com|twitter\.com|x\.com|linkedin\.com|youtube\.com|youtu\.be|tiktok\.com|linktr\.ee|github\.com|pinterest\.com|threads\.net|bsky\.app|bsky\.social)[^\s<>"{}|\\^`\[\],]*/gi
+  const protocolUrlRegex = /https?:\/\/[^\s<>"{}|\\^`\[\]]+/gi
   
-  for (const url of urls) {
+  // Get URLs with protocol first
+  const protocolUrls = text.match(protocolUrlRegex) || []
+  // Then get social domain URLs that might not have protocol
+  const socialUrls = text.match(urlRegex) || []
+  
+  // Combine and dedupe
+  const allUrls = [...new Set([...protocolUrls, ...socialUrls])]
+  
+  for (const url of allUrls) {
     // Clean up URL (remove trailing punctuation)
-    const cleanUrl = url.replace(/[.,;:!?)]+$/, '')
+    let cleanUrl = url.replace(/[.,;:!?)]+$/, '')
+    
+    // Add https:// if missing
+    if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
+      cleanUrl = 'https://' + cleanUrl.replace(/^www\./, '')
+    }
     
     if (seenUrls.has(cleanUrl.toLowerCase())) continue
     seenUrls.add(cleanUrl.toLowerCase())
@@ -103,7 +117,7 @@ export function parseSocialLinks(text: string | null | undefined): ParsedSocialL
   // 2. Extract @handles that aren't part of URLs
   // Remove URLs first to avoid double-matching
   let textWithoutUrls = text
-  for (const url of urls) {
+  for (const url of allUrls) {
     textWithoutUrls = textWithoutUrls.replace(url, ' ')
   }
   
@@ -171,5 +185,6 @@ export function parseSocialLinks(text: string | null | undefined): ParsedSocialL
 // Simple check if text contains any parseable social content
 export function hasSocialLinks(text: string | null | undefined): boolean {
   if (!text) return false
-  return /https?:\/\/|@[a-zA-Z0-9_]+/.test(text)
+  // Check for URLs (with or without protocol), known social domains, or @handles
+  return /https?:\/\/|@[a-zA-Z0-9_]+|(?:www\.)?(?:instagram|facebook|twitter|linkedin|youtube|tiktok|github)\.com/i.test(text)
 }
