@@ -12,12 +12,12 @@ import { isSoldOut } from "@/helpers/inventory"
 type VariantStyles = 'selected' | 'purchased' | 'edit' | 'disabled' | 'default' | 'week-with-month'
 
 const variants: Record<VariantStyles, string> = {
-  selected: 'bg-primary/20 border-primary text-primary-foreground hover:bg-primary/30',
+  selected: 'bg-primary/20 border-primary text-primary-foreground can-hover:hover:bg-primary/30',
   purchased: 'bg-background text-foreground border-border',
   edit: 'bg-secondary/30 border-dashed border-border text-card-foreground border',
   disabled: 'bg-muted/50 text-muted-foreground cursor-not-allowed',
-  default: 'bg-card border-border text-card-foreground hover:bg-secondary/50',
-  'week-with-month': 'bg-accent/20 border-accent text-accent-foreground hover:bg-accent/30',
+  default: 'bg-card border-border text-card-foreground can-hover:hover:bg-secondary/50',
+  'week-with-month': 'bg-accent/20 border-accent text-accent-foreground can-hover:hover:bg-accent/30',
 }
 
 const Product = ({product, onClick, defaultDisabled, hasMonthPurchased}: {product: ProductsPass, onClick: (attendeeId: number | undefined, product: ProductsPass) => void, defaultDisabled?: boolean, hasMonthPurchased?: boolean}) => {

@@ -90,7 +90,7 @@ const variants: Record<VariantStyles, string> = {
   purchased: 'bg-background text-foreground border-border cursor-not-allowed',
   edit: 'bg-secondary/30 border-dashed border-border text-card-foreground',
   disabled: 'bg-muted/50 text-muted-foreground cursor-not-allowed',
-  default: 'bg-card border-border text-card-foreground hover:bg-gradient-to-r hover:from-[#FF7B7B]/10 hover:to-[#E040FB]/10',
+  default: 'bg-card border-border text-card-foreground can-hover:hover:bg-gradient-to-r can-hover:hover:from-[#FF7B7B]/10 can-hover:hover:to-[#E040FB]/10',
 }
 
 // Componente base

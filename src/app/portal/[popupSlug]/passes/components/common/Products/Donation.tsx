@@ -61,9 +61,9 @@ export default function Donation({ product, onDonationSubmit, disabled }: Donati
       onOpenChange={setIsOpen}
       className={cn(
         "w-full border rounded-lg transition-colors",
-        selected 
-          ? "bg-rose-500/10 border-rose-500/50" 
-          : "bg-card border-border hover:border-rose-500/30",
+        selected
+          ? "bg-rose-500/10 border-rose-500/50"
+          : "bg-card border-border can-hover:hover:border-rose-500/30",
         isDisabled && "opacity-50 cursor-not-allowed"
       )}
     >
@@ -132,7 +132,7 @@ export default function Donation({ product, onDonationSubmit, disabled }: Donati
                   "px-4 py-2 rounded-md border text-sm font-medium transition-colors",
                   amount === preset.toString()
                     ? "bg-rose-500 text-white border-rose-500"
-                    : "bg-card border-border hover:border-rose-500/50 hover:bg-rose-500/10"
+                    : "bg-card border-border can-hover:hover:border-rose-500/50 can-hover:hover:bg-rose-500/10"
                 )}
               >
                 ${preset.toLocaleString()}
