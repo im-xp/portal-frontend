@@ -17,6 +17,31 @@ const requiredFields = {
   accommodation: ['booking_confirmation'],
 }
 
+const customRequiredFieldsBySlug: Record<string, string[]> = {
+  'iceland-eclipse-preapproved': [
+    'custom_data_privacy_consent',
+    'custom_full_name',
+    'custom_ticket_type',
+    'custom_city_town',
+    'residence',
+    'email',
+    'custom_phone_number',
+    'custom_emergency_contact_name',
+    'custom_emergency_contact_phone',
+    'custom_newsletter_opt_in',
+    'custom_eclipse_attendance',
+    'custom_volunteer_type',
+    'custom_festival_experience',
+    'custom_talents_skills',
+    'custom_skills_description',
+    'custom_available_phases',
+    'custom_staff_referral',
+    'custom_referral_name',
+    'custom_team_preferences',
+    'custom_team_contribution',
+  ],
+}
+
 export const useFormValidation = (initialData: FormData) => {
   const [formData, setFormData] = useState<FormData>(initialData)
   const [errors, setErrors] = useState<Record<FieldName, string>>({})
@@ -24,8 +49,26 @@ export const useFormValidation = (initialData: FormData) => {
   const city = getCity()
   const { fields } = useGetFields()
 
+  const slugCustomRequired = customRequiredFieldsBySlug[city?.slug ?? ''] ?? []
+
   const validateField = useCallback((name: FieldName, value: FieldValue, formData: FormData) => {
-    if (!fields?.has(name)) return ''
+    const isCustomRequired = slugCustomRequired.includes(name)
+
+    if (!isCustomRequired && !fields?.has(name)) return ''
+
+    if (isCustomRequired) {
+      if (name === 'custom_data_privacy_consent') {
+        return !value ? 'This field is required' : ''
+      }
+      if (name === 'custom_referral_name') {
+        if (formData.custom_staff_referral !== 'yes') return ''
+        return !value ? 'This field is required' : ''
+      }
+      if (Array.isArray(value)) {
+        return value.length === 0 ? 'This field is required' : ''
+      }
+      return !value ? 'This field is required' : ''
+    }
 
     const validateVideo = validateVideoUrl(formData.video_url)
     
@@ -35,7 +78,7 @@ export const useFormValidation = (initialData: FormData) => {
         ...requiredFields.personalInformation,
         ...requiredFields.childrenPlusOnes,
         ...requiredFields.scholarship
-      ].filter(field => fields.has(field))
+      ].filter(field => fields?.has(field))
       
       if (!requiredWithVideo.includes(name)) return ''
     }
@@ -50,7 +93,7 @@ export const useFormValidation = (initialData: FormData) => {
         return value === null ? 'This field is required' : ''
       }
       if(name === 'social_media') {
-        if(fields.has('video_url') && validateVideo) return '';
+        if(fields?.has('video_url') && validateVideo) return '';
       }
       if(name === 'gender_specify') {
         if(formData.gender !== 'Specify') return '';
@@ -80,7 +123,7 @@ export const useFormValidation = (initialData: FormData) => {
       return !value ? 'This field is required' : ''
     }
     return ''
-  }, [fields, city?.slug])
+  }, [fields, city?.slug, slugCustomRequired])
 
   const handleChange = useCallback((name: FieldName, value: FieldValue) => {
     setFormData(prev => ({ ...prev, [name]: value }))
@@ -104,12 +147,21 @@ export const useFormValidation = (initialData: FormData) => {
       })
     })
 
+    slugCustomRequired.forEach((field) => {
+      const value = formData[field]
+      const error = validateField(field, value, formData)
+      if (error) {
+        newErrors[field] = error
+        errorList.push({ field, message: error })
+      }
+    })
+
     setErrors(newErrors)
     return {
       isValid: errorList.length === 0,
       errors: errorList
     }
-  }, [formData, validateField, fields])
+  }, [formData, validateField, fields, slugCustomRequired])
 
   return { formData, errors, handleChange, validateForm, setFormData }
 }

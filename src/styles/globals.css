@@ -148,4 +148,27 @@ body {
   }
 }
 
+.phone-input-field .PhoneInputInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: inherit;
+  color: inherit;
+}
+
+.phone-input-field .PhoneInputCountry {
+  margin-right: 0.5rem;
+}
+
+.phone-input-field .PhoneInputCountryIcon {
+  width: 1.5rem;
+  height: 1rem;
+}
+
+.phone-input-field .PhoneInputCountrySelectArrow {
+  margin-left: 0.25rem;
+  opacity: 0.5;
+}
+
 

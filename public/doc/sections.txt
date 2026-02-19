@@ -1,0 +1,115 @@
+TEAMS ->
+[
+  {
+    "team": "ECL - Build",
+    "description": "Assist with building, setup, and teardown tasks"
+  },
+  {
+    "team": "ECL - Vendor Support",
+    "description": "Assist the vendor coordinator with arrivals, compliance and coordinating vendor deliveries"
+  },
+  {
+    "team": "ECL - Art & Decor",
+    "description": "Fabricate art and decor elements, install pieces and put the finishing touches on the various spaces around the event"
+  },
+  {
+    "team": "ECL - Site Ops",
+    "description": "Assist with setup and teardown tasks (like installing signage and fencing) and infrastructure. Physical work involved"
+  },
+  {
+    "team": "ECL - Campground",
+    "description": "Guide attendees as they arrive to the campgrounds"
+  },
+  {
+    "team": "ECL - Harm Reduction",
+    "description": "Provide compassionate support for individuals under psychological distress either at the sanctuary/medical HQ or roaming the site in pairs"
+  },
+  {
+    "team": "ECL - Box Office",
+    "description": "Greet and guide guests to the correct lanes, scan tickets and ensure an overall smooth entry experience"
+  },
+  {
+    "team": "ECL - Artist Relations",
+    "description": "Spruce spaces, re-stock green rooms, restrict access to artist and guests and ensure the talent's comfort"
+  },
+  {
+    "team": "ECL - Info Booth",
+    "description": "Assist attendees with questions, relay issues to management and oversee the Lost & Found"
+  },
+  {
+    "team": "ECL - General Store",
+    "description": "Monitor and restock merchandise, and support the manager with other small tasks in a retail environment"
+  },
+  {
+    "team": "ECL - Showers",
+    "description": "Oversee access to showers and ensure cleanliness for patrons enjoyment"
+  },
+  {
+    "team": "ECL - Shuttles",
+    "description": "Guide shuttle-goers to the correct shuttle, in some cases checking tickets or loading gear onto the buses"
+  },
+  {
+    "team": "ECL - Accommodations",
+    "description": ""
+  },
+  {
+    "team": "ECL - Glamping",
+    "description": ""
+  },
+  {
+    "team": "ECL - Green Team",
+    "description": "Ensure the site's immaculate by spot-cleaning and maximize diversion by guiding guests at waste stations and sorting recycling at the transfer station"
+  },
+  {
+    "team": "ECL - Parking",
+    "description": "Assist with vehicle flow by greeting and guiding attendees to parking spaces"
+  },
+  {
+    "team": "ECL - Celestial Voyager (VIP)",
+    "description": "Often this role will serve as VIP concierge, receiving arriving VIP, relaying issues to the VIP team and sometimes assisting in VIP activations"
+  },
+  {
+    "team": "ECL - Catering",
+    "description": "Assist with food prep, serving on the line, cleaning and supporting with general kitchen tasks"
+  }
+]
+
+
+FASES ->
+
+[
+  {
+    "program": "ECL - Long Build",
+    "arrive": "Sunday, July 26th",
+    "date_range": "July 27th - August 2nd",
+    "meals": "Catered meals for duration of work + event",
+    "work_expectations": "2 weeks of 10 hour workdays",
+    "accommodations": "Preset tent for duration of work + event"
+  },
+  {
+    "program": "ECL - Short Build",
+    "arrive": "Sunday, August 2nd",
+    "date_range": "August 3rd - August 9th",
+    "meals": "Catered meals on workdays only; at-cost meal plan during event",
+    "work_expectations": "1 week of 10 hour workdays",
+    "accommodations": "Preset tent for duration of work + event"
+  },
+  {
+    "program": "ECL - Event",
+    "arrive": "Sunday, August 9th",
+    "date_range": "August 10th - August 15th",
+    "meals": "(1) meal per shift",
+    "work_expectations": "(6) five-hour shifts",
+    "accommodations": "Discount Code for Accommodations"
+  },
+  {
+    "program": "ECL - Post-Event",
+    "arrive": "Sunday, August 9th",
+    "date_range": "August 16th - August 18th",
+    "meals": "Catered meals on workdays only; at-cost meal plan during event",
+    "work_expectations": "3 days of 10 hour workdays",
+    "accommodations": "Discount Code for Accommodations"
+  }
+]
+
+

@@ -25,6 +25,12 @@ import { useApplication } from "@/providers/applicationProvider"
 import useGetFields from "./hooks/useGetFields"
 import PatagoniaResidenciesForm from "./components/PatagoniaResidenciesForm"
 import { CustomFieldsForm } from "./components/CustomFieldsForm"
+import { WorkExchangeHeader } from "./components/work-exchange-header"
+import { AboutYouForm } from "./components/about-you-form"
+import { ContactInformationForm } from "./components/contact-information-form"
+import { ExperienceForm } from "./components/experience-form"
+import { SpecialAccommodationsForm } from "./components/special-accommodations-form"
+import { AvailabilityTeamForm } from "./components/availability-team-form"
 
 export default function FormPage() {
   const [statusBtn, setStatusBtn] = useState({loadingDraft: false, loadingSubmit: false})
@@ -97,28 +103,29 @@ export default function FormPage() {
         <ExistingApplicationCard onImport={handleImport} onCancel={handleCancelImport} data={existingApplication} />
       )}
       <form onSubmit={handleSubmit} className="space-y-8 px-8 md:px-12">
-        <FormHeader />
+        {/* <FormHeader /> */}
+        <WorkExchangeHeader />
         <SectionSeparator />
 
-        <PersonalInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-        <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="personal_information" />
+        {city?.slug === 'iceland-eclipse-preapproved' && (
+          <AboutYouForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        )}
 
-        <ProfessionalDetailsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-        <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="professional_details" />
+        {city?.slug === 'iceland-eclipse-preapproved' && (
+          <ContactInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        )}
 
-        <ParticipationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-        <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="participation" />
+        {city?.slug === 'iceland-eclipse-preapproved' && (
+          <ExperienceForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        )}
 
-        <PatagoniaResidenciesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+        {city?.slug === 'iceland-eclipse-preapproved' && (
+          <SpecialAccommodationsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        )}
 
-        <ChildrenPlusOnesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-
-        <ScholarshipForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-
-        <AccomodationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
-
-        {/* Custom fields for "other" section - additional popup-specific questions */}
-        <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="other" />
+        {city?.slug === 'iceland-eclipse-preapproved' && (
+          <AvailabilityTeamForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        )}
 
         <div className="flex flex-col w-full gap-6 md:flex-row justify-between items-center pt-6">
           <ButtonAnimated loading={statusBtn.loadingDraft} disabled={statusBtn.loadingSubmit} variant="outline" type="button" onClick={handleDraft} className="w-full md:w-auto">Save as draft</ButtonAnimated>
