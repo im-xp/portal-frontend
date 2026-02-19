@@ -31,6 +31,9 @@ import { ContactInformationForm } from "./components/contact-information-form"
 import { ExperienceForm } from "./components/experience-form"
 import { SpecialAccommodationsForm } from "./components/special-accommodations-form"
 import { AvailabilityTeamForm } from "./components/availability-team-form"
+import { AgreementForm } from "./components/agreement-form"
+import useApplicationFee from "./hooks/useApplicationFee"
+import { ApplicationFeeBanner } from "./components/application-fee-banner"
 
 export default function FormPage() {
   const [statusBtn, setStatusBtn] = useState({loadingDraft: false, loadingSubmit: false})
@@ -44,6 +47,8 @@ export default function FormPage() {
   const city = getCity()
   const application = getRelevantApplication()
   const router = useRouter()
+  const { hasApplicationFee, applicationFee, isFeePaid, loading: feeLoading, createFeePayment } = useApplicationFee()
+  const requiresFeePayment = hasApplicationFee && !isFeePaid
 
   useEffect(() => {
     if(city && city.slug && fields?.size === 0) {
@@ -74,14 +79,42 @@ export default function FormPage() {
     e.preventDefault()
     setStatusBtn({loadingDraft: false, loadingSubmit: true})
     const formValidation = validateForm()
-    if (formValidation.isValid) {
-      const response = await handleSaveForm(formData)
-    } else {
+
+    if (!formValidation.isValid) {
       const missingFields = formValidation.errors.map(error => error.field).join(', ')
       toast.error("Error", {
         description: `Please fill in the following required field: ${missingFields}`,
       })
+      setStatusBtn({loadingDraft: false, loadingSubmit: false})
+      return
     }
+
+    if (requiresFeePayment) {
+      const draftResponse = await handleSaveDraft(formData)
+      const applicationId = draftResponse?.data?.id ?? application?.id
+      if (!applicationId) {
+        toast.error("Error", { description: "Could not save your application. Please try again." })
+        setStatusBtn({loadingDraft: false, loadingSubmit: false})
+        return
+      }
+
+      try {
+        const feePayment = await createFeePayment(applicationId)
+        if (feePayment?.checkout_url) {
+          window.location.href = feePayment.checkout_url
+          return
+        }
+        toast.error("Error", { description: "Could not create the payment. Please try again." })
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Could not process the payment. Please try again."
+        toast.error("Payment Error", { description: message })
+      }
+
+      setStatusBtn({loadingDraft: false, loadingSubmit: false})
+      return
+    }
+
+    await handleSaveForm(formData)
     setStatusBtn({loadingDraft: false, loadingSubmit: false})
   }
 
@@ -107,29 +140,31 @@ export default function FormPage() {
         <WorkExchangeHeader />
         <SectionSeparator />
 
-        {city?.slug === 'iceland-eclipse-preapproved' && (
           <AboutYouForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-        )}
+   
 
-        {city?.slug === 'iceland-eclipse-preapproved' && (
           <ContactInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-        )}
-
-        {city?.slug === 'iceland-eclipse-preapproved' && (
+    
           <ExperienceForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-        )}
 
-        {city?.slug === 'iceland-eclipse-preapproved' && (
+
           <SpecialAccommodationsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-        )}
 
-        {city?.slug === 'iceland-eclipse-preapproved' && (
           <AvailabilityTeamForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        
+
+          <AgreementForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+        
+
+        {requiresFeePayment && (
+          <ApplicationFeeBanner amount={applicationFee} />
         )}
 
         <div className="flex flex-col w-full gap-6 md:flex-row justify-between items-center pt-6">
-          <ButtonAnimated loading={statusBtn.loadingDraft} disabled={statusBtn.loadingSubmit} variant="outline" type="button" onClick={handleDraft} className="w-full md:w-auto">Save as draft</ButtonAnimated>
-          <ButtonAnimated loading={statusBtn.loadingSubmit} disabled={statusBtn.loadingDraft} type="submit" className="w-full md:w-auto">Submit</ButtonAnimated>
+          <ButtonAnimated loading={statusBtn.loadingDraft} disabled={statusBtn.loadingSubmit || feeLoading} variant="outline" type="button" onClick={handleDraft} className="w-full md:w-auto">Save as draft</ButtonAnimated>
+          <ButtonAnimated loading={statusBtn.loadingSubmit || feeLoading} disabled={statusBtn.loadingDraft} type="submit" className="w-full md:w-auto">
+            {requiresFeePayment ? `Pay & Submit ($${applicationFee.toFixed(2)})` : "Submit"}
+          </ButtonAnimated>
         </div>
 
       </form>

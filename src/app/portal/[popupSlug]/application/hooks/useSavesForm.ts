@@ -108,6 +108,10 @@ const useSavesForm = () => {
         ? updateApplication(application.id, data) 
         : createApplication(data));
 
+      if (response.status === 402) {
+        return { requiresPayment: true, status: 402, data: response.data };
+      }
+
       if (status === 'in review' && response.status !== 201 && response.status !== 200) {
         toast.error('There was an error submitting your application. Please try again.');
         return {msg: 'Error submitting application', status: response.status, data: response.data};
@@ -156,7 +160,7 @@ const useSavesForm = () => {
   };
 
   const handleSaveDraft = async (formData: ApplicationFormData) => {
-    await handleSubmission(
+    const response = await handleSubmission(
       formData,
       'draft',
       {
@@ -168,6 +172,7 @@ const useSavesForm = () => {
         description: "There was an error saving your draft. Please try again."
       }
     );
+    return response;
   };
 
   return ({

@@ -32,6 +32,7 @@ export interface PaymentsProps {
   source: string | null;
   currency: string;
   checkout_url: string | null;
+  is_application_fee?: boolean;
   products_snapshot: ProductsSnapshotProps[];
   created_at: string;
   updated_at: string;

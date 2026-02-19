@@ -28,8 +28,12 @@ const animationProps = {
   transition: { duration: 0.3, ease: "easeInOut" },
 }
 
+const BUILD_TEAM_VALUES = ["build", "art_decor"]
+
 export const AvailabilityTeamForm = ({ formData, errors, handleChange }: SectionProps) => {
   const isReferred = formData.custom_staff_referral === "yes"
+  const selectedTeams = (formData.custom_team_preferences as string[]) ?? []
+  const showBuildExperience = selectedTeams.some((t) => BUILD_TEAM_VALUES.includes(t))
 
   return (
     <>
@@ -111,6 +115,21 @@ export const AvailabilityTeamForm = ({ formData, errors, handleChange }: Section
               placeholder="+ Add"
             />
           </FormInputWrapper>
+
+          <AnimatePresence>
+            {showBuildExperience && (
+              <motion.div {...animationProps}>
+                <TextAreaForm
+                  label="Tell us about any relevant past build experience or projects you've worked on, and what role you played in them."
+                  id="custom_build_experience"
+                  value={formData.custom_build_experience ?? ""}
+                  handleChange={(value) => handleChange("custom_build_experience", value)}
+                  error={errors.custom_build_experience}
+                  isRequired
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <TextAreaForm
             label="Why would you be a strong contributor to the teams you selected?"

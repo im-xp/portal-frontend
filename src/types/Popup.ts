@@ -17,4 +17,5 @@ export type PopupsProps = {
   allows_children?: boolean;
   allows_coupons?: boolean;
   ticketing_banner_description?: string;
+  application_fee?: number | null;
 }

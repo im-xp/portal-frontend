@@ -48,5 +48,11 @@ export const initial_data = {
     custom_staff_referral: '',
     custom_referral_name: '',
     custom_team_preferences: [] as string[],
+    custom_build_experience: '',
     custom_team_contribution: '',
+
+    // Agreement
+    custom_agreement_consent: false,
+    custom_agreement_signature: '',
+    custom_agreement_date: '',
   }

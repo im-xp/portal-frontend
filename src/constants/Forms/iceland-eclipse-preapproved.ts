@@ -6,9 +6,6 @@ export const icelandEclipsePreapproved: DynamicForm = {
     subtitle: ''
   },
   fields: [
-    "first_name",
-    "last_name",
-    "telegram",
     "residence"
   ]
 }

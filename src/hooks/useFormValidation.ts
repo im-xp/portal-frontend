@@ -17,29 +17,36 @@ const requiredFields = {
   accommodation: ['booking_confirmation'],
 }
 
+const defaultCustomRequired = [
+  'custom_data_privacy_consent',
+  'custom_full_name',
+  'custom_ticket_type',
+  'custom_city_town',
+  'residence',
+  'email',
+  'custom_phone_number',
+  'custom_emergency_contact_name',
+  'custom_emergency_contact_phone',
+  'custom_newsletter_opt_in',
+  'custom_eclipse_attendance',
+  'custom_volunteer_type',
+  'custom_festival_experience',
+  'custom_talents_skills',
+  'custom_skills_description',
+  'custom_available_phases',
+  'custom_staff_referral',
+  'custom_referral_name',
+  'custom_team_preferences',
+  'custom_build_experience',
+  'custom_team_contribution',
+  'custom_agreement_consent',
+  'custom_agreement_signature',
+  'custom_agreement_date',
+]
+
 const customRequiredFieldsBySlug: Record<string, string[]> = {
-  'iceland-eclipse-preapproved': [
-    'custom_data_privacy_consent',
-    'custom_full_name',
-    'custom_ticket_type',
-    'custom_city_town',
-    'residence',
-    'email',
-    'custom_phone_number',
-    'custom_emergency_contact_name',
-    'custom_emergency_contact_phone',
-    'custom_newsletter_opt_in',
-    'custom_eclipse_attendance',
-    'custom_volunteer_type',
-    'custom_festival_experience',
-    'custom_talents_skills',
-    'custom_skills_description',
-    'custom_available_phases',
-    'custom_staff_referral',
-    'custom_referral_name',
-    'custom_team_preferences',
-    'custom_team_contribution',
-  ],
+  'default': defaultCustomRequired,
+  'iceland-eclipse-preapproved': defaultCustomRequired,
 }
 
 export const useFormValidation = (initialData: FormData) => {
@@ -49,19 +56,29 @@ export const useFormValidation = (initialData: FormData) => {
   const city = getCity()
   const { fields } = useGetFields()
 
-  const slugCustomRequired = customRequiredFieldsBySlug[city?.slug ?? ''] ?? []
+  const slugCustomRequired = useMemo(
+    () => customRequiredFieldsBySlug[city?.slug ?? ''] ?? customRequiredFieldsBySlug['default'] ?? [],
+    [city?.slug]
+  )
 
   const validateField = useCallback((name: FieldName, value: FieldValue, formData: FormData) => {
     const isCustomRequired = slugCustomRequired.includes(name)
+    const hasCustomRequired = slugCustomRequired.length > 0
 
     if (!isCustomRequired && !fields?.has(name)) return ''
 
     if (isCustomRequired) {
-      if (name === 'custom_data_privacy_consent') {
+      if (name === 'custom_data_privacy_consent' || name === 'custom_agreement_consent') {
         return !value ? 'This field is required' : ''
       }
       if (name === 'custom_referral_name') {
         if (formData.custom_staff_referral !== 'yes') return ''
+        return !value ? 'This field is required' : ''
+      }
+      if (name === 'custom_build_experience') {
+        const teams = formData.custom_team_preferences as string[] | null
+        const needsBuild = teams?.includes('build') || teams?.includes('art_decor')
+        if (!needsBuild) return ''
         return !value ? 'This field is required' : ''
       }
       if (Array.isArray(value)) {
@@ -69,6 +86,8 @@ export const useFormValidation = (initialData: FormData) => {
       }
       return !value ? 'This field is required' : ''
     }
+
+    if (hasCustomRequired) return ''
 
     const validateVideo = validateVideoUrl(formData.video_url)
     
@@ -134,18 +153,22 @@ export const useFormValidation = (initialData: FormData) => {
     const newErrors: Record<FieldName, string> = {}
     const errorList: { field: string; message: string }[] = []
 
-    Object.entries(requiredFields).forEach(([section, sectionFields]) => {
-      const validFields = sectionFields.filter(field => fields?.has(field))
-      
-      validFields.forEach((field) => {
-        const value = formData[field]
-        const error = validateField(field, value, formData)
-        if (error) {
-          newErrors[field] = error
-          errorList.push({ field, message: error })
-        }
+    const hasCustomRequired = slugCustomRequired.length > 0
+
+    if (!hasCustomRequired) {
+      Object.entries(requiredFields).forEach(([section, sectionFields]) => {
+        const validFields = sectionFields.filter(field => fields?.has(field))
+        
+        validFields.forEach((field) => {
+          const value = formData[field]
+          const error = validateField(field, value, formData)
+          if (error) {
+            newErrors[field] = error
+            errorList.push({ field, message: error })
+          }
+        })
       })
-    })
+    }
 
     slugCustomRequired.forEach((field) => {
       const value = formData[field]
