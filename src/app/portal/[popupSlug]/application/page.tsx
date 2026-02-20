@@ -100,7 +100,9 @@ export default function FormPage() {
       try {
         const feePayment = await createFeePayment(applicationId)
         if (feePayment?.checkout_url) {
-          window.location.href = feePayment.checkout_url
+          const checkoutUrl = new URL(feePayment.checkout_url)
+          checkoutUrl.searchParams.set('redirect_url', `${window.location.origin}/portal`)
+          window.location.href = checkoutUrl.toString()
           return
         }
         toast.error("Error", { description: "Could not create the payment. Please try again." })
