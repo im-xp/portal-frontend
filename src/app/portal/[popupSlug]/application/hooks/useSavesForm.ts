@@ -91,7 +91,7 @@ const useSavesForm = () => {
   const handleSubmission = async (
     formData: ApplicationFormData, 
     status: 'draft' | 'in review',
-    successMessage: { title: string; description: string },
+    successMessage: { title: string; description: string } | null,
     errorMessage: { title: string; description: string }
   ) => {
 
@@ -119,7 +119,7 @@ const useSavesForm = () => {
 
       updateApplicationsList(response.data);
       
-      if(response.status === 201 || response.status === 200){
+      if ((response.status === 201 || response.status === 200) && successMessage) {
         toast.success(successMessage.title, {
           description: successMessage.description,
         });
@@ -159,11 +159,11 @@ const useSavesForm = () => {
     return response;
   };
 
-  const handleSaveDraft = async (formData: ApplicationFormData) => {
+  const handleSaveDraft = async (formData: ApplicationFormData, options?: { silent?: boolean }) => {
     const response = await handleSubmission(
       formData,
       'draft',
-      {
+      options?.silent ? null : {
         title: "Draft Saved",
         description: "Your draft has been successfully saved."
       },

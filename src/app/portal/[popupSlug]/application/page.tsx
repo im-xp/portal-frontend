@@ -81,16 +81,15 @@ export default function FormPage() {
     const formValidation = validateForm()
 
     if (!formValidation.isValid) {
-      const missingFields = formValidation.errors.map(error => error.field).join(', ')
       toast.error("Error", {
-        description: `Please fill in the following required field: ${missingFields}`,
+        description: "Please fill in all required fields",
       })
       setStatusBtn({loadingDraft: false, loadingSubmit: false})
       return
     }
 
     if (requiresFeePayment) {
-      const draftResponse = await handleSaveDraft(formData)
+      const draftResponse = await handleSaveDraft(formData, { silent: true })
       const applicationId = draftResponse?.data?.id ?? application?.id
       if (!applicationId) {
         toast.error("Error", { description: "Could not save your application. Please try again." })

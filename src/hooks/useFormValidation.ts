@@ -81,6 +81,12 @@ export const useFormValidation = (initialData: FormData) => {
         if (!needsBuild) return ''
         return !value ? 'This field is required' : ''
       }
+      if (name === 'custom_team_preferences') {
+        const teams = Array.isArray(value) ? value : []
+        if (teams.length === 0) return 'This field is required'
+        if (teams.length < 2) return 'Please select at least 2 teams'
+        return ''
+      }
       if (Array.isArray(value)) {
         return value.length === 0 ? 'This field is required' : ''
       }

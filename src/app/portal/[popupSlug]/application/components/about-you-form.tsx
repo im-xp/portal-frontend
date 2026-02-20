@@ -55,7 +55,7 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
               >
                 I have read and understood the{" "}
                 <a
-                  href="#"
+                  href="https://docs.google.com/document/d/1fVE9UNunjrs_lH9qmeHa-BcTE-hiHAgGcJidpllTzbk"
                   className="text-primary underline hover:text-primary/80"
                   target="_blank"
                   rel="noopener noreferrer"

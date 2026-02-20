@@ -42,8 +42,8 @@ export const SignatureModal = ({ open, onClose, onSave }: SignatureModalProps) =
     if (!canvas) return
     const ctx = canvas.getContext("2d")
     if (!ctx) return
-    canvas.width = canvas.offsetWidth
-    canvas.height = canvas.offsetHeight
+    canvas.width = canvas.clientWidth
+    canvas.height = canvas.clientHeight
     ctx.fillStyle = "#ffffff"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.strokeStyle = "#1a1a2e"
@@ -58,9 +58,11 @@ export const SignatureModal = ({ open, onClose, onSave }: SignatureModalProps) =
     const rect = canvas.getBoundingClientRect()
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
     const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
+    const scaleX = canvas.width / rect.width
+    const scaleY = canvas.height / rect.height
     return {
-      x: clientX - rect.left,
-      y: clientY - rect.top,
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY,
     }
   }, [])
 
