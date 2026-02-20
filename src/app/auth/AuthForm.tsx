@@ -11,10 +11,12 @@ import useSignInWorldApp from '@/hooks/useSignInWorldApp'
 import Image from 'next/image'
 import DrawerEmailWorldID from './DrawerEmailWorldID'
 import { MiniKit } from '@worldcoin/minikit-js'
+import { useSearchParams } from 'next/navigation'
 
 export default function AuthForm() {
   const [isMounted, setIsMounted] = useState(false)
-  const popupSlug = usePopupSlug()
+  const params = useSearchParams()
+  const popupSlug = params.get('popup') as string
   const branding = getPopupBranding(popupSlug)
   const { signIn } = useSignInWorldApp()
   const [open, setOpen] = useState(false)
@@ -57,6 +59,8 @@ export default function AuthForm() {
     
     // Safely check if MiniKit is installed (only works in World App)
     const isMiniKitInstalled = false // Set to false for local development
+
+    console.log('popupSlug', popupSlug, params)
     
     api.post(`citizens/authenticate`, {email: email, popup_slug: popupSlug ?? null, world_redirect: isMiniKitInstalled, signature: worldData.signature, world_address: worldData.address}).then((e) => {
       if(e.status === 200) {
