@@ -96,9 +96,10 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
                 <Checkbox
                   id="custom_has_chosen_name"
                   checked={!!formData.custom_has_chosen_name}
-                  onCheckedChange={(checked: boolean) =>
+                  onCheckedChange={(checked: boolean) => {
                     handleChange("custom_has_chosen_name", checked)
-                  }
+                    if (!checked) handleChange("custom_chosen_name", "")
+                  }}
                   aria-label="I have a chosen name that is different than my legal name"
                 />
                 <label
@@ -108,6 +109,18 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
                   I have a chosen name that&apos;s different than my legal name
                 </label>
               </div>
+
+              {!!formData.custom_has_chosen_name && (
+                <InputForm
+                  label="Chosen Name / Nickname"
+                  id="custom_chosen_name"
+                  value={formData.custom_chosen_name ?? ""}
+                  onChange={(value) => handleChange("custom_chosen_name", value)}
+                  error={errors.custom_chosen_name}
+                  isRequired
+                  placeholder="Enter your chosen name or nickname"
+                />
+              )}
             </FormInputWrapper>
           </div>
 

@@ -9,7 +9,6 @@ import { SectionSeparator } from "./section-separator"
 import { useCityProvider } from "@/providers/cityProvider"
 import { dynamicForm } from "@/constants"
 import SelectForm from "@/components/ui/Form/Select"
-import { paymentCapacityOptions } from "@/constants/Forms/edge-sa"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 
@@ -79,19 +78,6 @@ export function ScholarshipForm({ formData, errors, handleChange, fields }: Sect
                 <p className="text-sm text-muted-foreground">
                   {form?.scholarship?.interest_text}
                 </p>
-
-                {
-                  fields?.has('payment_capacity') && (
-                    <SelectForm 
-                      label="I can comfortably cover up to:"
-                      id="payment_capacity"
-                      value={formData.payment_capacity}
-                      onChange={(value) => handleChange('payment_capacity', value)}
-                      error={errors.payment_capacity}
-                      options={paymentCapacityOptions}
-                    />
-                  )
-                }
 
                 {
                   fields?.has('scholarship_video_url') && (
