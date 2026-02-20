@@ -20,7 +20,7 @@ const useApplicationFee = () => {
   const application = getRelevantApplication()
 
   const applicationFee = city?.application_fee ?? 0
-  const hasApplicationFee = application?.application_fee_required ?? false
+  const hasApplicationFee = applicationFee > 0
   const isFeePaid = application?.application_fee_paid ?? false
 
   const createFeePayment = async (
