@@ -1,8 +1,7 @@
 import { api } from "@/api"
 import { useApplication } from "@/providers/applicationProvider"
 import { useCityProvider } from "@/providers/cityProvider"
-import { PaymentsProps } from "@/types/passes"
-import { useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 
 interface FeePaymentResponse {
   checkout_url: string
@@ -13,9 +12,7 @@ interface FeePaymentResponse {
 }
 
 const useApplicationFee = () => {
-  const [isFeePaid, setIsFeePaid] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [checkingFee, setCheckingFee] = useState(false)
   const { getCity } = useCityProvider()
   const { getRelevantApplication } = useApplication()
 
@@ -23,31 +20,8 @@ const useApplicationFee = () => {
   const application = getRelevantApplication()
 
   const applicationFee = city?.application_fee ?? 0
-  const hasApplicationFee = applicationFee > 0
-
-  const checkFeePaid = useCallback(async () => {
-    if (!application || !hasApplicationFee) return
-
-    setCheckingFee(true)
-    try {
-      const response = await api.get(`payments?application_id=${application.id}`)
-      if (response.status === 200) {
-        const payments: PaymentsProps[] = response.data
-        const approvedFee = payments.some(
-          (p) => p.is_application_fee && p.status === "approved"
-        )
-        setIsFeePaid(approvedFee)
-      }
-    } catch {
-      console.error("Error checking application fee status")
-    } finally {
-      setCheckingFee(false)
-    }
-  }, [application, hasApplicationFee])
-
-  useEffect(() => {
-    checkFeePaid()
-  }, [checkFeePaid])
+  const hasApplicationFee = application?.application_fee_required ?? false
+  const isFeePaid = application?.application_fee_paid ?? false
 
   const createFeePayment = async (
     applicationId: number
@@ -79,10 +53,8 @@ const useApplicationFee = () => {
     hasApplicationFee,
     applicationFee,
     isFeePaid,
-    checkingFee,
     loading,
     createFeePayment,
-    checkFeePaid,
   }
 }
 
