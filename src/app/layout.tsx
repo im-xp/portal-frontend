@@ -18,12 +18,16 @@ const popupMetadata: Record<string, {
   image: string;
   icon?: string;
 }> = {
+  'volunteers.icelandeclipse.com': {
+    title: 'Iceland Eclipse Volunteers',
+    description: 'Welcome, Iceland Eclipse Volunteers. Log in or sign up to access your volunteer portal.',
+    image: 'https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png',
+  },
   'ripple.egypt-eclipse.com': {
     title: 'Ripple on the Nile',
     description: 'Welcome to Ripple on the Nile. Log in or sign up to access your Egypt adventure.',
     image: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-nile-icon.png',
   },
-  // Default (Iceland)
   'default': {
     title: 'The Portal at Iceland Eclipse',
     description: 'Welcome to the Portal at Iceland Eclipse. Log in or sign up to access Portal events.',

@@ -2,6 +2,7 @@
 
 import { Loader } from "@/components/ui/Loader"
 import { useCityProvider } from "@/providers/cityProvider"
+import { usePopupSlug } from "@/hooks/usePopupSlug"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect } from "react"
 
@@ -10,19 +11,20 @@ const Page = () => {
   const city = getCity()
   const router = useRouter()
   const params = useSearchParams()
-  const popupSlug = params.get('popup')
+  const queryPopupSlug = params.get('popup')
+  const cookiePopupSlug = usePopupSlug()
+  const popupSlug = queryPopupSlug || cookiePopupSlug
 
   useEffect(() => {
     if(popupSlug){
-      console.log("popupSlug", popupSlug)
       router.push(`/portal/${popupSlug}`)
-      return;
+      return
     }
-    
-    // if(city){
-    //   router.push(`/portal/${city.slug}`)
-    // }
-  }, [city, popupSlug])
+
+    if(city?.slug){
+      router.push(`/portal/${city.slug}`)
+    }
+  }, [city, popupSlug, router])
 
   return (
     <div className="w-full h-full">

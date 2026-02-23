@@ -1,22 +1,20 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button, ButtonAnimated } from '@/components/ui/button'
+import { ButtonAnimated } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { api } from '@/api'
 import { motion } from 'framer-motion'
 import { getPopupBranding } from '@/constants/popupBranding'
-import { usePopupSlug } from '@/hooks/usePopupSlug'
 import useSignInWorldApp from '@/hooks/useSignInWorldApp'
-import Image from 'next/image'
 import DrawerEmailWorldID from './DrawerEmailWorldID'
-import { MiniKit } from '@worldcoin/minikit-js'
-import { useSearchParams } from 'next/navigation'
 
-export default function AuthForm() {
+interface AuthFormProps {
+  popupSlug: string | null
+}
+
+export default function AuthForm({ popupSlug }: AuthFormProps) {
   const [isMounted, setIsMounted] = useState(false)
-  const params = useSearchParams()
-  const popupSlug = params.get('popup') as string
   const branding = getPopupBranding(popupSlug)
   const { signIn } = useSignInWorldApp()
   const [open, setOpen] = useState(false)
@@ -57,10 +55,7 @@ export default function AuthForm() {
     setIsValidEmail(true)
     setIsLoading(true)
     
-    // Safely check if MiniKit is installed (only works in World App)
-    const isMiniKitInstalled = false // Set to false for local development
-
-    console.log('popupSlug', popupSlug, params)
+    const isMiniKitInstalled = false
     
     api.post(`citizens/authenticate`, {email: email, popup_slug: popupSlug ?? null, world_redirect: isMiniKitInstalled, signature: worldData.signature, world_address: worldData.address}).then((e) => {
       if(e.status === 200) {

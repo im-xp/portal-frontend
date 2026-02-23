@@ -81,6 +81,46 @@ export const popupBranding: Record<string, PopupBranding> = {
       sidebarRing: '189 69% 56%',
     },
   },
+  'iceland-eclipse-volunteers': {
+    name: 'Iceland Eclipse Volunteers',
+    logo: 'https://storage.googleapis.com/icelandeclipse/the-portal-at-iceland-eclipse-logo.png',
+    logoAlt: 'Iceland Eclipse Volunteers logo',
+    heroImage: 'https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png',
+    heroAlt: 'Iceland Eclipse Volunteers hero image',
+    backgroundImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse-volunteers-bg.jpg',
+    welcomeMessage: 'Welcome, Iceland Eclipse Volunteers!',
+    colors: {
+      // Iceland Eclipse - Light theme matching production globals.css
+      background: '0 0% 98%',             // Off-white page background
+      foreground: '217 92% 15%',          // #021849 Dark blue text
+      primary: '189 69% 56%',             // #3cc7e1 Cyan
+      primaryForeground: '0 0% 100%',     // White text on cyan (for tabs)
+      secondary: '217 92% 15%',           // Dark blue (for purchased passes)
+      secondaryForeground: '0 0% 100%',   // White text on dark blue
+      muted: '210 20% 93%',               // Light grey (page background)
+      mutedForeground: '217 50% 35%',     // Dark muted text
+      accent: '189 69% 56%',              // Cyan (for section headers)
+      accentForeground: '217 92% 15%',    // Dark text on cyan
+      border: '210 25% 85%',              // Light grey borders
+      input: '210 25% 90%',               // Light input backgrounds
+      ring: '189 69% 56%',
+      // Card colors - white cards with dark text
+      card: '0 0% 100%',
+      cardForeground: '217 92% 15%',
+      // Popover colors
+      popover: '0 0% 100%',
+      popoverForeground: '217 92% 15%',
+      // Sidebar - Iceland Eclipse dark theme
+      sidebarBackground: '217 92% 13%',
+      sidebarForeground: '210 8% 90%',
+      sidebarPrimary: '189 69% 56%',
+      sidebarPrimaryForeground: '0 0% 100%',
+      sidebarAccent: '217 85% 18%',
+      sidebarAccentForeground: '210 8% 90%',
+      sidebarBorder: '217 70% 25%',
+      sidebarRing: '189 69% 56%',
+    },
+  },
   'ripple-on-the-nile': {
     name: 'Ripple on the Nile',
     logo: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-the-nile-logo.png',

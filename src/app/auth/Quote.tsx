@@ -2,10 +2,12 @@
 
 import Image from 'next/image'
 import { getPopupBranding } from '@/constants/popupBranding'
-import { usePopupSlug } from '@/hooks/usePopupSlug'
 
-export default function Quote() {
-  const popupSlug = usePopupSlug()
+interface QuoteProps {
+  popupSlug: string | null
+}
+
+export default function Quote({ popupSlug }: QuoteProps) {
   const branding = getPopupBranding(popupSlug)
 
   return (
