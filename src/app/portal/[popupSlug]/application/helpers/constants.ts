@@ -44,6 +44,7 @@ export const initial_data = {
     custom_talents_skills: [] as string[],
     custom_skills_description: '',
     custom_medical_conditions: '',
+    custom_accommodations_needed: '',
     custom_available_phases: [] as string[],
     custom_staff_referral: '',
     custom_referral_name: '',
