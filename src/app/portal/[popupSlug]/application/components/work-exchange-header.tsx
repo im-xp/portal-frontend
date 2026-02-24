@@ -58,7 +58,7 @@ export const WorkExchangeHeader = () => {
               <div className="overflow-x-auto rounded-xl w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/eclipse_form.png"
+                  src="/work_exchange_program.jpg"
                   alt="Work Exchange options table showing Long Build, Short Build, Event, and Post-Event options with arrival dates, work requirements, accommodations, transportation, and meals details"
                   className=" w-[600px] h-auto mx-auto  border border-border"
                 />

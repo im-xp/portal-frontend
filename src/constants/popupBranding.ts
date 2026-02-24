@@ -34,6 +34,10 @@ export type PopupBranding = {
   name: string
   logo: string
   logoAlt: string
+  logoSize: {
+    width: number
+    height: number
+  }
   heroImage: string
   heroAlt: string
   backgroundImage: string
@@ -46,6 +50,10 @@ export const popupBranding: Record<string, PopupBranding> = {
     name: 'The Portal at Iceland Eclipse',
     logo: 'https://storage.googleapis.com/icelandeclipse/the-portal-at-iceland-eclipse-logo.png',
     logoAlt: 'The Portal at Iceland Eclipse logo',
+    logoSize: {
+      width: 200,
+      height: 80,
+    },
     heroImage: 'https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png',
     heroAlt: 'The Portal at Iceland Eclipse wormhole image',
     backgroundImage: 'https://images.typeform.com/images/gAqmGWTiyfrT/background/large',
@@ -85,6 +93,10 @@ export const popupBranding: Record<string, PopupBranding> = {
     name: 'Iceland Eclipse Volunteers',
     logo: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse-logo__white.png',
     logoAlt: 'Iceland Eclipse Volunteers logo',
+    logoSize: {
+      width: 100,
+      height: 80,
+    },
     heroImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse__logo-graphic-with-tagline.png',
     heroAlt: 'Iceland Eclipse Volunteers hero image',
     backgroundImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse-background.jpg',
@@ -125,6 +137,10 @@ export const popupBranding: Record<string, PopupBranding> = {
     name: 'Ripple on the Nile',
     logo: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-the-nile-logo.png',
     logoAlt: 'Ripple on the Nile logo',
+    logoSize: {
+      width: 200,
+      height: 80,
+    },
     heroImage: 'https://storage.googleapis.com/egypt-eclipse/ripple-on-nile-icon.png',
     heroAlt: 'Ripple on the Nile hero image',
     backgroundImage: 'https://storage.googleapis.com/egypt-eclipse/egypt-bg.jpg',

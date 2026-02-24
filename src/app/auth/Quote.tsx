@@ -24,8 +24,8 @@ export default function Quote({ popupSlug }: QuoteProps) {
         <Image
           src={branding.logo}
           alt={branding.logoAlt}
-          width={200}
-          height={80}
+          width={branding.logoSize.width}
+          height={branding.logoSize.height}
           priority
         />
       </div>

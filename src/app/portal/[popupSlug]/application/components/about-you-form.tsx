@@ -17,8 +17,8 @@ import { COUNTRIES } from "../constants/countries"
 
 const TICKET_OPTIONS = [
   { value: "no", label: "No" },
-  { value: "ga", label: "Yes, I have an Eclipse Seeker (GA) ticket" },
-  { value: "vip", label: "Yes, I have a Celestial Voyager (VIP) ticket" },
+  { value: "ga", label: "Yes, I have an Eclipse Seeker ticket" },
+  { value: "vip", label: "Yes, I have a Celestial Voyager ticket" },
 ] as const
 
 export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) => {
