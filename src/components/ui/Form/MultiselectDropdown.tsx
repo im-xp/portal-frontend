@@ -63,7 +63,7 @@ export default function MultiSelectDropdown({ options, onChange, defaultValue, t
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between min-h-10 h-auto bg-white ${error ? 'border-red-500' : ''}`}
+              className={`w-full justify-between min-h-10 h-auto bg-background ${error ? 'border-red-500' : ''}`}
             >
               <div className="flex flex-wrap gap-1 flex-1">
                 {selectedValues.length === 0 ? (

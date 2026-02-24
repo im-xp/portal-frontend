@@ -167,7 +167,7 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
                     aria-expanded={countryOpen}
                     aria-label="Select country of residence"
                     className={cn(
-                      "w-full justify-between font-normal bg-white h-10",
+                      "w-full justify-between font-normal bg-background h-10",
                       !formData.residence && "text-muted-foreground",
                       errors.residence && "border-destructive"
                     )}
