@@ -83,42 +83,42 @@ export const popupBranding: Record<string, PopupBranding> = {
   },
   'iceland-eclipse-volunteers': {
     name: 'Iceland Eclipse Volunteers',
-    logo: 'https://storage.googleapis.com/icelandeclipse/the-portal-at-iceland-eclipse-logo.png',
+    logo: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse-logo__white.png',
     logoAlt: 'Iceland Eclipse Volunteers logo',
-    heroImage: 'https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png',
+    heroImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse__logo-graphic-with-tagline.png',
     heroAlt: 'Iceland Eclipse Volunteers hero image',
-    backgroundImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse-volunteers-bg.jpg',
+    backgroundImage: 'https://storage.googleapis.com/egypt-eclipse/egypt-bg.jpg',
     welcomeMessage: 'Welcome, Iceland Eclipse Volunteers!',
     colors: {
-      // Iceland Eclipse - Light theme matching production globals.css
-      background: '0 0% 98%',             // Off-white page background
-      foreground: '217 92% 15%',          // #021849 Dark blue text
-      primary: '189 69% 56%',             // #3cc7e1 Cyan
-      primaryForeground: '0 0% 100%',     // White text on cyan (for tabs)
-      secondary: '217 92% 15%',           // Dark blue (for purchased passes)
-      secondaryForeground: '0 0% 100%',   // White text on dark blue
-      muted: '210 20% 93%',               // Light grey (page background)
-      mutedForeground: '217 50% 35%',     // Dark muted text
-      accent: '189 69% 56%',              // Cyan (for section headers)
-      accentForeground: '217 92% 15%',    // Dark text on cyan
-      border: '210 25% 85%',              // Light grey borders
-      input: '210 25% 90%',               // Light input backgrounds
-      ring: '189 69% 56%',
-      // Card colors - white cards with dark text
-      card: '0 0% 100%',
-      cardForeground: '217 92% 15%',
+      // Iceland Eclipse Volunteers - Dark blue theme
+      background: '228 60% 28%',             // Dark blue (body level, behind main)
+      foreground: '200 43% 96%',             // #f0f6f9 light text
+      primary: '26 73% 54%',                 // #df7e35 orange (buttons)
+      primaryForeground: '0 0% 100%',        // White text on orange buttons
+      secondary: '238 51% 14%',              // #111235 dark blue (hover)
+      secondaryForeground: '200 43% 96%',    // Light text on secondary
+      muted: '228 79% 36%',                  // #1330a5 visible page background
+      mutedForeground: '200 30% 75%',        // Dimmed light text
+      accent: '170 98% 52%',                 // #0DFCD3 teal (headlines)
+      accentForeground: '228 79% 36%',       // Dark blue text on teal
+      border: '228 50% 50%',                 // Muted blue border
+      input: '228 50% 50%',                  // Match border for inputs
+      ring: '170 98% 52%',                   // Teal focus ring
+      // Card colors - dark blue cards with light text
+      card: '228 79% 30%',
+      cardForeground: '200 43% 96%',
       // Popover colors
-      popover: '0 0% 100%',
-      popoverForeground: '217 92% 15%',
-      // Sidebar - Iceland Eclipse dark theme
-      sidebarBackground: '217 92% 13%',
-      sidebarForeground: '210 8% 90%',
-      sidebarPrimary: '189 69% 56%',
+      popover: '228 79% 32%',
+      popoverForeground: '200 43% 96%',
+      // Sidebar - dark blue theme
+      sidebarBackground: '228 79% 28%',
+      sidebarForeground: '200 43% 96%',
+      sidebarPrimary: '170 98% 52%',
       sidebarPrimaryForeground: '0 0% 100%',
-      sidebarAccent: '217 85% 18%',
-      sidebarAccentForeground: '210 8% 90%',
-      sidebarBorder: '217 70% 25%',
-      sidebarRing: '189 69% 56%',
+      sidebarAccent: '238 51% 14%',
+      sidebarAccentForeground: '200 43% 96%',
+      sidebarBorder: '228 60% 28%',
+      sidebarRing: '170 98% 52%',
     },
   },
   'ripple-on-the-nile': {
