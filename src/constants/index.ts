@@ -1,4 +1,6 @@
 import { icelandEclipsePreapproved } from "./Forms/iceland-eclipse-preapproved";
+import { icelandEclipseVolunteers } from "./Forms/iceland-eclipse-volunteers";
+import { rippleOnTheNile } from "./Forms/ripple-on-the-nile";
 
 // Custom field definition for popup-specific questions stored in JSONB
 export type CustomField = {
@@ -52,4 +54,6 @@ export type DynamicForm = {
 
 export const dynamicForm: Record<string, DynamicForm | null> = {
   'default': icelandEclipsePreapproved,
+  'iceland-eclipse-volunteers': icelandEclipseVolunteers,
+  'ripple-on-the-nile': rippleOnTheNile,
 }

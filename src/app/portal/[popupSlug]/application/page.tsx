@@ -137,24 +137,54 @@ export default function FormPage() {
         <ExistingApplicationCard onImport={handleImport} onCancel={handleCancelImport} data={existingApplication} />
       )}
       <form onSubmit={handleSubmit} className="space-y-8 px-8 md:px-12">
-        {/* <FormHeader /> */}
-        <WorkExchangeHeader />
-        <SectionSeparator />
+        {
+          city?.slug === 'iceland-eclipse-volunteers' ?(
+            <>
+              <WorkExchangeHeader />
+              <SectionSeparator />
 
-          <AboutYouForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-   
-
-          <ContactInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-    
-          <ExperienceForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-
-
-          <SpecialAccommodationsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
-
-          <AvailabilityTeamForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+                <AboutYouForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
         
 
-          <AgreementForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+                <ContactInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+          
+                <ExperienceForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+
+
+                <SpecialAccommodationsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+
+                <AvailabilityTeamForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+              
+
+                <AgreementForm formData={formData} errors={errors} handleChange={handleChange} fields={fields} />
+            </>
+          ) : (
+            <>
+              <FormHeader />
+              <SectionSeparator />
+      
+              <PersonalInformationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+              <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="personal_information" />
+      
+              <ProfessionalDetailsForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+              <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="professional_details" />
+      
+              <ParticipationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+              <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="participation" />
+      
+              <PatagoniaResidenciesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+      
+              <ChildrenPlusOnesForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+      
+              <ScholarshipForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+      
+              <AccomodationForm formData={formData} errors={errors} handleChange={handleChange} fields={fields}/>
+      
+              {/* Custom fields for "other" section - additional popup-specific questions */}
+              <CustomFieldsForm formData={formData} errors={errors} handleChange={handleChange} section="other" />
+            </>
+          )
+        }
         
 
         {requiresFeePayment && (
