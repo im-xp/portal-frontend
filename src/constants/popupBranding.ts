@@ -87,7 +87,7 @@ export const popupBranding: Record<string, PopupBranding> = {
     logoAlt: 'Iceland Eclipse Volunteers logo',
     heroImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse__logo-graphic-with-tagline.png',
     heroAlt: 'Iceland Eclipse Volunteers hero image',
-    backgroundImage: 'https://storage.googleapis.com/egypt-eclipse/egypt-bg.jpg',
+    backgroundImage: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse-background.jpg',
     welcomeMessage: 'Welcome, Iceland Eclipse Volunteers!',
     colors: {
       // Iceland Eclipse Volunteers - Dark blue theme
