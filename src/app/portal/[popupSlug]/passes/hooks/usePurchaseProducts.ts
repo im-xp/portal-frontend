@@ -45,7 +45,7 @@ const usePurchaseProducts = () => {
 
       if(response.status === 200){
         const redirectUrl = `${window.location.origin}/checkout/success${city?.slug ? `?popup=${city.slug}` : ''}`;
-        if(response.data.status === 'pending'){
+        if(response.data.status.toLowerCase() === 'pending'){
           if(MiniKit.isInstalled()){
             const checkoutUrl = response.data.checkout_url
             const url = new URL(checkoutUrl)
@@ -53,7 +53,7 @@ const usePurchaseProducts = () => {
           }else{
             window.location.href = `${response.data.checkout_url}?redirect_url=${redirectUrl}`
           }
-        }else if(response.data.status === 'approved'){
+        }else if(response.data.status.toLowerCase() === 'approved'){
           await getApplication()
           if(editableMode){
             toggleEditing(false)

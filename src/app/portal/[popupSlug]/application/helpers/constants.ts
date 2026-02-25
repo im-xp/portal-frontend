@@ -34,6 +34,7 @@ export const initial_data = {
     custom_has_chosen_name: false,
     custom_ticket_type: '',
     custom_city_town: '',
+    custom_state_option: '',
     custom_phone_number: '',
     custom_emergency_contact_name: '',
     custom_emergency_contact_phone: '',

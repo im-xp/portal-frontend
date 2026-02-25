@@ -234,6 +234,15 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
             error={errors.custom_city_town}
             isRequired
           />
+
+          {/* State Option */}
+          <InputForm
+            label="What state do you live in?"
+            id="custom_state_option"
+            value={formData.custom_state_option ?? ""}
+            onChange={(value) => handleChange("custom_state_option", value)}
+            error={errors.custom_state_option}
+          />
         </div>
       </SectionWrapper>
       <SectionSeparator />
