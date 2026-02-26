@@ -24,9 +24,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: branding.name,
     description: branding.welcomeMessage || `Welcome to ${branding.name}`,
     openGraph: {
+      type: 'website',
       title: branding.name,
       description: branding.welcomeMessage || `Welcome to ${branding.name}`,
       images: [{ url: ogImage, width: 1200, height: 630, alt: branding.heroAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: branding.name,
+      description: branding.welcomeMessage || `Welcome to ${branding.name}`,
+      images: [ogImage],
     },
   }
 }

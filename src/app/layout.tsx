@@ -39,16 +39,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get('x-forwarded-host') || headersList.get('host') || '';
   const hostname = host.split(':')[0];
+  const protocol = headersList.get('x-forwarded-proto') || 'https';
+  const baseUrl = `${protocol}://${hostname}`;
   
   const meta = popupMetadata[hostname] || popupMetadata['default'];
   
   return {
+    metadataBase: new URL(baseUrl),
     title: meta.title,
     description: meta.description,
     icons: {
       icon: '/icon.png',
     },
     openGraph: {
+      type: 'website',
+      url: baseUrl,
       title: meta.title,
       description: meta.description,
       images: [{
@@ -57,6 +62,12 @@ export async function generateMetadata(): Promise<Metadata> {
         height: 630,
         alt: meta.title,
       }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      images: [meta.image],
     },
   };
 }
