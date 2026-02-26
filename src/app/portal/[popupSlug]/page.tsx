@@ -19,13 +19,16 @@ export default function Home() {
   const [isProcessingFee, setIsProcessingFee] = useState(false)
   const router = useRouter()
   const searchParams = useSearchParams()
-  const hasProcessedFee = useRef(false)
-  const pollingRef = useRef<NodeJS.Timeout | null>(null)
+  const isSubmittingRef = useRef(false)
   const getApplicationsApi = useGetApplications(false)
+  const getApplicationsApiRef = useRef(getApplicationsApi)
+  getApplicationsApiRef.current = getApplicationsApi
   const city = getCity()
   const relevantApplication = getRelevantApplication()
 
   const handleAutoSubmit = useCallback(async (applicationId: number) => {
+    if (isSubmittingRef.current) return
+    isSubmittingRef.current = true
     try {
       const response = await api.put(`applications/${applicationId}`, { status: 'in review' })
       if (response.status === 200 || response.status === 201) {
@@ -49,36 +52,24 @@ export default function Home() {
   }, [city?.slug, router, updateApplication])
 
   useEffect(() => {
-    const feePaidParam = searchParams.get('fee_paid')
-    if (feePaidParam !== 'true' || hasProcessedFee.current) return
-
-    hasProcessedFee.current = true
+    if (searchParams.get('fee_paid') !== 'true') return
     setIsProcessingFee(true)
-
-    if (relevantApplication?.application_fee_paid) {
-      handleAutoSubmit(relevantApplication.id)
-      return
-    }
-
-    pollingRef.current = setInterval(async () => {
-      await getApplicationsApi()
-    }, 3000)
-
-    return () => {
-      if (pollingRef.current) clearInterval(pollingRef.current)
-    }
   }, [searchParams])
 
   useEffect(() => {
+    if (!isProcessingFee || relevantApplication?.application_fee_paid) return
+
+    const timeoutId = setTimeout(() => {
+      getApplicationsApiRef.current()
+    }, 3000)
+
+    return () => clearTimeout(timeoutId)
+  }, [isProcessingFee, relevantApplication])
+
+  useEffect(() => {
     if (!isProcessingFee || !relevantApplication?.application_fee_paid) return
-
-    if (pollingRef.current) {
-      clearInterval(pollingRef.current)
-      pollingRef.current = null
-    }
-
     handleAutoSubmit(relevantApplication.id)
-  }, [relevantApplication?.application_fee_paid, isProcessingFee, handleAutoSubmit, relevantApplication?.id])
+  }, [isProcessingFee, relevantApplication?.application_fee_paid, handleAutoSubmit, relevantApplication?.id])
   
   if(!city && !relevantApplication) return null
 

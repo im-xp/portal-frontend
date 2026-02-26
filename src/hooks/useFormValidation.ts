@@ -23,7 +23,6 @@ const defaultCustomRequired = [
   'custom_ticket_type',
   'custom_city_town',
   'residence',
-  'email',
   'custom_phone_number',
   'custom_emergency_contact_name',
   'custom_emergency_contact_phone',

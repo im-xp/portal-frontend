@@ -225,16 +225,6 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
             )}
           </FormInputWrapper>
 
-          {/* City or Town */}
-          <InputForm
-            label="What city or town do you live in?"
-            id="custom_city_town"
-            value={formData.custom_city_town ?? ""}
-            onChange={(value) => handleChange("custom_city_town", value)}
-            error={errors.custom_city_town}
-            isRequired
-          />
-
           {/* State Option */}
           <InputForm
             label="What state/province do you live in?"
@@ -242,6 +232,16 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
             value={formData.custom_state_option ?? ""}
             onChange={(value) => handleChange("custom_state_option", value)}
             error={errors.custom_state_option}
+          />
+
+          {/* City or Town */}
+          <InputForm
+            label="What city/town do you live in?"
+            id="custom_city_town"
+            value={formData.custom_city_town ?? ""}
+            onChange={(value) => handleChange("custom_city_town", value)}
+            error={errors.custom_city_town}
+            isRequired
           />
         </div>
       </SectionWrapper>

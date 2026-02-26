@@ -21,7 +21,7 @@ export const ContactInformationForm = ({ formData, errors, handleChange }: Secti
       <SectionWrapper title="Contact Information">
         <div className="space-y-6">
           <div className="grid gap-4 sm:grid-cols-2">
-            <InputForm
+            {/* <InputForm
               label="Email Address"
               id="email"
               value={formData.email ?? ""}
@@ -31,7 +31,7 @@ export const ContactInformationForm = ({ formData, errors, handleChange }: Secti
               subtitle="You must use a different email address for each application submitted. Please double check spelling!"
               placeholder="sample@gmail.com"
               type="email"
-            />
+            /> */}
 
             <PhoneInputForm
               label="Phone Number"
