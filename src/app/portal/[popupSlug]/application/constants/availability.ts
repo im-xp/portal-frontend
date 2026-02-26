@@ -1,22 +1,27 @@
 export const PRODUCTION_PHASES_OPTIONS = [
   {
     value: "long_build",
-    label: "ECL - Long Build (July 27th - August 2nd)",
+    label: "ECL - Builder's Residency - Long Build (July 27th - August 2nd)",
     description: "Arrive: Sunday, July 26th | 2 weeks of 10 hour workdays | Catered meals for duration of work + event | Preset tent for duration of work + event",
   },
   {
+    value: "10_day_build",
+    label: "ECL - Builder's Residency - 10-Day Build (July 30th - August 9th)",
+    description: "Arrive: Tuesday, July 29th | 10 days of 10 hour workdays | Catered meals for duration of work + event | Preset tent for duration of work + event",
+  },
+  {
     value: "short_build",
-    label: "ECL - Short Build (August 3rd - August 9th)",
+    label: "ECL - Builder's Residency - Short Build (August 3rd - August 9th)",
     description: "Arrive: Sunday, August 2nd | 1 week of 10 hour workdays | Catered meals on workdays only; at-cost meal plan during event | Preset tent for duration of work + event",
   },
   {
     value: "event",
-    label: "ECL - Event (August 10th - August 15th)",
+    label: "ECL - Builder's Residency - Event (August 10th - August 15th)",
     description: "Arrive: Sunday, August 9th | (6) five-hour shifts | (1) meal per shift | Discount Code for Accommodations",
   },
   {
     value: "post_event",
-    label: "ECL - Post-Event (August 16th - August 18th)",
+    label: "ECL - Builder's Residency - Post-Event (August 16th - August 18th)",
     description: "Arrive: Sunday, August 9th | 3 days of 10 hour workdays | Catered meals on workdays only; at-cost meal plan during event | Discount Code for Accommodations",
   },
 ]

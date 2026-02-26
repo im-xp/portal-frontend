@@ -237,7 +237,7 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
 
           {/* State Option */}
           <InputForm
-            label="What state do you live in?"
+            label="What state/province do you live in?"
             id="custom_state_option"
             value={formData.custom_state_option ?? ""}
             onChange={(value) => handleChange("custom_state_option", value)}

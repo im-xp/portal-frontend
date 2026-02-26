@@ -16,13 +16,13 @@ const HeaderProfile = () => {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground">My Profile</h1>
-            <p className="text-muted-foreground">Manage your Edge experience and history</p>
+            {/* <p className="text-muted-foreground">Manage your IMXP and history</p> */}
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="text-foreground border-border bg-transparent hover:bg-accent" onClick={ () => router.push('/portal/poaps')}>
+            {/* <Button variant="outline" className="text-foreground border-border bg-transparent hover:bg-accent" onClick={ () => router.push('/portal/poaps')}>
               <Medal className="mr-2 size-4" />
               My Collectibles
-            </Button>
+            </Button> */}
             {/* <Button variant="outline" className="text-foreground border-border hover:bg-accent bg-transparent">
               My Referrals
             </Button> */}

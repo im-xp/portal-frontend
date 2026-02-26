@@ -36,7 +36,7 @@ export default function ReferralLinks({ referralCount }: { referralCount: number
         <div className="flex flex-col gap-1 items-start justify-center">
           <h3 className="text-lg font-semibold text-foreground">Referral Links</h3>
           <p className="text-sm text-muted-foreground">
-            Give your friends an auto-approval for upcoming EdgeCity events
+            Give your friends an auto-approval for upcoming IMXP events
           </p>
         </div>
         <div className="text-right flex gap-2 items-center">

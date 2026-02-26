@@ -37,13 +37,6 @@ const useResources = () => {
       icon: Ticket,
       status: applicationAccepted ? 'active' : 'disabled',
       path: `/portal/${city?.slug}/passes`,
-      children: [
-        {
-          name: 'ZK Email discounts',
-          status: isEdge && applicationAccepted ? 'active' : !applicationAccepted ? 'disabled' : 'hidden',
-          path: `/portal/${city?.slug}/coupons`
-        }
-      ]
     },
     {
       name: 'Participant Directory', 

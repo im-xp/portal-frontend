@@ -101,7 +101,7 @@ export default function FormPage() {
         const feePayment = await createFeePayment(applicationId)
         if (feePayment?.checkout_url) {
           const checkoutUrl = new URL(feePayment.checkout_url)
-          checkoutUrl.searchParams.set('redirect_url', `${window.location.origin}/portal/${city?.slug}`)
+          checkoutUrl.searchParams.set('redirect_url', `${window.location.origin}/portal/${city?.slug}?fee_paid=true`)
           window.location.href = checkoutUrl.toString()
           return
         }

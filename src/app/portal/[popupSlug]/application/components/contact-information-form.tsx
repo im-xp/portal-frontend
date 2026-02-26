@@ -66,7 +66,7 @@ export const ContactInformationForm = ({ formData, errors, handleChange }: Secti
 
           <FormInputWrapper>
             <LabelRequired isRequired>
-              Want to stay in the loop about future Eclipse events and Shift Happens opportunities?
+              Want to stay in the loop about Future IMXP events and Shift Happens opportunities?
             </LabelRequired>
             <p className="text-sm text-muted-foreground italic">
               You can opt-out anytime

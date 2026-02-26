@@ -76,8 +76,8 @@ export const useFormValidation = (initialData: FormData) => {
         return !value ? 'This field is required' : ''
       }
       if (name === 'custom_build_experience') {
-        const teams = formData.custom_team_preferences as string[] | null
-        const needsBuild = teams?.includes('build') || teams?.includes('art_decor')
+        const phases = formData.custom_available_phases as string[] | null
+        const needsBuild = phases?.some(p => ["long_build", "short_build", "10_day_build"].includes(p))
         if (!needsBuild) return ''
         return !value ? 'This field is required' : ''
       }

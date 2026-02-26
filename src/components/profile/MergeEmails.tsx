@@ -461,7 +461,7 @@ export default function MergeEmails() {
             <div className='flex-1'>
               <div className='flex items-center gap-2 mb-2'>
                 <h3 className='text-lg font-semibold text-foreground'>
-                  Combine your Edge City metrics from different accounts
+                  Combine your IMXP metrics from different accounts
                 </h3>
                 <span className='px-2 py-0.5 bg-primary/20 text-primary text-xs font-medium rounded-full whitespace-nowrap'>
                   new

@@ -55,7 +55,7 @@ export default function MultiSelectDropdown({ options, onChange, defaultValue, t
   const hasDescriptions = options.some((option) => option.description)
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-full overflow-hidden">
         <label className="text-sm font-medium">{title}</label>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
@@ -63,17 +63,17 @@ export default function MultiSelectDropdown({ options, onChange, defaultValue, t
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className={`w-full justify-between min-h-10 h-auto bg-background ${error ? 'border-red-500' : ''}`}
+              className={`w-full max-w-full justify-between min-h-10 h-auto bg-background whitespace-normal overflow-hidden ${error ? 'border-red-500' : ''}`}
             >
-              <div className="flex flex-wrap gap-1 flex-1">
+              <div className="flex flex-wrap gap-1 flex-1 min-w-0 overflow-hidden">
                 {selectedValues.length === 0 ? (
                   <span className="text-muted-foreground">{placeholder ?? "Select options..."}</span>
                 ) : (
                   selectedOptions.map((option) => (
-                    <Badge key={option.value} variant="secondary" className="mr-1 mb-1">
-                      {option.label}
+                    <Badge key={option.value} variant="secondary" className="mr-1 mb-1 max-w-full whitespace-normal text-left">
+                      <span className="break-words">{option.label}</span>
                       <span
-                        className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer"
+                        className="ml-1 shrink-0 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer"
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => {
@@ -101,7 +101,7 @@ export default function MultiSelectDropdown({ options, onChange, defaultValue, t
               <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-full p-0" align="start">
+          <PopoverContent className="w-[var(--radix-popover-trigger-width)] max-w-[calc(100vw-2rem)] p-0" align="start">
             <Command>
               <div className="flex items-center border-b px-1">
                 <CommandInput placeholder="Search for option..." className="flex-1" />

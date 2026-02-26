@@ -28,12 +28,12 @@ const animationProps = {
   transition: { duration: 0.3, ease: "easeInOut" },
 }
 
-const BUILD_TEAM_VALUES = ["build", "art_decor"]
+const BUILD_PHASE_VALUES = ["long_build", "short_build", "10_day_build"]
 
 export const AvailabilityTeamForm = ({ formData, errors, handleChange }: SectionProps) => {
   const isReferred = formData.custom_staff_referral === "yes"
-  const selectedTeams = (formData.custom_team_preferences as string[]) ?? []
-  const showBuildExperience = selectedTeams.some((t) => BUILD_TEAM_VALUES.includes(t))
+  const selectedPhases = (formData.custom_available_phases as string[]) ?? []
+  const showBuildExperience = selectedPhases.some((p) => BUILD_PHASE_VALUES.includes(p))
 
   return (
     <>
@@ -120,7 +120,7 @@ export const AvailabilityTeamForm = ({ formData, errors, handleChange }: Section
             {showBuildExperience && (
               <motion.div {...animationProps}>
                 <TextAreaForm
-                  label="Tell us about any relevant past build experience or projects you've worked on, and what role you played in them."
+                  label="If you're applying for our builder's residency, tell us about any relevant past build experience or projects you've worked on, and what role you played in them."
                   id="custom_build_experience"
                   value={formData.custom_build_experience ?? ""}
                   handleChange={(value) => handleChange("custom_build_experience", value)}

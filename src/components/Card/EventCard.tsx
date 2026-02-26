@@ -11,9 +11,10 @@ interface EventCardProps extends PopupsProps {
   status?: EventStatus
   onApply: () => void
   canApply: boolean
+  loading?: boolean
 }
 
-export function EventCard({ name, tagline, location, start_date, end_date, image_url, status = 'not_started', onApply, canApply }: EventCardProps) {
+export function EventCard({ name, tagline, location, start_date, end_date, image_url, status = 'not_started', onApply, canApply, loading = false }: EventCardProps) {
 
   const startDate = new Date(start_date)?.toLocaleDateString('en-EN', {day: 'numeric', month: 'long', year: 'numeric'})
   const endDate = new Date(end_date)?.toLocaleDateString('en-EN', {day: 'numeric', month: 'long', year: 'numeric'})
@@ -49,7 +50,7 @@ export function EventCard({ name, tagline, location, start_date, end_date, image
                 </div>
                 {status !== 'rejected' && (
                   <div className="flex items-end justify-end sm:justify-end">
-                    <ButtonAnimated onClick={onApply} className='w-full md:w-auto px-9'>
+                    <ButtonAnimated loading={loading} disabled={loading} onClick={onApply} className='w-full md:w-auto px-9'>
                       {status === 'not_started' ? 'Apply' : 
                       status === 'draft' ? 'Continue Application' :
                       status === 'in review' ? 'Edit Application' :

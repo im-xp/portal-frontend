@@ -6,16 +6,79 @@ import { Loader } from "@/components/ui/Loader"
 import { dynamicForm } from "@/constants"
 import { useApplication } from "@/providers/applicationProvider"
 import { useCityProvider } from "@/providers/cityProvider"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { api } from "@/api"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { toast } from "sonner"
+import useGetApplications from "@/hooks/useGetApplications"
 
 export default function Home() {
   const { getCity } = useCityProvider()
-  const { getRelevantApplication } = useApplication()
+  const { getRelevantApplication, updateApplication } = useApplication()
   const [isLoading, setIsLoading] = useState(false)
+  const [isProcessingFee, setIsProcessingFee] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const hasProcessedFee = useRef(false)
+  const pollingRef = useRef<NodeJS.Timeout | null>(null)
+  const getApplicationsApi = useGetApplications(false)
   const city = getCity()
   const relevantApplication = getRelevantApplication()
+
+  const handleAutoSubmit = useCallback(async (applicationId: number) => {
+    try {
+      const response = await api.put(`applications/${applicationId}`, { status: 'in review' })
+      if (response.status === 200 || response.status === 201) {
+        updateApplication(response.data)
+        toast.success("Application Submitted", {
+          description: "Your application has been successfully submitted.",
+        })
+      } else {
+        toast.error("Error", {
+          description: "Could not submit your application. Please try again.",
+        })
+      }
+    } catch {
+      toast.error("Error", {
+        description: "Could not submit your application. Please try again.",
+      })
+    } finally {
+      setIsProcessingFee(false)
+      router.replace(`/portal/${city?.slug}`, { scroll: false })
+    }
+  }, [city?.slug, router, updateApplication])
+
+  useEffect(() => {
+    const feePaidParam = searchParams.get('fee_paid')
+    if (feePaidParam !== 'true' || hasProcessedFee.current) return
+
+    hasProcessedFee.current = true
+    setIsProcessingFee(true)
+
+    if (relevantApplication?.application_fee_paid) {
+      handleAutoSubmit(relevantApplication.id)
+      return
+    }
+
+    pollingRef.current = setInterval(async () => {
+      await getApplicationsApi()
+    }, 3000)
+
+    return () => {
+      if (pollingRef.current) clearInterval(pollingRef.current)
+    }
+  }, [searchParams])
+
+  useEffect(() => {
+    if (!isProcessingFee || !relevantApplication?.application_fee_paid) return
+
+    if (pollingRef.current) {
+      clearInterval(pollingRef.current)
+      pollingRef.current = null
+    }
+
+    handleAutoSubmit(relevantApplication.id)
+  }, [relevantApplication?.application_fee_paid, isProcessingFee, handleAutoSubmit, relevantApplication?.id])
   
   if(!city && !relevantApplication) return null
 
@@ -40,6 +103,7 @@ export default function Home() {
           onApply={onClickApply}
           status={relevantApplication?.status as EventStatus}
           canApply={canApply}
+          loading={isProcessingFee}
         />
       </div>
     </section>

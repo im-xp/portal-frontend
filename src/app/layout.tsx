@@ -21,7 +21,7 @@ const popupMetadata: Record<string, {
   'volunteers.icelandeclipse.com': {
     title: 'Iceland Eclipse Volunteers',
     description: 'Welcome, Iceland Eclipse Volunteers. Log in or sign up to access your volunteer portal.',
-    image: 'https://storage.googleapis.com/icelandeclipse/portal-black-hole__square.png',
+    image: 'https://storage.googleapis.com/icelandeclipse/iceland-eclipse__social-preview.jpg',
   },
   'ripple.egypt-eclipse.com': {
     title: 'Ripple on the Nile',
