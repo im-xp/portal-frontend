@@ -11,8 +11,14 @@ import { Switch } from "../../../../components/ui/switch"
 import { useEffect, useState } from "react"
 import useExportCsv from "./hooks/useExportCsv"
 import { FileDown, Loader2, ListFilter, Search } from "lucide-react"
+import { dynamicForm } from "@/constants"
+import { useCityProvider } from "@/providers/cityProvider"
 
 const Page = () => {
+  const { getCity } = useCityProvider()
+  const city = getCity()
+  const formConfig = dynamicForm[city?.slug ?? ''] ?? dynamicForm['default']
+  const hasFilters = formConfig?.directoryFilters?.weeks || formConfig?.directoryFilters?.bringsKids
   const { 
     attendees, 
     loading, 
@@ -85,70 +91,76 @@ const Page = () => {
               Clear filters
             </Button>
           )}
-          <Dialog open={filtersOpen} onOpenChange={setFiltersOpen}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DialogTrigger asChild>
-                  <Button
-                    aria-label="Open filters"
-                    className="bg-white text-black hover:bg-white hover:shadow-md"
-                  >
-                    <ListFilter className="w-4 h-4" />
-                  </Button>
-                </DialogTrigger>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Open search filters</p>
-              </TooltipContent>
-            </Tooltip>
-            <DialogContent className="bg-white">
-              <DialogHeader>
-                <DialogTitle>Filters</DialogTitle>
-              </DialogHeader>
-              <div className="flex flex-col gap-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">Brings kids</span>
-                    <span className="text-xs text-muted-foreground">Toggle to filter by bringing kids</span>
-                  </div>
-                  <Switch
-                    checked={bringsKids ?? false}
-                    onCheckedChange={(v: boolean) => setBringsKids(v)}
-                    aria-label="Toggle brings kids filter"
-                  />
-                </div>
+          {hasFilters && (
+            <Dialog open={filtersOpen} onOpenChange={setFiltersOpen}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DialogTrigger asChild>
+                    <Button
+                      aria-label="Open filters"
+                      className="bg-white text-black hover:bg-white hover:shadow-md"
+                    >
+                      <ListFilter className="w-4 h-4" />
+                    </Button>
+                  </DialogTrigger>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Open search filters</p>
+                </TooltipContent>
+              </Tooltip>
+              <DialogContent className="bg-white">
+                <DialogHeader>
+                  <DialogTitle>Filters</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col gap-6">
+                  {formConfig?.directoryFilters?.bringsKids && (
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium">Brings kids</span>
+                        <span className="text-xs text-muted-foreground">Toggle to filter by bringing kids</span>
+                      </div>
+                      <Switch
+                        checked={bringsKids ?? false}
+                        onCheckedChange={(v: boolean) => setBringsKids(v)}
+                        aria-label="Toggle brings kids filter"
+                      />
+                    </div>
+                  )}
 
-                <div className="flex flex-col gap-2">
-                  <span className="text-sm font-medium">Weeks Coming</span>
-                  <div className="flex flex-wrap gap-2">
-                    {[1,2,3,4].map((week) => {
-                      const isActive = selectedWeeks.includes(week)
-                      return (
-                        <Button
-                          key={week}
-                          variant={isActive ? 'default' : 'outline'}
-                          className={isActive ? 'bg-primary text-white' : 'bg-white text-black'}
-                          aria-pressed={isActive}
-                          onClick={() => handleToggleWeek(week)}
-                        >
-                          Week {week}
-                        </Button>
-                      )
-                    })}
+                  {formConfig?.directoryFilters?.weeks && (
+                    <div className="flex flex-col gap-2">
+                      <span className="text-sm font-medium">Weeks Coming</span>
+                      <div className="flex flex-wrap gap-2">
+                        {[1,2,3,4].map((week) => {
+                          const isActive = selectedWeeks.includes(week)
+                          return (
+                            <Button
+                              key={week}
+                              variant={isActive ? 'default' : 'outline'}
+                              className={isActive ? 'bg-primary text-white' : 'bg-white text-black'}
+                              aria-pressed={isActive}
+                              onClick={() => handleToggleWeek(week)}
+                            >
+                              Week {week}
+                            </Button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex justify-between gap-2">
+                    <Button variant="ghost" onClick={() => { clearFilters(); setFiltersOpen(false) }}>
+                      Clear
+                    </Button>
+                    <Button onClick={() => { applyFilters(); setFiltersOpen(false) }}>
+                      Apply filters
+                    </Button>
                   </div>
                 </div>
-
-                <div className="flex justify-between gap-2">
-                  <Button variant="ghost" onClick={() => { clearFilters(); setFiltersOpen(false) }}>
-                    Clear
-                  </Button>
-                  <Button onClick={() => { applyFilters(); setFiltersOpen(false) }}>
-                    Apply filters
-                  </Button>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              </DialogContent>
+            </Dialog>
+          )}
 
           <Tooltip>
             <TooltipTrigger asChild>

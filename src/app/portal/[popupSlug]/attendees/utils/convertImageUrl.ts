@@ -62,6 +62,7 @@ export function convertToEmbeddableImageUrl(url: string | null | undefined): str
     trimmedUrl.includes('cloudinary.com') ||
     trimmedUrl.includes('imgur.com') ||
     trimmedUrl.includes('githubusercontent.com') ||
+    trimmedUrl.includes('imxp-portal-uploads.s3.us-east-2.amazonaws.com') ||
     trimmedUrl.includes('s3.amazonaws.com') ||
     trimmedUrl.includes('storage.googleapis.com') ||
     /\.(jpg|jpeg|png|gif|webp|svg)(\?|$)/i.test(trimmedUrl)

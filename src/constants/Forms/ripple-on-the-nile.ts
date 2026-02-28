@@ -79,4 +79,9 @@ export const rippleOnTheNile: DynamicForm = {
       required: false,
     },
   ],
+  attendeesDirectory: true,
+  directoryFilters: {
+    weeks: true,
+    bringsKids: true,
+  },
 }

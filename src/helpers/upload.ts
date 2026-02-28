@@ -1,6 +1,6 @@
 import AWS from "aws-sdk";
 
-const S3_BUCKET = "simplefi";
+const S3_BUCKET = "imxp-portal-uploads";
 const REGION = "us-east-2";
 
 AWS.config.update({
@@ -14,17 +14,16 @@ const uploadFileToS3 = async (file: File) => {
 
   const params = {
     Bucket: S3_BUCKET,
-    Key: `uploads/${file.name}`, // Ruta dentro del bucket
+    Key: `uploads/${crypto.randomUUID()}-${file.name}`,
     Body: file,
-    ACL: "public-read", // Permite acceso público al archivo
+    ACL: "public-read",
   };
 
   try {
     const data = await s3.upload(params).promise();
-    console.log("Archivo subido con éxito:", data);
-    return data.Location; // Devuelve la URL del archivo
+    return data.Location;
   } catch (error) {
-    console.error("Error al subir archivo a S3:", error);
+    console.error("Error uploading to S3:", error);
     throw error;
   }
 };

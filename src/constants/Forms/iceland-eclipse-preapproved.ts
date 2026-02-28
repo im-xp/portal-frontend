@@ -10,5 +10,24 @@ export const icelandEclipsePreapproved: DynamicForm = {
     "last_name",
     "email",
     "telegram"
-  ]
+  ],
+  attendeesDirectory: true,
+  customFields: [
+    {
+      key: "headshot_url",
+      label: "Profile Photo",
+      type: "image",
+      placeholder: "Upload a photo of yourself",
+      section: "personal_information",
+      required: false,
+    },
+    {
+      key: "short_bio",
+      label: "Short Bio",
+      type: "textarea",
+      placeholder: "Tell others a bit about yourself, your work, and what brings you here",
+      section: "personal_information",
+      required: false,
+    },
+  ],
 }

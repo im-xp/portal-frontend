@@ -6,7 +6,7 @@ import { rippleOnTheNile } from "./Forms/ripple-on-the-nile";
 export type CustomField = {
   key: string;
   label: string;
-  type: 'text' | 'textarea' | 'boolean' | 'select';
+  type: 'text' | 'textarea' | 'boolean' | 'select' | 'image';
   placeholder?: string;
   section?: 'personal_information' | 'professional_details' | 'participation' | 'other';
   required?: boolean;
@@ -50,10 +50,16 @@ export type DynamicForm = {
   },
   fields: string[],
   customFields?: CustomField[],
+  attendeesDirectory?: boolean,
+  directoryFilters?: {
+    weeks?: boolean,
+    bringsKids?: boolean,
+  },
 }
 
 export const dynamicForm: Record<string, DynamicForm | null> = {
   'default': icelandEclipsePreapproved,
+  'iceland-eclipse': icelandEclipsePreapproved,
   'iceland-eclipse-volunteers': icelandEclipseVolunteers,
   'ripple-on-the-nile': rippleOnTheNile,
 }

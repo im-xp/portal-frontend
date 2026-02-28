@@ -16,6 +16,7 @@ import Permissions from '@/components/Permissions'
 import InputForm from '@/components/ui/Form/Input'
 import TextAreaForm from '@/components/ui/Form/TextArea'
 import SelectForm from '@/components/ui/Form/Select'
+import ImageUploadField from '@/components/ui/ImageUploadField'
 import SectionWrapper from '../../../application/components/SectionWrapper'
 
 const EditProfilePage = () => {
@@ -205,6 +206,16 @@ const EditProfilePage = () => {
             value={value}
             onChange={(val) => handleChange(fieldKey, val)}
             options={field.options || []}
+            placeholder={field.placeholder}
+          />
+        )
+      case 'image':
+        return (
+          <ImageUploadField
+            key={field.key}
+            label={field.label}
+            value={value}
+            onChange={(url) => handleChange(fieldKey, url)}
             placeholder={field.placeholder}
           />
         )

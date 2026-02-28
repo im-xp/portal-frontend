@@ -1,5 +1,6 @@
 import { useApplication } from "@/providers/applicationProvider"
 import { useCityProvider } from "@/providers/cityProvider"
+import { dynamicForm } from "@/constants"
 import { Resource } from "@/types/resources"
 import { FileText, Home, Ticket, Users } from "lucide-react"
 
@@ -14,9 +15,9 @@ const useResources = () => {
   const isLoading = applications === null || popups.length === 0
 
   const isEdge = city?.slug === 'edge-esmeralda' || city?.slug === 'buenos-aires'
-  const isRipple = city?.slug === 'ripple-on-the-nile'
   const applicationAccepted = application?.status === 'accepted'
-  const canSeeAttendees = applicationAccepted && isRipple // Only show for Ripple
+  const formConfig = dynamicForm[city?.slug ?? ''] ?? dynamicForm['default']
+  const canSeeAttendees = applicationAccepted && !!formConfig?.attendeesDirectory
 
   const resources: Resource[] = [
     {

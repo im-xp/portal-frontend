@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
+        hostname: 'imxp-portal-uploads.s3.us-east-2.amazonaws.com',
+      },
+      {
         hostname: 'simplefi.s3.us-east-2.amazonaws.com',
       },
       {
