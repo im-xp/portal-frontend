@@ -2,10 +2,12 @@ import AWS from "aws-sdk";
 
 const S3_BUCKET = "imxp-portal-uploads";
 const REGION = "us-east-2";
+const ACCESS_KEY = process.env.NEXT_PUBLIC_ACCESS_KEY;
+const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY;
 
 AWS.config.update({
-  accessKeyId: process.env.NEXT_PUBLIC_ACCESS_KEY,
-  secretAccessKey: process.env.NEXT_PUBLIC_SECRET_KEY,
+  accessKeyId: ACCESS_KEY,
+  secretAccessKey: SECRET_KEY,
   region: REGION,
 });
 
