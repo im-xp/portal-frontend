@@ -46,7 +46,7 @@ export type PopupBranding = {
 }
 
 export const popupBranding: Record<string, PopupBranding> = {
-  'iceland-eclipse': {
+  'iceland-eclipse-preapproved': {
     name: 'The Portal at Iceland Eclipse',
     logo: 'https://storage.googleapis.com/icelandeclipse/the-portal-at-iceland-eclipse-logo.png',
     logoAlt: 'The Portal at Iceland Eclipse logo',
@@ -180,7 +180,7 @@ export const popupBranding: Record<string, PopupBranding> = {
   },
 }
 
-export const defaultPopupSlug = 'iceland-eclipse'
+export const defaultPopupSlug = 'iceland-eclipse-preapproved'
 
 export function getPopupBranding(popupSlug: string | null): PopupBranding {
   if (popupSlug && popupBranding[popupSlug]) {

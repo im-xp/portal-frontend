@@ -59,7 +59,7 @@ export type DynamicForm = {
 
 export const dynamicForm: Record<string, DynamicForm | null> = {
   'default': icelandEclipsePreapproved,
-  'iceland-eclipse': icelandEclipsePreapproved,
+  'iceland-eclipse-preapproved': icelandEclipsePreapproved,
   'iceland-eclipse-volunteers': icelandEclipseVolunteers,
   'ripple-on-the-nile': rippleOnTheNile,
 }
