@@ -29,6 +29,7 @@ export const initial_data = {
     send_note_to_applicant: '',
 
     // Iceland Eclipse custom fields
+    custom_application_photo: '',
     custom_data_privacy_consent: false,
     custom_full_name: '',
     custom_has_chosen_name: false,

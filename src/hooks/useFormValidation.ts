@@ -18,6 +18,7 @@ const requiredFields = {
 }
 
 const defaultCustomRequired = [
+  'custom_application_photo',
   'custom_data_privacy_consent',
   'custom_full_name',
   'custom_ticket_type',

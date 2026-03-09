@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Check, ChevronsUpDown, X } from "lucide-react"
 import SectionWrapper from "./SectionWrapper"
+import ImageUploadField from "@/components/ui/ImageUploadField"
 import InputForm from "@/components/ui/Form/Input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { FormInputWrapper } from "@/components/ui/form-input-wrapper"
@@ -242,6 +243,16 @@ export const AboutYouForm = ({ formData, errors, handleChange }: SectionProps) =
             onChange={(value) => handleChange("custom_city_town", value)}
             error={errors.custom_city_town}
             isRequired
+          />
+
+          {/* Application Photo */}
+          <ImageUploadField
+            label="Provide a photo to personalize your application"
+            value={formData.custom_application_photo as string ?? ""}
+            onChange={(url) => handleChange("custom_application_photo", url)}
+            isRequired
+            subtitle="Your photo will not be shared publicly without your consent. Please do not upload an image of an ID or drivers license."
+            error={errors.custom_application_photo}
           />
         </div>
       </SectionWrapper>

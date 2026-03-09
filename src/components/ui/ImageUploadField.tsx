@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { Upload, Loader2, X, ImageIcon } from 'lucide-react'
-import { Label } from './label'
+import { LabelRequired } from './label'
 import uploadFileToS3 from '@/helpers/upload'
 
 interface ImageUploadFieldProps {
@@ -10,11 +10,14 @@ interface ImageUploadFieldProps {
   value: string
   onChange: (url: string) => void
   placeholder?: string
+  isRequired?: boolean
+  subtitle?: string
+  error?: string
 }
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 
-const ImageUploadField = ({ label, value, onChange, placeholder }: ImageUploadFieldProps) => {
+const ImageUploadField = ({ label, value, onChange, placeholder, isRequired, subtitle, error }: ImageUploadFieldProps) => {
   const [isUploading, setIsUploading] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -58,7 +61,8 @@ const ImageUploadField = ({ label, value, onChange, placeholder }: ImageUploadFi
 
   return (
     <div className="space-y-2">
-      <Label className="text-sm font-medium text-foreground">{label}</Label>
+      <LabelRequired className="text-sm font-medium text-foreground" isRequired={isRequired}>{label}</LabelRequired>
+      {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
       <div
         className="relative w-32 h-32 rounded-lg border-2 border-dashed border-border cursor-pointer overflow-hidden transition-all duration-200 hover:border-primary/50"
         onClick={handleClick}
@@ -108,6 +112,7 @@ const ImageUploadField = ({ label, value, onChange, placeholder }: ImageUploadFi
         onChange={handleFileChange}
         className="hidden"
       />
+      {error && <p className="text-destructive text-sm">{error}</p>}
     </div>
   )
 }
