@@ -46,7 +46,7 @@ const defaultCustomRequired = [
 
 const customRequiredFieldsBySlug: Record<string, string[]> = {
   'default': defaultCustomRequired,
-  'iceland-eclipse-preapproved': defaultCustomRequired,
+  'iceland-eclipse-preapproved': [],
 }
 
 export const useFormValidation = (initialData: FormData) => {
