@@ -27,16 +27,14 @@ abstract class BasePriceStrategy implements PriceCalculationStrategy {
     }, 0);
   }
 
-  // Calculate the total of products eligible for discounts
-  // Excludes: patreon, supporter, lodging, and portal-patron
-  protected calculateDiscountableTotal(products: ProductsPass[]): number {
+  protected calculateDiscountableTotal(products: ProductsPass[], appliesTo?: string): number {
     return products
       .filter(p => p.selected && !p.purchased)
-      .filter(p => 
-        p.category !== 'patreon' && 
-        p.category !== 'supporter' && 
-        p.category !== 'lodging' &&
-        p.slug !== 'portal-patron'
+      .filter(p =>
+        p.category !== 'patreon' &&
+        p.category !== 'supporter' &&
+        p.slug !== 'portal-patron' &&
+        !(p.category === 'lodging' && appliesTo !== 'lodging' && appliesTo !== 'all')
       )
       .reduce((sum, product) => {
         const price = product.original_price ?? product.price ?? 0;
@@ -64,8 +62,7 @@ class MonthlyPriceStrategy extends BasePriceStrategy {
       .reduce((sum, product) => sum + (product.price * (product.quantity ?? 1)), 0)
 
     const originalTotal = this.calculateOriginalTotal(products)
-    // Discounts only apply to eligible products (not lodging or portal-patron)
-    const discountableTotal = this.calculateDiscountableTotal(products)
+    const discountableTotal = this.calculateDiscountableTotal(products, discount.applies_to)
     const discountAmount = discount.discount_value ? discountableTotal * (discount.discount_value / 100): 0;
 
 
@@ -113,8 +110,7 @@ class WeeklyPriceStrategy extends BasePriceStrategy {
     }, 0);
     
     const originalTotal = this.calculateOriginalTotal(products)
-    // Discounts only apply to eligible products (not lodging or portal-patron)
-    const discountableTotal = this.calculateDiscountableTotal(products)
+    const discountableTotal = this.calculateDiscountableTotal(products, discount.applies_to)
     const discountAmount = discount.discount_value ? discountableTotal * (discount.discount_value / 100): 0;
 
     return {
@@ -191,8 +187,7 @@ class DayPriceStrategy extends BasePriceStrategy {
     }, 0);
     
     const originalTotal = this.calculateOriginalTotal(products)
-    // Discounts only apply to eligible products (not lodging or portal-patron)
-    const discountableTotal = this.calculateDiscountableTotal(products)
+    const discountableTotal = this.calculateDiscountableTotal(products, discount.applies_to)
     const discountAmount = discount.discount_value ? discountableTotal * (discount.discount_value / 100): 0;
 
     return {

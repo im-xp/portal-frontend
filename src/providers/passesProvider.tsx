@@ -76,7 +76,7 @@ const PassesProvider = ({ children }: { children: ReactNode }) => {
               attendee_id: attendee.id,
               original_price: product.price,
               disabled: false,
-              price: priceStrategy.calculatePrice(product, hasPatreonPurchased, discountApplied.discount_value)
+              price: priceStrategy.calculatePrice(product, hasPatreonPurchased, discountApplied.discount_value, discountApplied.applies_to)
             }
           });
 
