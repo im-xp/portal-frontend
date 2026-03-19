@@ -3,4 +3,5 @@ export interface DiscountProps {
   discount_type: 'percentage';
   discount_code?: string | null;
   city_id?: number | null;
+  applies_to?: 'pass' | 'lodging' | 'all';
 }

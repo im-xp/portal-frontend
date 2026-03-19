@@ -53,7 +53,7 @@ class PatreonProductStrategy implements ProductStrategy {
           ...p,
         selected: (attendee.id === attendeeId && p.id === product.id) ? !p.selected : p.selected,
         // original_price: p.price,
-        price: this.priceStrategy.calculatePrice(p, isPatreonSelected || false, discount?.discount_value || 0)
+        price: this.priceStrategy.calculatePrice(p, isPatreonSelected || false, discount?.discount_value || 0, discount?.applies_to)
         }))
       };
     });
