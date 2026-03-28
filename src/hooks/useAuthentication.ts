@@ -1,6 +1,7 @@
 'use client'
 
 import { api, instance } from "@/api"
+import { analytics } from "@/lib/segment"
 import { User } from "@/types/User"
 import { jwtDecode } from "jwt-decode"
 import { useParams, useRouter } from "next/navigation"
@@ -50,6 +51,7 @@ const useAuthentication = (): UseAuthenticationReturn => {
         instance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`
         const decoded = jwtDecode(response.data.access_token) as User
         setUser(decoded)
+        identifyUser(decoded)
         return true
       }
 
@@ -63,11 +65,20 @@ const useAuthentication = (): UseAuthenticationReturn => {
     return false;
   }
 
+  const identifyUser = (decoded: User) => {
+    const userId = decoded.email.toLowerCase()
+    analytics?.identify(userId, {
+      email: userId,
+      event: 'Iceland Eclipse',
+    })
+  }
+
   const setTokenValidated = (token: string) => {
     instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     const decoded = jwtDecode(token) as User
     setUser(decoded)
     setIsAuthenticated(true)
+    identifyUser(decoded)
   }
 
   const login = async (): Promise<boolean> => {
