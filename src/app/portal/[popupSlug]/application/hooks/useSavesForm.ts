@@ -1,4 +1,5 @@
 import { api } from "@/api"
+import { analytics } from "@/lib/segment"
 import { toast } from "sonner"
 import { useCityProvider } from "@/providers/cityProvider"
 import { useRouter } from "next/navigation"
@@ -118,7 +119,21 @@ const useSavesForm = () => {
       }
 
       updateApplicationsList(response.data);
-      
+
+      if ((response.status === 201 || response.status === 200) && status === 'in review') {
+        const app = response.data as ApplicationProps;
+        const userId = app.email?.toLowerCase();
+        if (userId) {
+          analytics?.identify(userId, {
+            email: userId,
+            first_name: app.first_name,
+            last_name: app.last_name,
+            event: 'Iceland Eclipse',
+            application_status: app.status,
+          });
+        }
+      }
+
       if ((response.status === 201 || response.status === 200) && successMessage) {
         toast.success(successMessage.title, {
           description: successMessage.description,
