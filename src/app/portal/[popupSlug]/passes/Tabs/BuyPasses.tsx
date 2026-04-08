@@ -94,7 +94,7 @@ const BuyPasses = ({floatingBar = true, viewInvoices = true, canEdit = true, def
         )
       }
 
-      <BannerDiscount isPatreon={(specialProduct?.selected || specialProduct?.purchased) ?? false} products={products} />
+      {/* <BannerDiscount isPatreon={(specialProduct?.selected || specialProduct?.purchased) ?? false} products={products} /> */}
 
       {(specialProduct && mainAttendee?.id && !isDayCheckout) && (
         <div className="p-0 w-full">
