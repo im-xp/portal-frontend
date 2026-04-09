@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { MiniKitProvider } from '@worldcoin/minikit-js/minikit-provider';
 import { Raleway } from 'next/font/google';
 import GoogleAnalytics from "@/components/utils/GoogleAnalytics";
+import SegmentAnalytics from "@/components/utils/SegmentAnalytics";
 import { Toaster } from "sonner";
 
 const raleway = Raleway({
@@ -77,6 +78,7 @@ export default function RootLayout({children }: Readonly<{ children: React.React
     <html lang="en" className="dark">
       <body suppressHydrationWarning>
         <GoogleAnalytics />
+        <SegmentAnalytics />
         <MiniKitProvider>
           <div className={`${raleway.className} antialiased w-[100%]`}>
             {children}
