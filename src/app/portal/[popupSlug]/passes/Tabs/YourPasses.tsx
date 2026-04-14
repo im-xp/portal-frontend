@@ -23,7 +23,7 @@ const YourPasses = ({ onSwitchToBuy }: YourPassesProps) => {
 
   return (
     <div className="space-y-6">
-      <TitleTabs title="Your Passes" subtitle="View and manage your passes here. Need to make changes? Reach out to theportal@icelandeclipse.com" />
+      <TitleTabs title="Your Passes" subtitle="View and manage your passes here. Need to make changes? Reach out to volunteers@icelandeclipse.com" />
       
       <div className="my-4 flex justify-start">
         <ToolbarTop canEdit={true} onSwitchToBuy={onSwitchToBuy}  canAddSpouse={city?.allows_spouse ?? false} canAddChildren={city?.allows_children ?? false} allows_coupons={false}/>

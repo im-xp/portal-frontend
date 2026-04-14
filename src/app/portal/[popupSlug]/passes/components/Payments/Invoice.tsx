@@ -83,7 +83,7 @@ export const Invoice = ({ payment, discount, hasPatreon, imageUrl, clientName }:
           <Text>IMXP Events LLC</Text>
           <Text>411 Brazos St, Ste 103</Text>
           <Text>Austin TX 78701</Text>
-          <Text>Email: theportal@icelandeclipse.com</Text>
+          <Text>Email: volunteers@icelandeclipse.com</Text>
         </View>
         <View style={{display: 'flex', flexDirection: 'column', gap: 4, flex: 1, alignItems: 'flex-end'}}>
           <Text>Date: {formatDate(payment.created_at)}</Text>
