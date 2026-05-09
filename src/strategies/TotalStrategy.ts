@@ -51,9 +51,19 @@ class MonthlyPriceStrategy extends BasePriceStrategy {
     const monthProduct = products.find(p => (p.category === 'month' || p.category === 'local month') && p.selected && !p.purchased);
     const monthPrice = (monthProduct?.price ?? 0) * (monthProduct?.quantity ?? 1);
     
-    // Calculate total of already purchased products (credit)
+    // Credit only pass products that a monthly pass replaces. Lodging remains a
+    // separate purchase and should not reduce a later pass-only checkout.
     const totalProductsPurchased = products
-      .filter(p => p.category !== 'patreon' && p.category !== 'supporter')
+      .filter(p =>
+        p.purchased &&
+        (
+          p.category === 'month' ||
+          p.category === 'local month' ||
+          p.category === 'week' ||
+          p.category === 'local week' ||
+          p.category.includes('day')
+        )
+      )
       .reduce((sum, product) => sum + (product.purchased ? product.price * (product.quantity ?? 1) : 0), 0)
     
     // Calculate total of newly selected products (like lodging)
