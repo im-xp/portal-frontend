@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "commonjs",
+    "target": "ES2020",
+    "moduleResolution": "node",
+    "outDir": "/tmp/edgeos-total-test",
+    "incremental": false
+  },
+  "include": [
+    "./test-total-strategy.ts",
+    "../src/strategies/TotalStrategy.ts",
+    "../src/types/**/*.ts"
+  ]
+}
