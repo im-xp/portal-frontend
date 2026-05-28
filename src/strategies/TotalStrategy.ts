@@ -28,14 +28,22 @@ abstract class BasePriceStrategy implements PriceCalculationStrategy {
   }
 
   protected calculateDiscountableTotal(products: ProductsPass[], appliesTo?: string): number {
+    // applies_to is a strict scope, mutually exclusive:
+    //   'pass'    (default): passes discount, lodging does not
+    //   'lodging'          : lodging discounts, passes do not
+    //   'all'              : both discount
+    // patreon/supporter/portal-patron are never in the discountable pool.
     return products
       .filter(p => p.selected && !p.purchased)
-      .filter(p =>
-        p.category !== 'patreon' &&
-        p.category !== 'supporter' &&
-        p.slug !== 'portal-patron' &&
-        !(p.category === 'lodging' && appliesTo !== 'lodging' && appliesTo !== 'all')
-      )
+      .filter(p => {
+        if (p.category === 'patreon' || p.category === 'supporter' || p.slug === 'portal-patron') {
+          return false;
+        }
+        if (p.category === 'lodging') {
+          return appliesTo === 'lodging' || appliesTo === 'all';
+        }
+        return appliesTo !== 'lodging';
+      })
       .reduce((sum, product) => {
         const price = product.original_price ?? product.price ?? 0;
         return sum + (price * (product.quantity || 1));
